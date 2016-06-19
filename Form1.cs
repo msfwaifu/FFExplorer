@@ -5,6 +5,8 @@ using System.IO;
 
 namespace FFViewer_cs
 {
+    public delegate void HandleException_d(Exception ex);
+
     public partial class Form1 : Form
     {
         bool isFastFileOpened;
@@ -21,9 +23,8 @@ namespace FFViewer_cs
         AssetData assetInfo;
         TreeNode[] rawFileNodes;
         //string FFViewerVersion;
-                
-        public string[] optionsData;                
-
+        public OptionsHandler options;
+ 
         OpenFileDialog OpenDialog;
         SaveFileDialog SaveDialog;
         FolderBrowserDialog DirectoryDialog;
@@ -37,6 +38,9 @@ namespace FFViewer_cs
         public Form1()
         {
             InitializeComponent();
+            currentAppDirectory = Application.StartupPath;
+            options = new OptionsHandler(currentAppDirectory, HandleException);
+
             //
             isFastFileOpened = false;
             currentFFName = "";
@@ -62,7 +66,6 @@ namespace FFViewer_cs
             StatusLine_Clear();
             SaveFFToolStripMenuItem.Enabled = false;
             CloseFFToolStripMenuItem.Enabled = false;
-            currentAppDirectory = Application.StartupPath;
         }
 
         private void SetWindowName(string name)
@@ -149,67 +152,6 @@ namespace FFViewer_cs
             e.SuppressKeyPress = handled;
         }
 
-        public string GetPreferenceValue(string prefName, string returnIfNotFound = "")
-        {
-            for(int i = 0; i < optionsData.Length; ++i)
-                if (optionsData[i].Contains(prefName))
-                    return optionsData[i].Substring(optionsData[i].ToString().IndexOf("=") + 1);
-            return returnIfNotFound;
-        }
-
-        public void SetPreferenceValue(string prefName, string value)
-        {
-            try
-            {
-                bool found = false;
-                for (int i = 0; i < optionsData.Length; ++i)
-                    if (optionsData[i].Contains(prefName))
-                    {
-                        string savedVal = optionsData[i].ToString().Substring(0, optionsData[i].ToString().IndexOf("="));
-                        optionsData[i] = savedVal + "=" + value;
-                        found = true;
-                        break;
-                    }
-                if (!found)
-                    optionsData.SetValue(prefName + "=" + value, optionsData.Length);
-                SaveConfigFile();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Ошибка при сохранении настроек программы:\n" + ex.Message + "\nСтек вызовов:\n"+ ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
-            }
-        }
-
-        public void ApplyConfigFile()
-        {
-            try
-            {
-                optionsData = File.ReadAllLines(currentAppDirectory + "\\prefs\\config.ini");
-                int width = Convert.ToInt32(GetPreferenceValue("width", this.Size.Width.ToString()));
-                int height = Convert.ToInt32(GetPreferenceValue("height", this.Size.Height.ToString()));
-                this.Size = new System.Drawing.Size(width, height);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при записи настроек программы:\n" + ex.Message + "\nСтек вызовов:\n" + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
-            }
-        }
-
-        public void SaveConfigFile()
-        {
-            try
-            {
-                File.WriteAllLines(currentAppDirectory + "\\prefs\\config.ini", optionsData);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при записи настроек программы:\n" + ex.Message + "\nСтек вызовов:\n" + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
-            }
-        }
-
         private void OpenFFToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AnalyzeFastfile();
@@ -229,8 +171,8 @@ namespace FFViewer_cs
                     OpenDialog.FileName = "";
                     OpenDialog.FilterIndex = 1;
 
-                    if (bool.Parse(GetPreferenceValue("rememberLF")))
-                        OpenDialog.InitialDirectory = GetPreferenceValue("lastlocation");
+                    if (options.RememberLastFolder)
+                        OpenDialog.InitialDirectory = options.LastFolder;
                     else
                         OpenDialog.InitialDirectory = Directory.GetCurrentDirectory();
 
@@ -271,7 +213,7 @@ namespace FFViewer_cs
                 dlgWait.SetState("Получение информации об Asset файлах", 50);
                 assetInfo = FFBackend.GetAssetData(zoneInfo);
 
-                SetPreferenceValue("lastlocation", ffInfo.Name.Substring(0, ffInfo.Name.LastIndexOf("\\")));
+                options.LastFolder = ffInfo.Name.Substring(0, ffInfo.Name.LastIndexOf("\\"));
                 SetWindowName("FF Viewer - [" + ffInfo.Name + "]");
 
                 dlgWait.SetState("Заполнение списка Raw файлов", 75);
@@ -699,8 +641,8 @@ namespace FFViewer_cs
                     SaveDialog.FileName = assetInfo.RawFiles[RawFiles.SelectedNode.Index].NewName;
 
                 SaveDialog.FilterIndex = 1;
-                if (bool.Parse(GetPreferenceValue("rememberLF")))
-                    SaveDialog.InitialDirectory = GetPreferenceValue("lastlocation");
+                if (options.RememberLastFolder)
+                    SaveDialog.InitialDirectory = options.LastFolder;
                 else
                     SaveDialog.InitialDirectory = Directory.GetCurrentDirectory();
 
@@ -954,23 +896,11 @@ namespace FFViewer_cs
         private void Form1_Shown(object sender, EventArgs e)
         {
             SetWindowName("FF Viewer");
+            this.Width = options.Width;
+            this.Height = options.Height;
 
             try
             {
-                if (!Directory.Exists(currentAppDirectory + "\\prefs"))
-                    Directory.CreateDirectory(currentAppDirectory + "\\prefs");
-                if (!File.Exists(currentAppDirectory + "\\prefs\\config.ini"))
-                {
-                    string[] optionsData = new string[4];
-                    optionsData[0] = "rememberLF=false";
-                    optionsData[1] = "lastlocation=" + Directory.GetCurrentDirectory();
-                    optionsData[2] = "width=" + this.Size.Width;
-                    optionsData[3] = "height=" + this.Size.Height;
-                    SaveConfigFile();
-                }
-                else
-                    ApplyConfigFile();
-
                 if (!Directory.Exists(currentAppDirectory + "\\snippets"))
                     Directory.CreateDirectory(currentAppDirectory + "\\snippets");
 
@@ -1000,8 +930,14 @@ namespace FFViewer_cs
 
         private void Form1_ResizeEnd(object sender, EventArgs e)
         {
-            SetPreferenceValue("width", this.Size.Width.ToString());
-            SetPreferenceValue("height", this.Size.Height.ToString());
+            options.Width = this.Size.Width;
+            options.Height = this.Size.Height;
+        }
+
+        private void HandleException(Exception ex)
+        {
+            MessageBox.Show(ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
+            Application.Exit();
         }
     }
 }

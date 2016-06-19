@@ -19,8 +19,8 @@ namespace FFViewer_cs
 
             try
             {
-                RLF.Checked = bool.Parse(owner.GetPreferenceValue("rememberLF", "False"));
-                DeleteTemp.Checked = bool.Parse(owner.GetPreferenceValue("deletetemp", "False"));
+                RLF.Checked = owner.options.RememberLastFolder;
+                DeleteTemp.Checked = owner.options.DeleteTemporaryFiles;
             }
             catch (Exception ex)
             {
@@ -37,8 +37,8 @@ namespace FFViewer_cs
         {
             try
             {
-                owner.SetPreferenceValue("rememberLF", RLF.Checked.ToString());
-                owner.SetPreferenceValue("deletetemp", DeleteTemp.Checked.ToString());
+                owner.options.RememberLastFolder = RLF.Checked;
+                owner.options.DeleteTemporaryFiles = DeleteTemp.Checked;
                 MessageBox.Show("Настройки успешно сохранены", "Сохранено", MessageBoxButtons.OK);
             }
             catch (Exception ex)
