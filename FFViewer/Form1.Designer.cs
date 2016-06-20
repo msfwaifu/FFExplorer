@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.MenuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,6 +60,7 @@
             this.EditSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExtractAllGSCsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FindTextPanel = new System.Windows.Forms.TextBox();
             this.CodeBox = new System.Windows.Forms.TextBox();
             this.CodeBoxRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,7 +81,9 @@
             this.ToolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.LnLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.ColLbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MenuStrip1.SuspendLayout();
+            this.Wait = new System.Windows.Forms.ProgressBar();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.MenuStrip.SuspendLayout();
             this.Tabs.SuspendLayout();
             this.TabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer1)).BeginInit();
@@ -94,21 +97,25 @@
             this.SplitContainer3.Panel1.SuspendLayout();
             this.SplitContainer3.SuspendLayout();
             this.StatusStrip1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // MenuStrip1
+            // MenuStrip
             // 
-            this.MenuStrip1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.MenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuStrip.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.MenuStrip.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem,
             this.ToolsToolStripMenuItem,
             this.AboutToolStripMenuItem,
             this.Snippets});
-            this.MenuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.MenuStrip1.Name = "MenuStrip1";
-            this.MenuStrip1.Size = new System.Drawing.Size(984, 24);
-            this.MenuStrip1.TabIndex = 2;
-            this.MenuStrip1.Text = "MenuStrip1";
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.MaximumSize = new System.Drawing.Size(0, 24);
+            this.MenuStrip.MinimumSize = new System.Drawing.Size(374, 24);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(374, 24);
+            this.MenuStrip.TabIndex = 2;
+            this.MenuStrip.Text = "MenuStrip1";
             // 
             // FileToolStripMenuItem
             // 
@@ -275,7 +282,7 @@
             this.Tabs.Margin = new System.Windows.Forms.Padding(0);
             this.Tabs.Name = "Tabs";
             this.Tabs.SelectedIndex = 0;
-            this.Tabs.Size = new System.Drawing.Size(984, 515);
+            this.Tabs.Size = new System.Drawing.Size(524, 215);
             this.Tabs.TabIndex = 4;
             // 
             // TabPage1
@@ -284,7 +291,7 @@
             this.TabPage1.Location = new System.Drawing.Point(4, 22);
             this.TabPage1.Margin = new System.Windows.Forms.Padding(0);
             this.TabPage1.Name = "TabPage1";
-            this.TabPage1.Size = new System.Drawing.Size(976, 489);
+            this.TabPage1.Size = new System.Drawing.Size(516, 189);
             this.TabPage1.TabIndex = 0;
             this.TabPage1.Text = "Raw файлы";
             this.TabPage1.UseVisualStyleBackColor = true;
@@ -302,9 +309,10 @@
             // 
             // SplitContainer1.Panel2
             // 
+            this.SplitContainer1.Panel2.Controls.Add(this.FindTextPanel);
             this.SplitContainer1.Panel2.Controls.Add(this.CodeBox);
-            this.SplitContainer1.Size = new System.Drawing.Size(976, 489);
-            this.SplitContainer1.SplitterDistance = 371;
+            this.SplitContainer1.Size = new System.Drawing.Size(516, 189);
+            this.SplitContainer1.SplitterDistance = 196;
             this.SplitContainer1.SplitterWidth = 1;
             this.SplitContainer1.TabIndex = 0;
             // 
@@ -318,7 +326,7 @@
             this.RawFiles.Location = new System.Drawing.Point(0, 0);
             this.RawFiles.Margin = new System.Windows.Forms.Padding(0);
             this.RawFiles.Name = "RawFiles";
-            this.RawFiles.Size = new System.Drawing.Size(371, 489);
+            this.RawFiles.Size = new System.Drawing.Size(196, 189);
             this.RawFiles.TabIndex = 1;
             this.RawFiles.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.RawFiles_AfterSelect);
             this.RawFiles.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.RawFiles_NodeMouseClick);
@@ -359,6 +367,19 @@
             this.ExtractAllGSCsToolStripMenuItem.Text = "Экспортировать всё";
             this.ExtractAllGSCsToolStripMenuItem.Click += new System.EventHandler(this.ExtractAllGSCsToolStripMenuItem_Click);
             // 
+            // FindTextPanel
+            // 
+            this.FindTextPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FindTextPanel.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FindTextPanel.Location = new System.Drawing.Point(0, 147);
+            this.FindTextPanel.MaximumSize = new System.Drawing.Size(299, 25);
+            this.FindTextPanel.MinimumSize = new System.Drawing.Size(299, 25);
+            this.FindTextPanel.Name = "FindTextPanel";
+            this.FindTextPanel.Size = new System.Drawing.Size(299, 25);
+            this.FindTextPanel.TabIndex = 1;
+            this.FindTextPanel.Visible = false;
+            // 
             // CodeBox
             // 
             this.CodeBox.AcceptsTab = true;
@@ -371,7 +392,7 @@
             this.CodeBox.Multiline = true;
             this.CodeBox.Name = "CodeBox";
             this.CodeBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.CodeBox.Size = new System.Drawing.Size(604, 489);
+            this.CodeBox.Size = new System.Drawing.Size(319, 189);
             this.CodeBox.TabIndex = 0;
             this.CodeBox.WordWrap = false;
             this.CodeBox.Click += new System.EventHandler(this.CodeBox_Click);
@@ -459,7 +480,7 @@
             this.TabPage3.Location = new System.Drawing.Point(4, 22);
             this.TabPage3.Margin = new System.Windows.Forms.Padding(0);
             this.TabPage3.Name = "TabPage3";
-            this.TabPage3.Size = new System.Drawing.Size(657, 310);
+            this.TabPage3.Size = new System.Drawing.Size(516, 189);
             this.TabPage3.TabIndex = 4;
             this.TabPage3.Text = "Прочее";
             this.TabPage3.UseVisualStyleBackColor = true;
@@ -474,8 +495,8 @@
             // SplitContainer3.Panel1
             // 
             this.SplitContainer3.Panel1.Controls.Add(this.MiscData);
-            this.SplitContainer3.Size = new System.Drawing.Size(657, 310);
-            this.SplitContainer3.SplitterDistance = 159;
+            this.SplitContainer3.Size = new System.Drawing.Size(516, 189);
+            this.SplitContainer3.SplitterDistance = 124;
             this.SplitContainer3.SplitterWidth = 1;
             this.SplitContainer3.TabIndex = 2;
             // 
@@ -489,7 +510,7 @@
             this.MiscData.Location = new System.Drawing.Point(0, 0);
             this.MiscData.Margin = new System.Windows.Forms.Padding(0);
             this.MiscData.Name = "MiscData";
-            this.MiscData.Size = new System.Drawing.Size(159, 310);
+            this.MiscData.Size = new System.Drawing.Size(124, 189);
             this.MiscData.TabIndex = 1;
             // 
             // StatusStrip1
@@ -501,9 +522,9 @@
             this.ToolStripStatusLabel5,
             this.LnLbl,
             this.ColLbl});
-            this.StatusStrip1.Location = new System.Drawing.Point(0, 539);
+            this.StatusStrip1.Location = new System.Drawing.Point(0, 239);
             this.StatusStrip1.Name = "StatusStrip1";
-            this.StatusStrip1.Size = new System.Drawing.Size(984, 22);
+            this.StatusStrip1.Size = new System.Drawing.Size(524, 22);
             this.StatusStrip1.TabIndex = 5;
             this.StatusStrip1.Text = "StatusStrip1";
             // 
@@ -528,7 +549,7 @@
             // ToolStripStatusLabel5
             // 
             this.ToolStripStatusLabel5.Name = "ToolStripStatusLabel5";
-            this.ToolStripStatusLabel5.Size = new System.Drawing.Size(638, 17);
+            this.ToolStripStatusLabel5.Size = new System.Drawing.Size(178, 17);
             this.ToolStripStatusLabel5.Spring = true;
             // 
             // LnLbl
@@ -543,18 +564,42 @@
             this.ColLbl.Size = new System.Drawing.Size(57, 17);
             this.ColLbl.Text = "Колонка:";
             // 
+            // Wait
+            // 
+            this.Wait.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Wait.Location = new System.Drawing.Point(374, 0);
+            this.Wait.MaximumSize = new System.Drawing.Size(150, 24);
+            this.Wait.MinimumSize = new System.Drawing.Size(150, 24);
+            this.Wait.Name = "Wait";
+            this.Wait.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Wait.Size = new System.Drawing.Size(150, 24);
+            this.Wait.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.Wait.TabIndex = 6;
+            this.Wait.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.MenuStrip);
+            this.panel1.Controls.Add(this.Wait);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(524, 24);
+            this.panel1.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 561);
+            this.ClientSize = new System.Drawing.Size(524, 261);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.StatusStrip1);
             this.Controls.Add(this.Tabs);
-            this.Controls.Add(this.MenuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MainMenuStrip = this.MenuStrip1;
+            this.MainMenuStrip = this.MenuStrip;
+            this.MinimumSize = new System.Drawing.Size(540, 300);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FFViewer-cs";
@@ -564,8 +609,8 @@
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.MenuStrip1.ResumeLayout(false);
-            this.MenuStrip1.PerformLayout();
+            this.MenuStrip.ResumeLayout(false);
+            this.MenuStrip.PerformLayout();
             this.Tabs.ResumeLayout(false);
             this.TabPage1.ResumeLayout(false);
             this.SplitContainer1.Panel1.ResumeLayout(false);
@@ -581,6 +626,8 @@
             this.SplitContainer3.ResumeLayout(false);
             this.StatusStrip1.ResumeLayout(false);
             this.StatusStrip1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -588,7 +635,7 @@
 
         #endregion
 
-        internal System.Windows.Forms.MenuStrip MenuStrip1;
+        internal System.Windows.Forms.MenuStrip MenuStrip;
         internal System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem OpenFFToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem SaveFFToolStripMenuItem;
@@ -638,6 +685,9 @@
         private System.Windows.Forms.ToolStripMenuItem ZlibDecompressToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem PadFileToolStripMenuItem;
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ProgressBar Wait;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox FindTextPanel;
     }
 }
 

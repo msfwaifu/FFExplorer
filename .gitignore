@@ -1,3 +1,9 @@
 .vs
-bin
-obj
+bin/*
+!bin/Release
+bin/Release/*
+!bin/Release/FFViewer.exe
+!bin/Release/*.dll
+bin/Debug
+FFViewer/obj/*
+FFViewer/bin/*
