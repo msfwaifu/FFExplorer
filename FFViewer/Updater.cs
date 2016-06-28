@@ -25,7 +25,7 @@ namespace FFViewer_cs
 
             wipCount = 0;
             thislock = new object();
-            GetUpdateInfo();
+            GetUpdateInfo();z
         }
 
         ~Updater()
