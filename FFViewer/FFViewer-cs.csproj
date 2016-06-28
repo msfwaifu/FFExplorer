@@ -64,6 +64,7 @@
     <Compile Include="ByteHandling.cs" />
     <Compile Include="FFBackend.cs" />
     <Compile Include="FFData.cs" />
+    <Compile Include="Updater.cs" />
     <Compile Include="ZoneData.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
