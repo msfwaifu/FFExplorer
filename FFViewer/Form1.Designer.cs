@@ -85,6 +85,7 @@
             this.LnLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Wait = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.GoToLinePanel = new System.Windows.Forms.NumericUpDown();
             this.MenuStrip.SuspendLayout();
             this.Tabs.SuspendLayout();
             this.TabPage1.SuspendLayout();
@@ -100,6 +101,7 @@
             this.SplitContainer3.SuspendLayout();
             this.StatusStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GoToLinePanel)).BeginInit();
             this.SuspendLayout();
             // 
             // MenuStrip
@@ -311,6 +313,7 @@
             // 
             // SplitContainer1.Panel2
             // 
+            this.SplitContainer1.Panel2.Controls.Add(this.GoToLinePanel);
             this.SplitContainer1.Panel2.Controls.Add(this.FindTextPanel);
             this.SplitContainer1.Panel2.Controls.Add(this.CodeBox);
             this.SplitContainer1.Size = new System.Drawing.Size(516, 189);
@@ -375,10 +378,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FindTextPanel.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FindTextPanel.Location = new System.Drawing.Point(0, 147);
-            this.FindTextPanel.MaximumSize = new System.Drawing.Size(299, 25);
-            this.FindTextPanel.MinimumSize = new System.Drawing.Size(299, 25);
+            this.FindTextPanel.MaximumSize = new System.Drawing.Size(220, 25);
+            this.FindTextPanel.MinimumSize = new System.Drawing.Size(220, 25);
             this.FindTextPanel.Name = "FindTextPanel";
-            this.FindTextPanel.Size = new System.Drawing.Size(299, 25);
+            this.FindTextPanel.Size = new System.Drawing.Size(220, 25);
             this.FindTextPanel.TabIndex = 1;
             this.FindTextPanel.Visible = false;
             // 
@@ -550,7 +553,7 @@
             // ToolStripStatusLabel5
             // 
             this.ToolStripStatusLabel5.Name = "ToolStripStatusLabel5";
-            this.ToolStripStatusLabel5.Size = new System.Drawing.Size(204, 17);
+            this.ToolStripStatusLabel5.Size = new System.Drawing.Size(235, 17);
             this.ToolStripStatusLabel5.Spring = true;
             // 
             // LnLbl
@@ -581,6 +584,34 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(524, 24);
             this.panel1.TabIndex = 7;
+            // 
+            // GoToLinePanel
+            // 
+            this.GoToLinePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.GoToLinePanel.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.GoToLinePanel.Location = new System.Drawing.Point(248, 146);
+            this.GoToLinePanel.Margin = new System.Windows.Forms.Padding(0);
+            this.GoToLinePanel.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.GoToLinePanel.MaximumSize = new System.Drawing.Size(50, 0);
+            this.GoToLinePanel.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.GoToLinePanel.MinimumSize = new System.Drawing.Size(50, 0);
+            this.GoToLinePanel.Name = "GoToLinePanel";
+            this.GoToLinePanel.Size = new System.Drawing.Size(50, 25);
+            this.GoToLinePanel.TabIndex = 3;
+            this.GoToLinePanel.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.GoToLinePanel.Visible = false;
             // 
             // Form1
             // 
@@ -624,6 +655,7 @@
             this.StatusStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GoToLinePanel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -683,6 +715,7 @@
         private System.Windows.Forms.ProgressBar Wait;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox FindTextPanel;
+        private System.Windows.Forms.NumericUpDown GoToLinePanel;
     }
 }
 

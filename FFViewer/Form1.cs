@@ -39,7 +39,6 @@ namespace FFViewer_cs
         FolderBrowserDialog directoryDialog;
 
         About dlgAbout;
-        GotoLine dlgGoto;
         Options dlgOptions;
 
         RawFileData currentRawFile;
@@ -70,11 +69,9 @@ namespace FFViewer_cs
             directoryDialog = new FolderBrowserDialog();
 
             dlgAbout = new About();
-            dlgGoto = new GotoLine();
             dlgOptions = new Options();
 
             dlgAbout.Owner = this;
-            dlgGoto.Owner = this;
             dlgOptions.Owner = this;
 
             StatusLine_Clear();
@@ -117,88 +114,105 @@ namespace FFViewer_cs
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            bool handled = false;
-            if (CodeBox.Focused)
+            try
             {
+                bool handled = false;
+                if (CodeBox.Focused)
+                {
+                    if (e.Control)
+                    {
+                        if (e.KeyCode == Keys.F)
+                        {
+                            FindToolStripMenuItem.PerformClick();
+                            handled = true;
+                        }
+                        if (e.KeyCode == Keys.G)
+                        {
+                            GotoToolStripMenuItem.PerformClick();
+                            handled = true;
+                        }
+                        if (e.KeyCode == Keys.A)
+                        {
+                            CodeBox.SelectAll();
+                            handled = true;
+                        }
+                        if (e.KeyCode == Keys.C)
+                        {
+                            if (CodeBox.SelectedText.Length > 0)
+                                Clipboard.SetText(CodeBox.SelectedText);
+                            handled = true;
+                        }
+
+                        if (e.KeyCode == Keys.X)
+                        {
+                            CodeBox.Cut();
+                            handled = true;
+                        }
+                        /*if (e.KeyCode == Keys.V)
+                            CodeBox.Paste();*/
+                        //TODO:
+                        if (e.KeyCode == Keys.Z)
+                            handled = true;
+                        if (e.KeyCode == Keys.Y)
+                            handled = true;
+                    }
+                    if (e.KeyCode == Keys.F3)
+                    {
+                        FindNextToolStripMenuItem.PerformClick();
+                        handled = true;
+                    }
+                }
+                else if (FindTextPanel.Focused)
+                {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        FindNextOccurence();
+                        handled = true;
+                    }
+                }
+                else if (GoToLinePanel.Focused)
+                {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        GoToLinePanel.Maximum = SubStrCount(CodeBox.Text, "\r\n");
+                        GoToLine();
+                        handled = true;
+                    }
+                }
                 if (e.Control)
                 {
-                    if (e.KeyCode == Keys.F)
+                    if (e.KeyCode == Keys.O)
                     {
-                        FindToolStripMenuItem.PerformClick();
+                        if (OpenFFToolStripMenuItem.Enabled)
+                            OpenFFToolStripMenuItem.PerformClick();
                         handled = true;
                     }
-                    if (e.KeyCode == Keys.G)
+                    if (e.KeyCode == Keys.S)
                     {
-                        dlgGoto.Show();
+                        if (SaveFFToolStripMenuItem.Enabled)
+                            SaveFFToolStripMenuItem.PerformClick();
                         handled = true;
                     }
-                    if (e.KeyCode == Keys.A)
+                    if (e.KeyCode == Keys.Q)
                     {
-                        CodeBox.SelectAll();
+                        if (CloseFFToolStripMenuItem.Enabled)
+                            CloseFFToolStripMenuItem.PerformClick();
                         handled = true;
                     }
-                    if (e.KeyCode == Keys.C)
-                    { 
-                        if (CodeBox.SelectedText.Length > 0)
-                            Clipboard.SetText(CodeBox.SelectedText);
-                        handled = true;
-                    }
-
-                    if (e.KeyCode == Keys.X)
-                    {
-                        CodeBox.Cut();
-                        handled = true;
-                    }
-                    /*if (e.KeyCode == Keys.V)
-                        CodeBox.Paste();*/
-                    //TODO:
-                    if (e.KeyCode == Keys.Z)
-                        handled = true;
-                    if (e.KeyCode == Keys.Y)
-                        handled = true;
                 }
-                if (e.KeyCode == Keys.F3)
+                if (e.KeyCode == Keys.Escape)
                 {
-                    FindNextToolStripMenuItem.PerformClick();
+                    ShowTextSearchBox(false);
+                    ShowGoToLinePanel(false);
                     handled = true;
                 }
+                e.Handled = handled;
+                e.SuppressKeyPress = handled;
             }
-            else if (FindTextPanel.Focused)
+            catch(Exception ex)
             {
-                if(e.KeyCode == Keys.Enter)
-                {
-                    FindNextOccurence();
-                    handled = true;
-                }
+                HandleException(ex);
             }
-            if (e.Control)
-            {
-                if (e.KeyCode == Keys.O)
-                {
-                    if (OpenFFToolStripMenuItem.Enabled)
-                        OpenFFToolStripMenuItem.PerformClick();
-                    handled = true;
-                }
-                if (e.KeyCode == Keys.S)
-                {
-                    if (SaveFFToolStripMenuItem.Enabled)
-                        SaveFFToolStripMenuItem.PerformClick();
-                    handled = true;
-                }
-                if (e.KeyCode == Keys.Q)
-                {
-                    if (CloseFFToolStripMenuItem.Enabled)
-                        CloseFFToolStripMenuItem.PerformClick();
-                    handled = true;
-                }
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                HideTextSearchBox();
-                handled = true;
-            }
-            e.Handled = handled;
-            e.SuppressKeyPress = handled;
         }
 
         private void FindNextOccurence()
@@ -209,7 +223,7 @@ namespace FFViewer_cs
                 CodeBox.Select(selectionStart, FindTextPanel.TextLength);
                 CodeBox.ScrollToCaret();
                 CodeBox.Focus();
-                HideTextSearchBox();
+                ShowTextSearchBox(false);
             }
         }
 
@@ -218,15 +232,11 @@ namespace FFViewer_cs
             AnalyzeFastfile();
         }
 
-        private void ShowTextSearchBox()
+        private void ShowTextSearchBox(bool state)
         {
-            if(!FindTextPanel.Visible)
+            if (state)
                 FindTextPanel.Show();
-        }
-
-        private void HideTextSearchBox()
-        {
-            if(FindTextPanel.Visible)
+            else
                 FindTextPanel.Hide();
         }
 
@@ -305,7 +315,7 @@ namespace FFViewer_cs
                     //Application.DoEvents();
                 }
 
-                RawFiles.Sort();
+                //RawFiles.Sort();
                 isFastFileOpened = true;
                 OpenFFToolStripMenuItem.Enabled = false;
                 SaveFFToolStripMenuItem.Enabled = true;
@@ -662,7 +672,7 @@ namespace FFViewer_cs
 
         private void FindToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowTextSearchBox();
+            ShowTextSearchBox(true);
             FindTextPanel.Focus();
             if (CodeBox.SelectionLength > 0)
             {
@@ -690,7 +700,30 @@ namespace FFViewer_cs
 
         private void GotoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dlgGoto.Show();
+            ShowGoToLinePanel(true);
+            GoToLinePanel.Focus();
+        }
+
+        private void GoToLine()
+        {
+            if (GoToLinePanel.Value > 0)
+            {
+                CodeBox.SelectionStart = 0;
+                for (int i = 0; i <= GoToLinePanel.Value - 2; ++i)
+                    CodeBox.SelectionStart = CodeBox.Text.IndexOf("\r\n", CodeBox.SelectionStart) + 2;
+
+                CodeBox.ScrollToCaret();
+                CodeBox.Focus();
+                ShowGoToLinePanel(false);
+            }
+        }
+
+        private void ShowGoToLinePanel(bool state)
+        {
+            if (state)
+                GoToLinePanel.Show();
+            else
+                GoToLinePanel.Hide();
         }
 
         private void SelectAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1005,7 +1038,7 @@ namespace FFViewer_cs
 
         private void HandleException(Exception ex)
         {
-            MessageBox.Show(ex.Message + "\n" + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
+            MessageBox.Show(ex.ToString(), "Exception caught", MessageBoxButtons.OK);
             Application.Exit();
         }
 

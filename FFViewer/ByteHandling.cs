@@ -8,13 +8,13 @@ namespace FFViewer_cs
     public class ByteHandling
     {
         /// <summary>
-        /// NI
+        /// Count bytes in array.
         /// </summary>
         /// <param name="bytes"></param>
         /// <param name="seekBytes"></param>
         /// <param name="offset"></param>
         /// <param name="endOffset"></param>
-        /// <returns></returns>
+        /// <returns>Count of bytes.</returns>
         public static int CountBytes(byte[] bytes, byte[] seekBytes, int offset = 0, int endOffset = -1)
         {
             int endPos = endOffset == -1 ? bytes.Length : endOffset;
@@ -37,13 +37,13 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
+        /// Find first occurrence of bytes in array.
         /// </summary>
         /// <param name="bytes"></param>
         /// <param name="seekBytes"></param>
         /// <param name="offset"></param>
-        /// <returns></returns>
-        public static int FindBytes(byte[] bytes, byte[] seekBytes, int offset)
+        /// <returns>Offset or -1 if not found.</returns>
+        public static int FindBytes(byte[] bytes, byte[] seekBytes, int offset = 0)
         {
             int currentByte = 0;
 
@@ -62,13 +62,13 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
+        /// Find first occurrence of byte in array.
         /// </summary>
         /// <param name="bytes"></param>
         /// <param name="seekByte"></param>
         /// <param name="offset"></param>
-        /// <returns></returns>
-        public static int FindByte(byte[] bytes, byte seekByte, int offset)
+        /// <returns>Offset or -1 if not found.</returns>
+        public static int FindByte(byte[] bytes, byte seekByte, int offset = 0)
         {
             if (offset > bytes.Length)
                 return -1;
@@ -81,13 +81,13 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
+        /// Find first occurrence of byte in array with backward seek logic.
         /// </summary>
         /// <param name="bytes"></param>
         /// <param name="seekByte"></param>
         /// <param name="offset"></param>
         /// <returns></returns>
-        public static int FindByteBackward(byte[] bytes, byte seekByte, int offset)
+        public static int FindByteBackward(byte[] bytes, byte seekByte, int offset = 0)
         {
             if (offset > bytes.Length)
                 return -1;
@@ -143,7 +143,7 @@ namespace FFViewer_cs
         /// <param name="bytes"></param>
         /// <param name="offset"></param>
         /// <param name="endoffset"></param>
-        /// <returns>String corresponding passed arguments</returns>
+        /// <returns>String corresponding passed arguments.</returns>
         public static string GetString(byte[] bytes, int offset, int endoffset)
         {
             byte[] byteselection = new byte[endoffset - offset];
@@ -159,7 +159,7 @@ namespace FFViewer_cs
         /// <param name="bytes"></param>
         /// <param name="startOffset"></param>
         /// <param name="endOffset"></param>
-        /// <returns>New array without block [startOffset; endOffset]</returns>
+        /// <returns>New array without block [startOffset; endOffset].</returns>
         public static byte[] RemoveBytes(byte[] bytes, int startOffset, int endOffset)
         {
             byte[] result = new byte[bytes.Length - endOffset + startOffset];
@@ -174,7 +174,7 @@ namespace FFViewer_cs
         /// <param name="bytes"></param>
         /// <param name="add"></param>
         /// <param name="startOffset"></param>
-        /// <returns>New array</returns>
+        /// <returns>New array.</returns>
         public static byte[] AddBytes(byte[] bytes, byte[] add, int startOffset)
         {
             int newLength = bytes.Length + add.Length;
@@ -217,13 +217,13 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
+        /// Replaces all bytes in range with specified byte.
         /// </summary>
         /// <param name="bytes"></param>
         /// <param name="startOffset"></param>
         /// <param name="length"></param>
         /// <param name="setByte"></param>
-        /// <returns></returns>
+        /// <returns>New array.</returns>
         public static byte[] SetBytes(byte[] bytes, int startOffset, int length, byte setByte)
         {
             for (int i = startOffset; i < startOffset + length; ++i)

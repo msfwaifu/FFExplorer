@@ -8,8 +8,6 @@ namespace FFViewer_cs
     /// </summary>
     public class AssetData
     {
-        List<RawFileData> rawFiles = new List<RawFileData>();
-
         /// <summary>
         /// Constructs <see cref="AssetData"/> class instance according to passed <see cref="ZoneData"/>.
         /// </summary>
@@ -29,7 +27,6 @@ namespace FFViewer_cs
             byte[] rmbFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'r', 'm', 'b', '\0' });
             byte[] cfgFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'c', 'f', 'g', '\0' });
             byte[] defFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'd', 'e', 'f', '\0' });
-            //byte[] csvFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'c', 's', 'v', '\0' });
 
             AddRawFiles(zd, gsxFormat);
             AddRawFiles(zd, gscFormat);
@@ -49,33 +46,9 @@ namespace FFViewer_cs
             }
         }
 
-        /*public List<StringTableData> StringTables
+        void AddRawFiles(ZoneData zoneData, byte[] extension)
         {
-            get
-            {
-                return _StringTables;
-            }
-            set
-            {
-                _StringTables = value;
-            }
-        }
-
-        public List<LocalizedStringsData> LocalizedStrings
-        {
-            get
-            {
-                return _LocalizedStrings;
-            }
-            set
-            {
-                _LocalizedStrings = value;
-            }
-        }*/
-
-        private void AddRawFiles(ZoneData zoneData, byte[] extension)
-        {
-            int offset = ByteHandling.FindBytes(zoneData.DecompressedData, extension, 0);
+            int offset = ByteHandling.FindBytes(zoneData.DecompressedData, extension);
             while(offset != -1)
             {
                 int startOfNameOffset = ByteHandling.FindByteBackward(zoneData.DecompressedData, 0xFF, offset + 1) + 1;
@@ -92,5 +65,6 @@ namespace FFViewer_cs
         }
 
         ZoneData zd;
+        List<RawFileData> rawFiles = new List<RawFileData>();
     }
 }

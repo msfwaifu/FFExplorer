@@ -1,28 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using Ionic.Zlib;
 
 namespace FFViewer_cs
 {
+    //TODO
     /// <summary>
     /// NI
     /// </summary>
     public class ZoneData
     {
-        byte[] _CompressedData;
-        byte[] _DecompressedData;
-        int _DecompressedSize = 0;
-        //
-        int _ZoneSize = 0;
-        int[] _ZoneSizes;
-        int _ListStringCount;
-        int _ListStringOffset;
-        string[] _ListStrings;
-        int _AssetsCount;
-        int _AssetsListOffset;
-        int[] _AssetsTypesCount;
-        int _AssetsDataOffset;
+        byte[] compressedData;
+        byte[] decompressedData;
+
+        int zoneSize = 0;
+        int[] zoneSizes;
+        int listStringCount;
+        int listStringOffset;
+        string[] listStrings;
+        int assetsCount;
+        int assetsListOffset;
+        int[] assetsTypesCount;
+        int assetsDataOffset;
 
         /// <summary>
         /// NI
@@ -30,54 +28,44 @@ namespace FFViewer_cs
         /// <param name="compressed"></param>
         public ZoneData(byte[] compressed)
         {
-            try
-            {
-                _CompressedData = compressed;
-                _DecompressedData = ZlibStream.UncompressBuffer(compressed);
-                //comment line later
-                System.IO.File.WriteAllBytes("extracted-zone.dat", _DecompressedData);
-                //
-                _DecompressedSize = _DecompressedData.Length;
+            compressedData = compressed;
+            decompressedData = ZlibStream.UncompressBuffer(compressed);
 
-                _ZoneSize = ByteHandling.GetDword(_DecompressedData, 0);
-                _ZoneSizes = new int[10];
-                for (int i = 0; i < 10; ++i)
-                    _ZoneSizes[i] = ByteHandling.GetDword(_DecompressedData, 4 * i);
-                _ListStringCount = ByteHandling.GetDword(_DecompressedData, 0x2C);
-                _AssetsCount = ByteHandling.GetDword(_DecompressedData, 0x34);
-                _ListStringOffset = 0x3C + _ListStringCount * 4;
-                _ListStrings = new string[_ListStringCount];
+            //comment line later
+            //System.IO.File.WriteAllBytes("extracted-zone.dat", decompressedData);
+            //
 
-                //Getting the strings from list
-                int listStringStrStartOffset = _ListStringOffset;
-                int listStringStrEndOffset = _ListStringOffset;
-                for (int i = 0; i < _ListStringCount; ++i)
-                    if ((UInt32)ByteHandling.GetDword(_DecompressedData, 0x3C + 4 * i) == 0xFFFFFFFF)
-                    {
-                        listStringStrEndOffset = ByteHandling.FindByte(_DecompressedData, 0x00, listStringStrStartOffset);
-                        _ListStrings[i] = ByteHandling.GetString(_DecompressedData, listStringStrStartOffset, listStringStrEndOffset);
-                        listStringStrStartOffset = listStringStrEndOffset + 1;
-                    }
+            zoneSize = ByteHandling.GetDword(decompressedData, 0);
+            zoneSizes = new int[10];
+            for (int i = 0; i < 10; ++i)
+                zoneSizes[i] = ByteHandling.GetDword(decompressedData, 4 * i);
+            listStringCount = ByteHandling.GetDword(decompressedData, 0x2C);
+            assetsCount = ByteHandling.GetDword(decompressedData, 0x34);
+            listStringOffset = 0x3C + listStringCount * 4;
+            listStrings = new string[listStringCount];
 
-                _AssetsListOffset = _ListStringCount > 0 ? listStringStrEndOffset + 1 : listStringStrEndOffset;
-
-                //Getting the assets' count from assets list
-                _AssetsTypesCount = new int[33];
-                for (int i = 0; i < _AssetsCount; ++i)
+            //Getting the strings from list
+            int listStringStrStartOffset = listStringOffset;
+            int listStringStrEndOffset = listStringOffset;
+            for (int i = 0; i < listStringCount; ++i)
+                if ((UInt32)ByteHandling.GetDword(decompressedData, 0x3C + 4 * i) == 0xFFFFFFFF)
                 {
-                    int assetType = ByteHandling.GetDword(_DecompressedData, _AssetsListOffset + 8 * i);
-                    _AssetsTypesCount[assetType]++;
+                    listStringStrEndOffset = ByteHandling.FindByte(decompressedData, 0x00, listStringStrStartOffset);
+                    listStrings[i] = ByteHandling.GetString(decompressedData, listStringStrStartOffset, listStringStrEndOffset);
+                    listStringStrStartOffset = listStringStrEndOffset + 1;
                 }
 
-                _AssetsDataOffset = _AssetsListOffset + _AssetsCount * 8;
+            assetsListOffset = listStringCount > 0 ? listStringStrEndOffset + 1 : listStringStrEndOffset;
 
-
-            }
-            catch(Exception ex)
+            //Getting the assets' count from assets list
+            assetsTypesCount = new int[33];
+            for (int i = 0; i < assetsCount; ++i)
             {
-                MessageBox.Show("При получении информации о Zone произошла ошибка:\n" + ex.Message + "\n\nСтек вызовов:\n" + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                int assetType = ByteHandling.GetDword(decompressedData, assetsListOffset + 8 * i);
+                assetsTypesCount[assetType]++;
             }
+
+            assetsDataOffset = assetsListOffset + assetsCount * 8;
         }
 
         /// <summary>
@@ -87,11 +75,7 @@ namespace FFViewer_cs
         {
             get
             {
-                return _CompressedData;
-            }
-            set
-            {
-                _CompressedData = value;
+                return compressedData;
             }
         }
 
@@ -102,11 +86,11 @@ namespace FFViewer_cs
         {
             get
             {
-                return _DecompressedData;
+                return decompressedData;
             }
             set
             {
-                _DecompressedData = value;
+                decompressedData = value;
             }
         }
 
@@ -117,11 +101,7 @@ namespace FFViewer_cs
         {
             get
             {
-                return _DecompressedSize;
-            }
-            set
-            {
-                _DecompressedSize = value;
+                return decompressedData.Length;
             }
         }
 
@@ -132,11 +112,7 @@ namespace FFViewer_cs
         {
             get
             {
-                return _ZoneSize;
-            }
-            set
-            {
-                _ZoneSize = value;
+                return zoneSize;
             }
         }
 
@@ -147,11 +123,7 @@ namespace FFViewer_cs
         {
             get
             {
-                return _ZoneSizes;
-            }
-            set
-            {
-                _ZoneSizes = value;
+                return zoneSizes;
             }
         }
 
@@ -162,11 +134,7 @@ namespace FFViewer_cs
         {
             get
             {
-                return _ListStringCount;
-            }
-            set
-            {
-                _ListStringCount = value;
+                return listStringCount;
             }
         }
 
@@ -177,11 +145,7 @@ namespace FFViewer_cs
         {
             get
             {
-                return _ListStringOffset;
-            }
-            set
-            {
-                _ListStringOffset = value;
+                return listStringOffset;
             }
         }
 
@@ -192,11 +156,7 @@ namespace FFViewer_cs
         {
             get
             {
-                return _ListStrings;
-            }
-            set
-            {
-                _ListStrings = value;
+                return listStrings;
             }
         }
 
@@ -207,11 +167,7 @@ namespace FFViewer_cs
         {
             get
             {
-                return _AssetsCount;
-            }
-            set
-            {
-                _AssetsCount = value;
+                return assetsCount;
             }
         }
 
@@ -222,11 +178,7 @@ namespace FFViewer_cs
         {
             get
             {
-                return _AssetsListOffset;
-            }
-            set
-            {
-                _AssetsListOffset = value;
+                return assetsListOffset;
             }
         }
 
@@ -237,11 +189,7 @@ namespace FFViewer_cs
         {
             get
             {
-                return _AssetsTypesCount;
-            }
-            set
-            {
-                _AssetsTypesCount = value;
+                return assetsTypesCount;
             }
         }
 
@@ -252,11 +200,7 @@ namespace FFViewer_cs
         {
             get
             {
-                return _AssetsDataOffset;
-            }
-            set
-            {
-                _AssetsDataOffset = value;
+                return assetsDataOffset;
             }
         }
     }
