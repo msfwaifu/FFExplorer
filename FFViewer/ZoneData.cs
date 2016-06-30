@@ -39,12 +39,12 @@ namespace FFViewer_cs
                 //
                 _DecompressedSize = _DecompressedData.Length;
 
-                _ZoneSize = ByteHandling.GetDWORD(_DecompressedData, 0);
+                _ZoneSize = ByteHandling.GetDword(_DecompressedData, 0);
                 _ZoneSizes = new int[10];
                 for (int i = 0; i < 10; ++i)
-                    _ZoneSizes[i] = ByteHandling.GetDWORD(_DecompressedData, 4 * i);
-                _ListStringCount = ByteHandling.GetDWORD(_DecompressedData, 0x2C);
-                _AssetsCount = ByteHandling.GetDWORD(_DecompressedData, 0x34);
+                    _ZoneSizes[i] = ByteHandling.GetDword(_DecompressedData, 4 * i);
+                _ListStringCount = ByteHandling.GetDword(_DecompressedData, 0x2C);
+                _AssetsCount = ByteHandling.GetDword(_DecompressedData, 0x34);
                 _ListStringOffset = 0x3C + _ListStringCount * 4;
                 _ListStrings = new string[_ListStringCount];
 
@@ -52,7 +52,7 @@ namespace FFViewer_cs
                 int listStringStrStartOffset = _ListStringOffset;
                 int listStringStrEndOffset = _ListStringOffset;
                 for (int i = 0; i < _ListStringCount; ++i)
-                    if ((UInt32)ByteHandling.GetDWORD(_DecompressedData, 0x3C + 4 * i) == 0xFFFFFFFF)
+                    if ((UInt32)ByteHandling.GetDword(_DecompressedData, 0x3C + 4 * i) == 0xFFFFFFFF)
                     {
                         listStringStrEndOffset = ByteHandling.FindByte(_DecompressedData, 0x00, listStringStrStartOffset);
                         _ListStrings[i] = ByteHandling.GetString(_DecompressedData, listStringStrStartOffset, listStringStrEndOffset);
@@ -65,7 +65,7 @@ namespace FFViewer_cs
                 _AssetsTypesCount = new int[33];
                 for (int i = 0; i < _AssetsCount; ++i)
                 {
-                    int assetType = ByteHandling.GetDWORD(_DecompressedData, _AssetsListOffset + 8 * i);
+                    int assetType = ByteHandling.GetDword(_DecompressedData, _AssetsListOffset + 8 * i);
                     _AssetsTypesCount[assetType]++;
                 }
 

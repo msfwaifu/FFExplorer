@@ -5,23 +5,18 @@
     /// </summary>
     public class LocalizedStringsData
     {
-        string _StringName;
-        string _StringValue;
-        string _OrigName;
-        int _Offset;
-
         /// <summary>
         /// NI
         /// </summary>
         /// <param name="name"></param>
         /// <param name="value"></param>
-        /// <param name="offset"></param>
-        public LocalizedStringsData(string name, string value, int offset)
+        /// <param name="strOffset"></param>
+        public LocalizedStringsData(string name, string value, int strOffset)
         {
-            _StringName = Name;
-            _StringValue = Value;
-            _OrigName = Name;
-            _Offset = Offset;
+            stringName = name;
+            stringValue = value;
+            origName = name;
+            offset = strOffset;
         }
 
         /// <summary>
@@ -31,11 +26,11 @@
         {
             get
             {
-                return _Offset;
+                return offset;
             }
             set
             {
-                _Offset = value;
+                offset = value;
             }
         }
 
@@ -46,11 +41,11 @@
         {
             get
             {
-                return _StringName;
+                return stringValue;
             }
             set
             {
-                _StringName = value;
+                stringValue = value;
             }
         }
 
@@ -61,12 +56,31 @@
         {
             get
             {
-                return _StringName;
+                return stringName;
             }
             set
             {
-                _StringName = value;
+                stringName = value;
             }
         }
+        /// <summary>
+        /// NI
+        /// </summary>
+        public string OriginalName
+        {
+            get
+            {
+                return origName;
+            }
+            set
+            {
+                origName = value;
+            }
+        }
+
+        string stringName;
+        string stringValue;
+        string origName;
+        int offset;
     }
 }

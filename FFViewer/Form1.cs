@@ -20,14 +20,11 @@ namespace FFViewer_cs
 
     public partial class Form1 : Form
     {
+        static string currentAppDirectory = Application.StartupPath;
+
         bool isFastFileOpened;
-        string currentAppDirectory;
         string currentFFName;
-        string currentRawFileName;
-        int currentRawFileOriginalSize;
-        int currentRawFileNewSize;
         int codeBoxLine;
-        int codeBoxCol;
 
         FFBackend ffBackend;
         FFData ffInfo;
@@ -45,6 +42,8 @@ namespace FFViewer_cs
         GotoLine dlgGoto;
         Options dlgOptions;
 
+        RawFileData currentRawFile;
+
         /// <summary>
         /// Gets options handler to access any preferences saved by application.
         /// </summary>
@@ -56,8 +55,7 @@ namespace FFViewer_cs
         public Form1()
         {
             InitializeComponent();
-            currentAppDirectory = Application.StartupPath;
-            options = new OptionsHandler(currentAppDirectory);
+            options = new OptionsHandler();
 
             //
             isFastFileOpened = false;
@@ -66,7 +64,6 @@ namespace FFViewer_cs
             //FFViewerVersion = "1.0";
 
             ffBackend = new FFBackend();
-            ffBackend.OnExceptionRaised += HandleException;
 
             openDialog = new OpenFileDialog();
             saveDialog = new SaveFileDialog();
@@ -89,6 +86,8 @@ namespace FFViewer_cs
             updater.OnUpdateAvailable += Updater_OnUpdateAvailable;
             updater.OnFileDownloaded += Updater_OnFileDownloaded;
             updater.OnUpdateDone += Updater_OnUpdateDone;
+
+            currentRawFile = new RawFileData();
         }
 
         private void Updater_OnUpdateDone()
@@ -810,20 +809,12 @@ namespace FFViewer_cs
 
             try
             {
-                int rawIndex = RawFiles.SelectedNode.Nodes.Count == 0 ? RawFiles.SelectedNode.Parent.Index : RawFiles.SelectedNode.Index;
-                RawFileData selectedRaw = assetInfo.RawFiles[rawIndex];
-
-                currentRawFileNewSize = CodeBox.Text.Length;
-                selectedRaw.Contents = CodeBox.Text;
-                selectedRaw.ActualSize = currentRawFileNewSize;
-                selectedRaw.IsChanged = true;
-
+                currentRawFile.Contents = CodeBox.Text;
                 StatusLine_UpdateRawFileNewSize();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При редактировании произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
@@ -832,9 +823,7 @@ namespace FFViewer_cs
             try
             {
                 codeBoxLine = CodeBox.GetLineFromCharIndex(CodeBox.SelectionStart) + 1;
-                codeBoxCol = CodeBox.SelectionStart - CodeBox.GetFirstCharIndexOfCurrentLine() + 1;
                 StatusLine_UpdateLine();
-                StatusLine_UpdateColumn();
             }
             catch (Exception ex)
             {
@@ -848,9 +837,7 @@ namespace FFViewer_cs
             try
             {
                 codeBoxLine = CodeBox.GetLineFromCharIndex(CodeBox.SelectionStart) + 1;
-                codeBoxCol = CodeBox.SelectionStart - CodeBox.GetFirstCharIndexOfCurrentLine() + 1;
                 StatusLine_UpdateLine();
-                StatusLine_UpdateColumn();
             }
             catch (Exception ex)
             {
@@ -889,13 +876,13 @@ namespace FFViewer_cs
                 if (!CodeBox.Focused)
                     return;
 
-                if (currentRawFileNewSize >= currentRawFileOriginalSize)
+                if (currentRawFile.ActualSize >= currentRawFile.OriginalSize)
                 {
                     MessageBox.Show("Текущий размер файла больше или равен оригинальному.", "Ошибка", MessageBoxButtons.OK);
                     return;
                 }
 
-                int required = currentRawFileOriginalSize - currentRawFileNewSize;
+                int required = currentRawFile.OriginalSize - currentRawFile.ActualSize;
                 int numLines = required / 1020 + 1;
                 int maxPortion = required % 1020 > 4 ? 1020 : 1010;
                 string text = CodeBox.Text;
@@ -919,17 +906,17 @@ namespace FFViewer_cs
 
         private void StatusLine_UpdateRawFileOriginalSize()
         {
-            OldSizeLbl.Text = "Ориг. размер: " + currentRawFileOriginalSize.ToString();
+            OldSizeLbl.Text = "Макс. размер: " + currentRawFile.OriginalSize.ToString();
         }
 
         private void StatusLine_UpdateRawFileNewSize()
         {
-            NewSizeLbl.Text = "Новый размер: " + currentRawFileNewSize.ToString();
+            NewSizeLbl.Text = "Нов. размер: " + currentRawFile.ActualSize.ToString();
         }
 
         private void StatusLine_UpdateRawFileName()
         {
-            OpenRawFile.Text = "Файл: " + currentRawFileName;
+            OpenRawFile.Text = "Файл: " + currentRawFile.NewName;
         }
 
         private void StatusLine_UpdateLine()
@@ -937,14 +924,8 @@ namespace FFViewer_cs
             LnLbl.Text = "Строка: " + codeBoxLine.ToString();
         }
 
-        private void StatusLine_UpdateColumn()
-        {
-            ColLbl.Text = "Колонка: " + codeBoxCol.ToString();
-        }
-
         private void StatusLine_Update()
         {
-            StatusLine_UpdateColumn();
             StatusLine_UpdateLine();
             StatusLine_UpdateRawFileName();
             StatusLine_UpdateRawFileNewSize();
@@ -953,11 +934,8 @@ namespace FFViewer_cs
 
         private void StatusLine_Clear()
         {
-            currentRawFileName = "";
-            codeBoxCol = 0;
-            codeBoxLine = 0;
-            currentRawFileNewSize = 0;
-            currentRawFileOriginalSize = 0;
+            codeBoxLine = 1;
+            currentRawFile = new RawFileData();
             StatusLine_Update();
         }
 
@@ -966,15 +944,10 @@ namespace FFViewer_cs
             try
             {
                 int rawIndex = RawFiles.SelectedNode.Nodes.Count == 0 ? RawFiles.SelectedNode.Parent.Index : RawFiles.SelectedNode.Index;
-                RawFileData selectedRaw = assetInfo.RawFiles[rawIndex];
-                CodeBox.Text = selectedRaw.Contents;
-                currentRawFileOriginalSize = selectedRaw.OriginalSize;
-                currentRawFileNewSize = selectedRaw.Contents.Length;
-                currentRawFileName = selectedRaw.NewName;
-
-                StatusLine_UpdateRawFileOriginalSize();
-                StatusLine_UpdateRawFileNewSize();
-                StatusLine_UpdateRawFileName();
+                currentRawFile = assetInfo.RawFiles[rawIndex];
+                CodeBox.Text = currentRawFile.Contents;
+                codeBoxLine = 1;
+                StatusLine_Update();
             }
             catch (Exception ex)
             {

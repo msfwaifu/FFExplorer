@@ -83,7 +83,6 @@
             this.OpenRawFile = new System.Windows.Forms.ToolStripStatusLabel();
             this.ToolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.LnLbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ColLbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.Wait = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
             this.MenuStrip.SuspendLayout();
@@ -523,8 +522,7 @@
             this.NewSizeLbl,
             this.OpenRawFile,
             this.ToolStripStatusLabel5,
-            this.LnLbl,
-            this.ColLbl});
+            this.LnLbl});
             this.StatusStrip1.Location = new System.Drawing.Point(0, 239);
             this.StatusStrip1.Name = "StatusStrip1";
             this.StatusStrip1.Size = new System.Drawing.Size(524, 22);
@@ -552,7 +550,7 @@
             // ToolStripStatusLabel5
             // 
             this.ToolStripStatusLabel5.Name = "ToolStripStatusLabel5";
-            this.ToolStripStatusLabel5.Size = new System.Drawing.Size(178, 17);
+            this.ToolStripStatusLabel5.Size = new System.Drawing.Size(204, 17);
             this.ToolStripStatusLabel5.Spring = true;
             // 
             // LnLbl
@@ -560,12 +558,6 @@
             this.LnLbl.Name = "LnLbl";
             this.LnLbl.Size = new System.Drawing.Size(49, 17);
             this.LnLbl.Text = "Строка:";
-            // 
-            // ColLbl
-            // 
-            this.ColLbl.Name = "ColLbl";
-            this.ColLbl.Size = new System.Drawing.Size(57, 17);
-            this.ColLbl.Text = "Колонка:";
             // 
             // Wait
             // 
@@ -670,7 +662,6 @@
         internal System.Windows.Forms.ToolStripStatusLabel OpenRawFile;
         internal System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabel5;
         internal System.Windows.Forms.ToolStripStatusLabel LnLbl;
-        internal System.Windows.Forms.ToolStripStatusLabel ColLbl;
         internal System.Windows.Forms.ContextMenuStrip FileListRightClick;
         internal System.Windows.Forms.ToolStripMenuItem ExportFileToolStripMenuItem;
         internal System.Windows.Forms.ToolStripMenuItem ExtractAllGSCsToolStripMenuItem;

@@ -80,7 +80,7 @@ namespace FFViewer_cs
             {
                 int startOfNameOffset = ByteHandling.FindByteBackward(zoneData.DecompressedData, 0xFF, offset + 1) + 1;
                 int endOfNameOffset = ByteHandling.FindByte(zoneData.DecompressedData, 0x00, offset + 1);
-                int assetSize = ByteHandling.GetDWORD(zoneData.DecompressedData, startOfNameOffset - 8);
+                int assetSize = ByteHandling.GetDword(zoneData.DecompressedData, startOfNameOffset - 8);
                 string assetName = ByteHandling.GetString(zoneData.DecompressedData, startOfNameOffset, endOfNameOffset);
                 int startOfContents = endOfNameOffset + 1;
                 int endOfContents = ByteHandling.FindByte(zoneData.DecompressedData, 0x00, startOfContents);

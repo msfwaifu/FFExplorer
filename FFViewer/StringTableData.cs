@@ -8,41 +8,65 @@
         /// <summary>
         /// NI
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="columns"></param>
-        /// <param name="rows"></param>
-        /// <param name="fileOffset"></param>
-        public StringTableData(string name, int columns, int rows, int fileOffset)
+        /// <param name="tName"></param>
+        /// <param name="tColumns"></param>
+        /// <param name="tRows"></param>
+        /// <param name="tOffset"></param>
+        public StringTableData(string tName, int tColumns, int tRows, int tOffset)
         {
-            Filename = name;
-            Columns = columns;
-            Rows = rows;
-            Offset = fileOffset;
+            filename = tName;
+            columns = tColumns;
+            rows = tRows;
+            offset = tOffset;
         }
 
         /// <summary>
         /// NI
         /// </summary>
-        public string Filename { get { return _Filename; } set { _Filename = value; } }
+        public string Filename
+        {
+            get
+            {
+                return filename;
+            }
+        }
 
         /// <summary>
         /// NI
         /// </summary>
-        public int Offset { get { return _Offset; } set { _Offset = value; } }
+        public int Offset
+        {
+            get
+            {
+                return offset;
+            }
+        }
 
         /// <summary>
         /// NI
         /// </summary>
-        public int Columns { get { return _Columns; } set { _Columns = value; } }
+        public int Columns
+        {
+            get
+            {
+                return columns;
+            }
+        }
 
         /// <summary>
         /// NI
         /// </summary>
-        public int Rows { get { return _Rows; } set { _Rows = value; } }
+        public int Rows
+        {
+            get
+            {
+                return rows;
+            }
+        }
 
-        int _Columns;
-        int _Rows;
-        string _Filename;
-        int _Offset;
+        int columns;
+        int rows;
+        string filename;
+        int offset;
     }
 }

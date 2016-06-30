@@ -182,22 +182,21 @@ namespace FFViewer_cs
 
         static DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(UpdateInfo));
         
-        private WebClient WC;
-        private int wipCount;
-        private object thislock;
+        WebClient WC;
+        int wipCount;
+        object thislock;
 
-        private static UpdateInfo updInfo;
+        static UpdateInfo updInfo;
 
-        private static string baseUrl = "https://github.com/T-Maxxx/FFViewer/";
-        private static string rawUrl = baseUrl + "raw/master/";
-        private static string releaseUrl = rawUrl + "bin/Release/";
+        static string baseUrl = "https://github.com/T-Maxxx/FFViewer/";
+        static string rawUrl = baseUrl + "raw/master/";
+        static string releaseUrl = rawUrl + "bin/Release/";
         
-        private static string exePath = System.Windows.Forms.Application.ExecutablePath;
-        private static string exeDir = System.Windows.Forms.Application.StartupPath;
-        private static string updateInfoFilename = "updateInformation.json";
-        private static string updateDir = exeDir + "/updates/";
-        private static string updateInfoFileUrl = releaseUrl + updateInfoFilename;
-        private static string updateInfoFilePath = updateDir + updateInfoFilename;
+        static string exeDir = System.Windows.Forms.Application.StartupPath;
+        static string updateInfoFilename = "updateInformation.json";
+        static string updateDir = exeDir + "/updates/";
+        static string updateInfoFileUrl = releaseUrl + updateInfoFilename;
+        static string updateInfoFilePath = updateDir + updateInfoFilename;
     }
 
     [DataContract]

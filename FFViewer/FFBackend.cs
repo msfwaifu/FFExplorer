@@ -37,7 +37,7 @@ namespace FFViewer_cs
         {
             foreach (RawFileData rawFile in assetData.RawFiles)
             {
-                if (!rawFile.IsChanged)
+                if (!rawFile.Changed)
                     continue;
     
                 if (rawFile.ActualSize <= rawFile.OriginalSize)
@@ -58,20 +58,21 @@ namespace FFViewer_cs
 
         public void WriteFastFile(FFData ffData)
         {
-            FileStream fs = new FileStream(ffData.Name, FileMode.Create);                
-                
-            fs.Write(ffData.Header, 0, ffData.Header.Length);
-            fs.Write(ffData.Version, 0, 4);
-            fs.Write(ffData.ZoneData, 0, ffData.ZoneData.Length);
+            using (FileStream fs = new FileStream(ffData.Name, FileMode.Create))
+            {
 
-            int nullsSize = ffData.Size - (ffData.ZoneData.Length + 12);
-            nullsSize = nullsSize > 0 ? nullsSize : 1;
-            byte[] nulls = new byte[nullsSize];
+                fs.Write(ffData.Header, 0, ffData.Header.Length);
+                fs.Write(ffData.Version, 0, 4);
+                fs.Write(ffData.ZoneData, 0, ffData.ZoneData.Length);
 
-            fs.Write(nulls, 0, nullsSize);
+                int nullsSize = ffData.Size - (ffData.ZoneData.Length + 12);
+                nullsSize = nullsSize > 0 ? nullsSize : 1;
+                byte[] nulls = new byte[nullsSize];
 
-            fs.Flush();
-            fs.Close();
+                fs.Write(nulls, 0, nullsSize);
+
+                fs.Flush();
+            }
         }
     }
 }

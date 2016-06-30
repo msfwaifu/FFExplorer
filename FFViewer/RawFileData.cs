@@ -5,153 +5,146 @@
     /// </summary>
     public class RawFileData
     {
-        int _NameOffset;
-        int _ContentsOffset;
-        string _OriginalName;
-        string _NewName;
-        int _OriginalSize;
-        int _ActualSize;
-        string _Contents;
-        bool _IsChanged;
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public RawFileData()
+        {
+            nameOffset = 0;
+            contentsOffset = 0;
+            originalName = "unnamed";
+            newName = "unnamed";
+            originalSize = 0;
+            actualSize = 0;
+            contents = "";
+            isChanged = false;
+        }
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="originalName"></param>
-        /// <param name="nameOffset"></param>
-        /// <param name="contents"></param>
-        /// <param name="originalSize"></param>
-        /// <param name="fileOffset"></param>
-        public RawFileData(string originalName, int nameOffset, string contents, int originalSize, int fileOffset)
+        /// <param name="origName">Original name of rawfile.</param>
+        /// <param name="nameOff">Offset of rawfile name in fastfile.</param>
+        /// <param name="content">File contents.</param>
+        /// <param name="origSize">Original size of rawfile.</param>
+        /// <param name="fileOff">Offset of contents in rawfile.</param>
+        public RawFileData(string origName, int nameOff, string content, int origSize, int fileOff)
         {
-            _NameOffset = nameOffset;
-            _ContentsOffset = fileOffset;
-            _OriginalName = originalName;
-            _NewName = originalName;
-            _OriginalSize = originalSize;
-            _ActualSize = contents.Length;
-            _Contents = contents;
-            _IsChanged = false;
+            nameOffset = nameOff;
+            contentsOffset = fileOff;
+            originalName = origName;
+            newName = origName;
+            originalSize = origSize;
+            actualSize = content.Length;
+            contents = content;
+            isChanged = false;
         }
 
         /// <summary>
-        /// NI
+        /// Gets offset of rawfile's name in fastfile.
         /// </summary>
         public int NameOffset
         {
             get
             {
-                return _NameOffset;
-            }
-            set
-            {
-                _NameOffset = value;
+                return nameOffset;
             }
         }
 
         /// <summary>
-        /// NI
+        /// Gets offset of rawfile's contents in fastfile.
         /// </summary>
         public int ContentsOffset
         {
             get
             {
-                return _ContentsOffset;
-            }
-            set
-            {
-                _ContentsOffset = value;
+                return contentsOffset;
             }
         }
 
         /// <summary>
-        /// NI
+        /// Gets name of rawfile stored in fastfile.
         /// </summary>
         public string OriginalName
         {
             get
             {
-                return _OriginalName;
-            }
-            set
-            {
-                _OriginalName = value;
+                return originalName;
             }
         }
 
         /// <summary>
-        /// NI
+        /// Gets or sets new name for rawfile in fastfile.
         /// </summary>
         public string NewName
         {
             get
             {
-                return _NewName;
+                return newName;
             }
             set
             {
-                _NewName = value;
+                newName = value;
             }
         }
 
         /// <summary>
-        /// NI
+        /// Gets maximum size of rawfile stored inside fastfile.
         /// </summary>
         public int OriginalSize
         {
             get
             {
-                return _OriginalSize;
-            }
-            set
-            {
-                _OriginalSize = value;
+                return originalSize;
             }
         }
 
         /// <summary>
-        /// NI
+        /// Gets actual size of rawfile's contents.
         /// </summary>
         public int ActualSize
         {
             get
             {
-                return _ActualSize;
-            }
-            set
-            {
-                _ActualSize = value;
+                return actualSize;
             }
         }
 
         /// <summary>
-        /// NI
+        /// Gets or sets contents of rawfile stored in fastfile.
         /// </summary>
         public string Contents
         {
             get
             {
-                return _Contents;
+                return contents;
             }
             set
             {
-                _Contents = value;
+                contents = value;
+                actualSize = value.Length;
+                isChanged = true;
             }
         }
 
         /// <summary>
-        /// NI
+        /// Checks if rawfile has been changed.
         /// </summary>
-        public bool IsChanged
+        public bool Changed
         {
             get
             {
-                return _IsChanged;
-            }
-            set
-            {
-                _IsChanged = value;
+                return isChanged;
             }
         }
+
+        int nameOffset;
+        int contentsOffset;
+        string originalName;
+        string newName;
+        int originalSize;
+        int actualSize;
+        string contents;
+        bool isChanged;
     }
 }

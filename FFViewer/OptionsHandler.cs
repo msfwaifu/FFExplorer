@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using System.Windows.Forms;
 
 namespace FFViewer_cs
 {
@@ -26,43 +26,11 @@ namespace FFViewer_cs
     public class OptionsHandler
     {
         /// <summary>
-        /// Raised when exception occured.
-        /// </summary>
-        event HandleException_d OnExceptionRaised;
-
-        /// <summary>
-        /// Gets or sets width of application window.
-        /// </summary>
-        public int Width { get { return opt.width; } set { opt.width = value; } }
-
-        /// <summary>
-        /// Gets or sets height of application window.
-        /// </summary>
-        public int Height { get { return opt.height; } set { opt.height = value; } }
-
-        /// <summary>
-        /// Gets or sets last folder used by various dialogs.
-        /// </summary>
-        public string LastFolder { get { return opt.lastFolder; } set { opt.lastFolder = value; } }
-
-        /// <summary>
-        /// Gets or sets whether to remember last used folder.
-        /// </summary>
-        public bool RememberLastFolder { get { return opt.rememberLastFolder; } set { opt.rememberLastFolder = value; } }
-
-        /// <summary>
-        /// Gets or sets whether to delete temporary files such as decompressed zone.
-        /// </summary>
-        public bool DeleteTemporaryFiles { get { return opt.deleteTemporary; } set { opt.deleteTemporary = value; } }
-
-        /// <summary>
         /// Constructor.
         /// </summary>
-        /// <param name="appDir">Path to directory of application.</param>
-        public OptionsHandler(string appDir)
+        public OptionsHandler()
         {
             opt = new AppOptions();
-            appDirectory = appDir;
             json = new DataContractJsonSerializer(typeof(AppOptions));
             LoadOptions();
         }
@@ -75,43 +43,110 @@ namespace FFViewer_cs
             SaveOptions();
         }
 
+        /// <summary>
+        /// Gets or sets width of application window.
+        /// </summary>
+        public int Width
+        {
+            get
+            {
+                return opt.width;
+            }
+            set
+            {
+                opt.width = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets height of application window.
+        /// </summary>
+        public int Height
+        {
+            get
+            {
+                return opt.height;
+            }
+            set
+            {
+                opt.height = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets last folder used by various dialogs.
+        /// </summary>
+        public string LastFolder
+        {
+            get
+            {
+                return opt.lastFolder;
+            }
+            set
+            {
+                opt.lastFolder = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to remember last used folder.
+        /// </summary>
+        public bool RememberLastFolder
+        {
+            get
+            {
+                return opt.rememberLastFolder;
+            }
+            set
+            {
+                opt.rememberLastFolder = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to delete temporary files such as decompressed zone.
+        /// </summary>
+        public bool DeleteTemporaryFiles
+        {
+            get
+            {
+                return opt.deleteTemporary;
+            }
+            set
+            {
+                opt.deleteTemporary = value;
+            }
+        }
+
         private void LoadOptions()
         {
-            try
+            if (!Directory.Exists(PreferencesDir))
             {
-                if (!Directory.Exists(appDirectory + "\\prefs"))
-                {
-                    Directory.CreateDirectory(appDirectory + "\\prefs");
-                    return;
-                }
-                
-                if (!File.Exists(appDirectory + "\\prefs\\config.json"))
-                    return;
+                Directory.CreateDirectory(PreferencesDir);
+                return;
+            }
+            
+            if (!File.Exists(ConfigFilePath))
+                return;
 
-                using (FileStream config = new FileStream(appDirectory + "\\prefs\\config.json", FileMode.OpenOrCreate, FileAccess.Read, FileShare.None))
-                    opt = json.ReadObject(config) as AppOptions;
-            }
-            catch(Exception ex)
-            {
-                OnExceptionRaised?.Invoke(ex);
-            }
+            using (FileStream config = new FileStream(ConfigFilePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.None))
+                opt = json.ReadObject(config) as AppOptions;
+            
         }
 
         private void SaveOptions()
         {
-            try
-            {
-                using (FileStream config = new FileStream(appDirectory + "\\prefs\\config.json", FileMode.Create, FileAccess.Write, FileShare.None))
-                    json.WriteObject(config, opt);
-            }
-            catch(Exception ex)
-            {
-                OnExceptionRaised?.Invoke(ex);
-            }
+            using (FileStream config = new FileStream(ConfigFilePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                json.WriteObject(config, opt);
+
         }
 
         AppOptions opt;
         DataContractJsonSerializer json;
-        string appDirectory;
+
+        static string PreferencesDirName = "prefs";
+        static string PreferencesDir = Application.StartupPath + "\\" + PreferencesDirName;
+        static string ConfigFileName = "config.json";
+        static string ConfigFilePath = PreferencesDir + "\\" + ConfigFileName;
     }
 }
