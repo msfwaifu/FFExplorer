@@ -1,50 +1,51 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using System;
-using System.Windows.Forms;
 
 namespace FFViewer_cs
 {
     /// <summary>
-    /// NI
+    /// A class used to analyze and construct lists contains various assets stored in fastfile.
     /// </summary>
     public class AssetData
     {
-        event HandleException_d OnExceptionRaised;
-        List<RawFileData> _RawFiles = new List<RawFileData>();
+        List<RawFileData> rawFiles = new List<RawFileData>();
 
         /// <summary>
-        /// NI
+        /// Constructs <see cref="AssetData"/> class instance according to passed <see cref="ZoneData"/>.
         /// </summary>
-        /// <param name="zoneData"></param>
+        /// <param name="zoneData">Uncompressed and extracted fastfile.</param>
         public AssetData(ZoneData zoneData)
+        {
+            zd = zoneData;
+        }
+
+        /// <summary>
+        /// Adds known assets to various lists.
+        /// </summary>
+        public void AddKnownAssets()
         {
             byte[] gscFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'g', 's', 'c', '\0' });
             byte[] gsxFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'g', 's', 'x', '\0' });
             byte[] rmbFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'r', 'm', 'b', '\0' });
             byte[] cfgFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'c', 'f', 'g', '\0' });
             byte[] defFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'd', 'e', 'f', '\0' });
-            //byte[] csvFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'c', 's', 'v', (char)0 });
+            //byte[] csvFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'c', 's', 'v', '\0' });
 
-            AddRawFiles(zoneData, gsxFormat);
-            AddRawFiles(zoneData, gscFormat);
-            AddRawFiles(zoneData, rmbFormat);
-            AddRawFiles(zoneData, defFormat);
-            AddRawFiles(zoneData, cfgFormat);
+            AddRawFiles(zd, gsxFormat);
+            AddRawFiles(zd, gscFormat);
+            AddRawFiles(zd, rmbFormat);
+            AddRawFiles(zd, defFormat);
+            AddRawFiles(zd, cfgFormat);
         }
 
         /// <summary>
-        /// NI
+        /// Gets list of rawfiles stored in fastfile.
         /// </summary>
         public List<RawFileData> RawFiles
         {
             get
             {
-                return _RawFiles;
-            }
-            set
-            {
-                _RawFiles = value;
+                return rawFiles;
             }
         }
 
@@ -74,29 +75,22 @@ namespace FFViewer_cs
 
         private void AddRawFiles(ZoneData zoneData, byte[] extension)
         {
-            try
+            int offset = ByteHandling.FindBytes(zoneData.DecompressedData, extension, 0);
+            while(offset != -1)
             {
-                int count = ByteHandling.CountBytes(zoneData.DecompressedData, extension);
-                int offset = 0;
-                for (int i = 0; i < count; ++i)
-                {
-                    offset = ByteHandling.FindBytes(zoneData.DecompressedData, extension, offset + 1) + 1;
-                    int startOfNameOffset = ByteHandling.FindByteBackward(zoneData.DecompressedData, 0xFF, offset) + 1;
-                    int endOfNameOffset = ByteHandling.FindByte(zoneData.DecompressedData, 0x00, offset);
-                    int assetSize = ByteHandling.GetDWORD(zoneData.DecompressedData, startOfNameOffset - 8);
-                    string assetName = ByteHandling.GetString(zoneData.DecompressedData, startOfNameOffset, endOfNameOffset);
-                    int startOfContents = endOfNameOffset + 1;
-                    int endOfContents = ByteHandling.FindByte(zoneData.DecompressedData, 0x00, startOfContents);
-                    string contents = ByteHandling.GetString(zoneData.DecompressedData, startOfContents, endOfContents);
-
-                    _RawFiles.Add(new RawFileData(assetName, startOfNameOffset, contents, assetSize, startOfContents));
-                }
-            }
-            catch(Exception ex)
-            {
-                OnExceptionRaised?.Invoke(ex);
-                //MessageBox.Show("При получении информации о Rawfile'ах произошла ошибка:\n" + ex.Message + "\n\nСтек вызовов:\n" + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
+                int startOfNameOffset = ByteHandling.FindByteBackward(zoneData.DecompressedData, 0xFF, offset + 1) + 1;
+                int endOfNameOffset = ByteHandling.FindByte(zoneData.DecompressedData, 0x00, offset + 1);
+                int assetSize = ByteHandling.GetDWORD(zoneData.DecompressedData, startOfNameOffset - 8);
+                string assetName = ByteHandling.GetString(zoneData.DecompressedData, startOfNameOffset, endOfNameOffset);
+                int startOfContents = endOfNameOffset + 1;
+                int endOfContents = ByteHandling.FindByte(zoneData.DecompressedData, 0x00, startOfContents);
+                string contents = ByteHandling.GetString(zoneData.DecompressedData, startOfContents, endOfContents);
+    
+                rawFiles.Add(new RawFileData(assetName, startOfNameOffset, contents, assetSize, startOfContents));
+                offset = ByteHandling.FindBytes(zoneData.DecompressedData, extension, offset + 1);
             }
         }
+
+        ZoneData zd;
     }
 }

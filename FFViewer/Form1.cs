@@ -29,6 +29,7 @@ namespace FFViewer_cs
         int codeBoxLine;
         int codeBoxCol;
 
+        FFBackend ffBackend;
         FFData ffInfo;
         ZoneData zoneInfo;
         AssetData assetInfo;
@@ -63,6 +64,9 @@ namespace FFViewer_cs
             currentFFName = "";
             //
             //FFViewerVersion = "1.0";
+
+            ffBackend = new FFBackend();
+            ffBackend.OnExceptionRaised += HandleException;
 
             openDialog = new OpenFileDialog();
             saveDialog = new SaveFileDialog();
@@ -274,16 +278,16 @@ namespace FFViewer_cs
                     return;
                 }
 
-                LockInterface();
+                LockInterface(true);
                 SetProgressBarPercentage(0);
                 
-                ffInfo = await Task<FFData>.Run(() => { return FFBackend.GetFFData(currentFFName); });
+                ffInfo = await Task<FFData>.Run(() => { return ffBackend.GetFFData(currentFFName); });
                 SetProgressBarPercentage(33);
 
-                zoneInfo = await Task<ZoneData>.Run(() => { return FFBackend.GetZoneData(ffInfo); });
+                zoneInfo = await Task<ZoneData>.Run(() => { return ffBackend.GetZoneData(ffInfo); });
                 SetProgressBarPercentage(66);
 
-                assetInfo = await Task<AssetData>.Run(() => { return FFBackend.GetAssetData(zoneInfo); });
+                assetInfo = await Task<AssetData>.Run(() => { return ffBackend.GetAssetData(zoneInfo); });
                 SetProgressBarPercentage(100);
 
                 options.LastFolder = ffInfo.Name.Substring(0, ffInfo.Name.LastIndexOf("\\"));
@@ -299,14 +303,15 @@ namespace FFViewer_cs
                     rawFileNodes[i].Nodes.Add("Оригинальный размер: " + assetInfo.RawFiles[i].OriginalSize);
 
                     RawFiles.Nodes.Add(rawFileNodes[i]);
-                    Application.DoEvents();
+                    //Application.DoEvents();
                 }
 
+                RawFiles.Sort();
                 isFastFileOpened = true;
                 OpenFFToolStripMenuItem.Enabled = false;
                 SaveFFToolStripMenuItem.Enabled = true;
                 CloseFFToolStripMenuItem.Enabled = true;
-                UnlockInterface();
+                LockInterface(false);
             }
             catch (Exception ex)
             {
@@ -323,15 +328,15 @@ namespace FFViewer_cs
             try
             {
                 SetProgressBarPercentage(0);
-                LockInterface();
+                LockInterface(true);
                 SetProgressBarPercentage(33);
-                zoneInfo = FFBackend.WriteAssetData(zoneInfo, assetInfo);
+                zoneInfo = ffBackend.WriteAssetData(zoneInfo, assetInfo);
                 SetProgressBarPercentage(66);
-                ffInfo = FFBackend.WriteZoneData(ffInfo, zoneInfo);
+                ffInfo = ffBackend.WriteZoneData(ffInfo, zoneInfo);
                 SetProgressBarPercentage(100);
-                FFBackend.WriteFastFile(ffInfo);
+                ffBackend.WriteFastFile(ffInfo);
                 StatusLine_Clear();
-                UnlockInterface();
+                LockInterface(false);
             }
             catch (Exception ex)
             {
@@ -765,7 +770,7 @@ namespace FFViewer_cs
                     if (!Directory.Exists(directoryDialog.SelectedPath))
                         Directory.CreateDirectory(directoryDialog.SelectedPath);
 
-                    LockInterface();
+                    LockInterface(true);
                     SetProgressBarPercentage_d SPBP_d = SetProgressBarPercentage;
                     await Task.Run(() =>
                     {
@@ -788,7 +793,7 @@ namespace FFViewer_cs
                             File.WriteAllText(filePath, assetInfo.RawFiles[i].Contents);
                         }
                     });
-                    UnlockInterface();
+                    LockInterface(false);
                 }
             }
             catch (Exception ex)
@@ -1027,28 +1032,19 @@ namespace FFViewer_cs
 
         private void HandleException(Exception ex)
         {
-            MessageBox.Show(ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
+            MessageBox.Show(ex.Message + "\n" + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
             Application.Exit();
         }
 
         /// <summary>
-        /// NI
+        /// Used to lock whole application interface.
         /// </summary>
-        protected void LockInterface()
+        /// <param name="state">True for lock, false for unlock.</param>
+        protected void LockInterface(bool state)
         {
-            MenuStrip.Enabled = false;
-            Tabs.Enabled = false;
-            Wait.Visible = true;
-        }
-
-        /// <summary>
-        /// NI
-        /// </summary>
-        protected void UnlockInterface()
-        {
-            MenuStrip.Enabled = true;
-            Tabs.Enabled = true;
-            Wait.Visible = false;
+            MenuStrip.Enabled = !state;
+            Tabs.Enabled = !state;
+            Wait.Visible = state;
         }
 
         /// <summary>
@@ -1060,10 +1056,7 @@ namespace FFViewer_cs
             percent = percent < 0 ? 0 : percent;
             percent = percent > 100 ? 100 : percent;
             Wait.Value = percent;
-            if (percent == 0)
-                Wait.Visible = false;
-            else
-                Wait.Visible = true;
+            Wait.Visible = percent != 0;
         }
 
         private void Form1_Load(object sender, EventArgs e)

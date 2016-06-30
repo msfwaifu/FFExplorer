@@ -64,8 +64,8 @@ namespace FFViewer_cs
 
             for(int i = 0; i < updInfo.FilePath.Length; ++i)
             {
-                string oldFilePath = exeDir + updInfo.FilePath[i];
-                string newFilePath = updateDir + updInfo.FilePath[i];
+                string oldFilePath = exeDir.Replace("updates/", "") + updInfo.FilePath[i];
+                string newFilePath = exeDir + updInfo.FilePath[i];
 
                 if (!File.Exists(newFilePath))
                     continue;
@@ -142,6 +142,9 @@ namespace FFViewer_cs
 
         private void WC_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
+            if (e.Error != null)
+                return;
+
             try
             {
                 using (MemoryStream ms = new MemoryStream(System.Text.Encoding.ASCII.GetBytes(e.Result)))
@@ -192,7 +195,7 @@ namespace FFViewer_cs
         private static string exePath = System.Windows.Forms.Application.ExecutablePath;
         private static string exeDir = System.Windows.Forms.Application.StartupPath;
         private static string updateInfoFilename = "updateInformation.json";
-        private static string updateDir = exeDir + "updates/";
+        private static string updateDir = exeDir + "/updates/";
         private static string updateInfoFileUrl = releaseUrl + updateInfoFilename;
         private static string updateInfoFilePath = updateDir + updateInfoFilename;
     }
