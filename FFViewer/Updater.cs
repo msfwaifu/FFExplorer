@@ -7,7 +7,7 @@ using System.Net;
 namespace FFViewer_cs
 {
     /// <summary>
-    /// A delegate used when updating process done.
+    /// A delegate used when updating process is done.
     /// </summary>
     public delegate void UpdateDone_d();
 
@@ -22,6 +22,9 @@ namespace FFViewer_cs
     /// </summary>
     public delegate void UpdateAvailable_d();
 
+    /// <summary>
+    /// A class used for update whole application.
+    /// </summary>
     class Updater
     {
         public event HandleException_d OnExceptionRaised;
@@ -30,7 +33,7 @@ namespace FFViewer_cs
         public event FileDownloadComplete_d OnFileDownloaded;
 
         /// <summary>
-        /// Initializes new <see cref="Updater"/> instance.
+        /// Constructor.
         /// </summary>
         public Updater()
         {
@@ -40,7 +43,6 @@ namespace FFViewer_cs
 
             wipCount = 0;
             thislock = new object();
-            GetUpdateInfo();
         }
 
         ~Updater()
@@ -52,9 +54,34 @@ namespace FFViewer_cs
         /// Applies newly downloaded files and restarting program from correct location.
         /// </summary>
         /// <param name="appArgs">All arguments that should be passed to application after updating. "-u" or "--update" will be ignored</param>
-        static public void ApplyUpdate(string[] appArgs)
+        public static void ApplyUpdate(string[] appArgs)
         {
-            throw new NotImplementedException();
+            if (!File.Exists(updateInfoFilePath))
+                return;
+
+            using (FileStream fs = new FileStream(updateInfoFilePath, FileMode.Open))
+                updInfo = jsonSerializer.ReadObject(fs) as UpdateInfo;
+
+            for(int i = 0; i < updInfo.FilePath.Length; ++i)
+            {
+                string oldFilePath = exeDir + updInfo.FilePath[i];
+                string newFilePath = updateDir + updInfo.FilePath[i];
+
+                if (!File.Exists(newFilePath))
+                    continue;
+
+                File.Copy(newFilePath, oldFilePath, true);
+                File.Delete(newFilePath);
+            }
+
+            File.Delete(updateInfoFilePath);
+            string args = "";
+            string newExePath = exeDir.Replace("updates/", "/FFViewer.exe");
+            foreach (string s in appArgs)
+                if(s != "-u" && s != "--update")
+                    args += s;
+
+            System.Diagnostics.Process.Start(newExePath, args);
         }
 
         /// <summary>
@@ -71,6 +98,8 @@ namespace FFViewer_cs
         /// <exception cref="WebException"></exception>
         /// <exception cref="ArgumentException"></exception>
         /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="InvalidDataContractException"></exception>
+        /// <exception cref="SerializationException"></exception>
         public void DownloadUpdate()
         {
             if (!updInfo.Loaded)
@@ -79,6 +108,12 @@ namespace FFViewer_cs
             int filesCount = updInfo.FilePath.Length == updInfo.FileURL.Length ? (updInfo.FileURL.Length == updInfo.MD5.Length ? updInfo.MD5.Length : 0) : 0;
             if (filesCount == 0)
                 throw new ArgumentException("Error: update information is corrupted or incomplete");
+
+            using (FileStream fs = new FileStream(updateInfoFilePath, FileMode.Create))
+            {
+                jsonSerializer.WriteObject(fs, updInfo);
+                fs.Flush();
+            }
 
             wipCount = filesCount;
             for (int i = 0; i < filesCount; ++i)
@@ -90,7 +125,7 @@ namespace FFViewer_cs
             try
             {
                 int fileIndex = (int)sender;
-                File.WriteAllBytes(updatesPath + updInfo.FilePath[fileIndex], e.Result);
+                File.WriteAllBytes(updateDir + updInfo.FilePath[fileIndex], e.Result);
                 OnFileDownloaded?.Invoke(updInfo.FilePath[fileIndex]);
                 lock (thislock)
                 {
@@ -109,10 +144,9 @@ namespace FFViewer_cs
         {
             try
             {
-                DataContractJsonSerializer js = new DataContractJsonSerializer(typeof(UpdateInfo));
                 using (MemoryStream ms = new MemoryStream(System.Text.Encoding.ASCII.GetBytes(e.Result)))
                 {
-                    updInfo = js.ReadObject(ms) as UpdateInfo;
+                    updInfo = jsonSerializer.ReadObject(ms) as UpdateInfo;
                     updInfo.Loaded = true;
                 }
 
@@ -132,21 +166,35 @@ namespace FFViewer_cs
             return currentVersion.CompareTo(newVersion) < 0;
         }
 
-        private void GetUpdateInfo()
+        /// <summary>
+        /// Download update information from github.
+        /// </summary>
+        public void GetUpdateInfo()
         {
-            WC.DownloadStringAsync(new Uri(releaseUrl + "updateInformation.json"));         
+            if (!Directory.Exists(updateDir))
+                Directory.CreateDirectory(updateDir);
+
+            WC.DownloadStringAsync(new Uri(updateInfoFileUrl));         
         }
 
-        private UpdateInfo updInfo;
+        static DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(UpdateInfo));
+        
         private WebClient WC;
         private int wipCount;
         private object thislock;
 
-        private const string baseUrl = "https://github.com/T-Maxxx/FFViewer/";
-        private const string rawUrl = baseUrl + "raw/master/";
-        private const string releaseUrl = rawUrl + "bin/Release/";
-        private string updatesPath = System.Windows.Forms.Application.StartupPath + "updates/";
-        private string exePath = System.Windows.Forms.Application.ExecutablePath;
+        private static UpdateInfo updInfo;
+
+        private static string baseUrl = "https://github.com/T-Maxxx/FFViewer/";
+        private static string rawUrl = baseUrl + "raw/master/";
+        private static string releaseUrl = rawUrl + "bin/Release/";
+        
+        private static string exePath = System.Windows.Forms.Application.ExecutablePath;
+        private static string exeDir = System.Windows.Forms.Application.StartupPath;
+        private static string updateInfoFilename = "updateInformation.json";
+        private static string updateDir = exeDir + "updates/";
+        private static string updateInfoFileUrl = releaseUrl + updateInfoFilename;
+        private static string updateInfoFilePath = updateDir + updateInfoFilename;
     }
 
     [DataContract]
