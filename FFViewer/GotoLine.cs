@@ -3,8 +3,14 @@ using System.Windows.Forms;
 
 namespace FFViewer_cs
 {
+    /// <summary>
+    /// NI
+    /// </summary>
     public partial class GotoLine : Form
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public GotoLine()
         {
             InitializeComponent();

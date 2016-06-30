@@ -1,119 +1,157 @@
-﻿public class RawFileData
+﻿namespace FFViewer_cs
 {
-    int _NameOffset;
-    int _ContentsOffset;
-    string _OriginalName;    
-    string _NewName;
-    int _OriginalSize;
-    int _ActualSize;    
-    string _Contents;
-    bool _IsChanged;
-
-    public RawFileData(string originalName, int nameOffset, string contents, int originalSize, int fileOffset)
+    /// <summary>
+    /// NI
+    /// </summary>
+    public class RawFileData
     {
-        _NameOffset = nameOffset;
-        _ContentsOffset = fileOffset;
-        _OriginalName = originalName;
-        _NewName = originalName;
-        _OriginalSize = originalSize;
-        _ActualSize = contents.Length;
-        _Contents = contents;
-        _IsChanged = false;
-    }
+        int _NameOffset;
+        int _ContentsOffset;
+        string _OriginalName;
+        string _NewName;
+        int _OriginalSize;
+        int _ActualSize;
+        string _Contents;
+        bool _IsChanged;
 
-    public int NameOffset
-    {
-        get
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="originalName"></param>
+        /// <param name="nameOffset"></param>
+        /// <param name="contents"></param>
+        /// <param name="originalSize"></param>
+        /// <param name="fileOffset"></param>
+        public RawFileData(string originalName, int nameOffset, string contents, int originalSize, int fileOffset)
         {
-            return _NameOffset;
+            _NameOffset = nameOffset;
+            _ContentsOffset = fileOffset;
+            _OriginalName = originalName;
+            _NewName = originalName;
+            _OriginalSize = originalSize;
+            _ActualSize = contents.Length;
+            _Contents = contents;
+            _IsChanged = false;
         }
-        set
-        {
-            _NameOffset = value;
-        }
-    }
 
-    public int ContentsOffset
-    {
-        get
+        /// <summary>
+        /// NI
+        /// </summary>
+        public int NameOffset
         {
-            return _ContentsOffset;
+            get
+            {
+                return _NameOffset;
+            }
+            set
+            {
+                _NameOffset = value;
+            }
         }
-        set
-        {
-            _ContentsOffset = value;
-        }
-    }
 
-    public string OriginalName
-    {
-        get
+        /// <summary>
+        /// NI
+        /// </summary>
+        public int ContentsOffset
         {
-            return _OriginalName;
+            get
+            {
+                return _ContentsOffset;
+            }
+            set
+            {
+                _ContentsOffset = value;
+            }
         }
-        set
-        {
-            _OriginalName = value;
-        }
-    }
 
-    public string NewName
-    {
-        get
+        /// <summary>
+        /// NI
+        /// </summary>
+        public string OriginalName
         {
-            return _NewName;
+            get
+            {
+                return _OriginalName;
+            }
+            set
+            {
+                _OriginalName = value;
+            }
         }
-        set
-        {
-            _NewName = value;
-        }
-    }
 
-    public int OriginalSize
-    {
-        get
+        /// <summary>
+        /// NI
+        /// </summary>
+        public string NewName
         {
-            return _OriginalSize;
+            get
+            {
+                return _NewName;
+            }
+            set
+            {
+                _NewName = value;
+            }
         }
-        set
-        {
-            _OriginalSize = value;
-        }
-    }
 
-    public int ActualSize
-    {
-        get
+        /// <summary>
+        /// NI
+        /// </summary>
+        public int OriginalSize
         {
-            return _ActualSize;
+            get
+            {
+                return _OriginalSize;
+            }
+            set
+            {
+                _OriginalSize = value;
+            }
         }
-        set
-        {
-            _ActualSize = value;
-        }
-    }
 
-    public string Contents
-    {
-        get
+        /// <summary>
+        /// NI
+        /// </summary>
+        public int ActualSize
         {
-            return _Contents;
+            get
+            {
+                return _ActualSize;
+            }
+            set
+            {
+                _ActualSize = value;
+            }
         }
-        set
-        {
-            _Contents = value;
-        }
-    }
 
-    public bool IsChanged
-    {
-        get
+        /// <summary>
+        /// NI
+        /// </summary>
+        public string Contents
         {
-            return _IsChanged;
+            get
+            {
+                return _Contents;
+            }
+            set
+            {
+                _Contents = value;
+            }
         }
-        set
+
+        /// <summary>
+        /// NI
+        /// </summary>
+        public bool IsChanged
         {
-            _IsChanged = value;
+            get
+            {
+                return _IsChanged;
+            }
+            set
+            {
+                _IsChanged = value;
+            }
         }
     }
 }

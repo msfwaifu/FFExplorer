@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace FFViewer_cs
 {
+    /// <summary>
+    /// NI
+    /// </summary>
+    /// <param name="ex"></param>
     public delegate void HandleException_d(Exception ex);
+
+    /// <summary>
+    /// NI
+    /// </summary>
+    /// <param name="val"></param>
     public delegate void SetProgressBarPercentage_d(int val);
 
     public partial class Form1 : Form
@@ -24,8 +33,7 @@ namespace FFViewer_cs
         ZoneData zoneInfo;
         AssetData assetInfo;
         TreeNode[] rawFileNodes;
-        //string FFViewerVersion;
-        public OptionsHandler options;
+        OptionsHandler options;
  
         OpenFileDialog OpenDialog;
         SaveFileDialog SaveDialog;
@@ -35,11 +43,19 @@ namespace FFViewer_cs
         GotoLine dlgGoto;
         Options dlgOptions;
 
+        /// <summary>
+        /// NI
+        /// </summary>
+        public OptionsHandler Options { get { return options; } }
+
+        /// <summary>
+        /// NI
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
             currentAppDirectory = Application.StartupPath;
-            options = new OptionsHandler(currentAppDirectory, HandleException);
+            options = new OptionsHandler(currentAppDirectory);
 
             //
             isFastFileOpened = false;
@@ -302,6 +318,12 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="substr"></param>
+        /// <returns></returns>
         public int SubStrCount(string str, string substr)
         {
             if (str == "" || substr == "")
@@ -987,6 +1009,9 @@ namespace FFViewer_cs
             Application.Exit();
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         protected void LockInterface()
         {
             MenuStrip.Enabled = false;
@@ -994,6 +1019,9 @@ namespace FFViewer_cs
             Wait.Visible = true;
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         protected void UnlockInterface()
         {
             MenuStrip.Enabled = true;
@@ -1001,6 +1029,10 @@ namespace FFViewer_cs
             Wait.Visible = false;
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
+        /// <param name="percent"></param>
         protected void SetProgressBarPercentage(int percent)
         {
             percent = percent < 0 ? 0 : percent;
@@ -1010,6 +1042,11 @@ namespace FFViewer_cs
                 Wait.Visible = false;
             else
                 Wait.Visible = true;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

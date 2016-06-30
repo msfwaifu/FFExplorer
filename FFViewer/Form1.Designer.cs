@@ -1,5 +1,8 @@
 ﻿namespace FFViewer_cs
 {
+    /// <summary>
+    /// NI
+    /// </summary>
     partial class Form1
     {
         /// <summary>
@@ -604,6 +607,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FFViewer-cs";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);

@@ -5,6 +5,9 @@ using Ionic.Zlib;
 
 namespace FFViewer_cs
 {
+    /// <summary>
+    /// NI
+    /// </summary>
     public class ZoneData
     {
         byte[] _CompressedData;
@@ -20,8 +23,11 @@ namespace FFViewer_cs
         int _AssetsListOffset;
         int[] _AssetsTypesCount;
         int _AssetsDataOffset;
-        
 
+        /// <summary>
+        /// NI
+        /// </summary>
+        /// <param name="compressed"></param>
         public ZoneData(byte[] compressed)
         {
             try
@@ -74,6 +80,9 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         public byte[] CompressedData
         {
             get
@@ -86,6 +95,9 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         public byte[] DecompressedData
         {
             get
@@ -98,6 +110,9 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         public int DecompressedSize
         {
             get
@@ -110,6 +125,9 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         public int ZoneSize
         {
             get
@@ -122,6 +140,9 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         public int[] ZoneSizes
         {
             get
@@ -134,6 +155,9 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         public int ListStringCount
         {
             get
@@ -146,6 +170,9 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         public int ListStringOffset
         {
             get
@@ -158,6 +185,9 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         public string[] ListStrings
         {
             get
@@ -170,6 +200,9 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         public int AssetsCount
         {
             get
@@ -182,6 +215,9 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         public int AssetsListOffset
         {
             get
@@ -194,6 +230,9 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         public int[] AssetsTypesCount
         {
             get
@@ -206,6 +245,9 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// NI
+        /// </summary>
         public int AssetsDataOffset
         {
             get

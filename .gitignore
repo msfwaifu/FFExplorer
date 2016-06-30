@@ -7,3 +7,4 @@ bin/Release/*
 bin/Debug
 FFViewer/obj/*
 FFViewer/bin/*
+*.xml

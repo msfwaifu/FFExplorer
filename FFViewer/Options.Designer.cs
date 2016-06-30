@@ -1,5 +1,8 @@
 ﻿namespace FFViewer_cs
 {
+    /// <summary>
+    /// NI
+    /// </summary>
     partial class Options
     {
         /// <summary>

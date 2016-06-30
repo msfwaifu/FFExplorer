@@ -1,17 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FFViewer_cs
 {
+    /// <summary>
+    /// Form contains information about authors, licensing etc.
+    /// </summary>
     public partial class About : Form
     {
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public About()
         {
             InitializeComponent();
@@ -19,7 +18,7 @@ namespace FFViewer_cs
 
         private void OkButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Hide();
         }
 
         private void LicenseButton_Click(object sender, EventArgs e)
@@ -29,7 +28,7 @@ namespace FFViewer_cs
 
         private void About_Load(object sender, EventArgs e)
         {
-
+            AppNameVer.Text = String.Format("{0} v{1}", Application.ProductName, Application.ProductVersion);
         }
     }
 }

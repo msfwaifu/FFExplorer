@@ -1,53 +1,72 @@
-﻿using System.ComponentModel;
-
-public class LocalizedStringsData
+﻿namespace FFViewer_cs
 {
-    string _StringName;
-    string _StringValue;
-    string _OrigName;
-    int _Offset;
-
-    public LocalizedStringsData(string name, string value, int offset)
+    /// <summary>
+    /// NI
+    /// </summary>
+    public class LocalizedStringsData
     {
-        _StringName = Name;
-        _StringValue = Value;
-        _OrigName = Name;
-        _Offset = Offset;
-    }
+        string _StringName;
+        string _StringValue;
+        string _OrigName;
+        int _Offset;
 
-    public int Offset
-    {
-        get
+        /// <summary>
+        /// NI
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="offset"></param>
+        public LocalizedStringsData(string name, string value, int offset)
         {
-            return _Offset;
+            _StringName = Name;
+            _StringValue = Value;
+            _OrigName = Name;
+            _Offset = Offset;
         }
-        set
-        {
-            _Offset = value;
-        }
-    }
 
-    public string Value
-    {
-        get
+        /// <summary>
+        /// NI
+        /// </summary>
+        public int Offset
         {
-            return _StringName;
+            get
+            {
+                return _Offset;
+            }
+            set
+            {
+                _Offset = value;
+            }
         }
-        set
-        {
-            _StringName = value;
-        }
-    }
 
-    public string Name
-    {
-        get
+        /// <summary>
+        /// NI
+        /// </summary>
+        public string Value
         {
-            return _StringName;
+            get
+            {
+                return _StringName;
+            }
+            set
+            {
+                _StringName = value;
+            }
         }
-        set
+
+        /// <summary>
+        /// NI
+        /// </summary>
+        public string Name
         {
-            _StringName = value;
+            get
+            {
+                return _StringName;
+            }
+            set
+            {
+                _StringName = value;
+            }
         }
     }
 }

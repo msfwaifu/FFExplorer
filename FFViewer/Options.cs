@@ -3,9 +3,16 @@ using System.Windows.Forms;
 
 namespace FFViewer_cs
 {
+    /// <summary>
+    /// NI
+    /// </summary>
     public partial class Options : Form
     {
         private Form1 owner;
+
+        /// <summary>
+        /// NI
+        /// </summary>
         public Options()
         {
             InitializeComponent();
@@ -19,8 +26,8 @@ namespace FFViewer_cs
 
             try
             {
-                RLF.Checked = owner.options.RememberLastFolder;
-                DeleteTemp.Checked = owner.options.DeleteTemporaryFiles;
+                RLF.Checked = owner.Options.RememberLastFolder;
+                DeleteTemp.Checked = owner.Options.DeleteTemporaryFiles;
             }
             catch (Exception ex)
             {
@@ -37,8 +44,8 @@ namespace FFViewer_cs
         {
             try
             {
-                owner.options.RememberLastFolder = RLF.Checked;
-                owner.options.DeleteTemporaryFiles = DeleteTemp.Checked;
+                owner.Options.RememberLastFolder = RLF.Checked;
+                owner.Options.DeleteTemporaryFiles = DeleteTemp.Checked;
                 MessageBox.Show("Настройки успешно сохранены", "Сохранено", MessageBoxButtons.OK);
             }
             catch (Exception ex)
