@@ -1,48 +1,21 @@
 ﻿namespace FFViewer_cs
 {
-    /// <summary>
-    /// NI
-    /// </summary>
-    public class RawFileData
+    class RawFileData
     {
-        /// <summary>
-        /// Default constructor.
-        /// </summary>
-        public RawFileData()
-        {
-            nameOffset = 0;
-            contentsOffset = 0;
-            originalName = "unnamed";
-            newName = "unnamed";
-            originalSize = 0;
-            actualSize = 0;
-            contents = "";
-            isChanged = false;
-        }
+        public RawFileData(){}
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="origName">Original name of rawfile.</param>
-        /// <param name="nameOff">Offset of rawfile name in fastfile.</param>
-        /// <param name="content">File contents.</param>
-        /// <param name="origSize">Original size of rawfile.</param>
-        /// <param name="fileOff">Offset of contents in rawfile.</param>
         public RawFileData(string origName, int nameOff, string content, int origSize, int fileOff)
         {
             nameOffset = nameOff;
             contentsOffset = fileOff;
             originalName = origName;
-            newName = origName;
+            name = origName;
             originalSize = origSize;
-            actualSize = content.Length;
+            size = content.Length;
             contents = content;
             isChanged = false;
         }
 
-        /// <summary>
-        /// Gets offset of rawfile's name in fastfile.
-        /// </summary>
         public int NameOffset
         {
             get
@@ -51,9 +24,6 @@
             }
         }
 
-        /// <summary>
-        /// Gets offset of rawfile's contents in fastfile.
-        /// </summary>
         public int ContentsOffset
         {
             get
@@ -62,9 +32,6 @@
             }
         }
 
-        /// <summary>
-        /// Gets name of rawfile stored in fastfile.
-        /// </summary>
         public string OriginalName
         {
             get
@@ -73,24 +40,18 @@
             }
         }
 
-        /// <summary>
-        /// Gets or sets new name for rawfile in fastfile.
-        /// </summary>
-        public string NewName
+        public string Name
         {
             get
             {
-                return newName;
+                return name;
             }
             set
             {
-                newName = value;
+                name = value;
             }
         }
 
-        /// <summary>
-        /// Gets maximum size of rawfile stored inside fastfile.
-        /// </summary>
         public int OriginalSize
         {
             get
@@ -99,20 +60,14 @@
             }
         }
 
-        /// <summary>
-        /// Gets actual size of rawfile's contents.
-        /// </summary>
-        public int ActualSize
+        public int Size
         {
             get
             {
-                return actualSize;
+                return size;
             }
         }
 
-        /// <summary>
-        /// Gets or sets contents of rawfile stored in fastfile.
-        /// </summary>
         public string Contents
         {
             get
@@ -122,14 +77,11 @@
             set
             {
                 contents = value;
-                actualSize = value.Length;
+                size = value.Length;
                 isChanged = true;
             }
         }
 
-        /// <summary>
-        /// Checks if rawfile has been changed.
-        /// </summary>
         public bool Changed
         {
             get
@@ -138,13 +90,13 @@
             }
         }
 
-        int nameOffset;
-        int contentsOffset;
-        string originalName;
-        string newName;
-        int originalSize;
-        int actualSize;
-        string contents;
-        bool isChanged;
+        int nameOffset = 0;
+        int contentsOffset = 0;
+        string originalName = "unnamed";
+        string name = "unnamed";
+        int originalSize = 0;
+        int size = 0;
+        string contents = "";
+        bool isChanged = false;
     }
 }

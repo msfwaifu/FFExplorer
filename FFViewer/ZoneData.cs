@@ -5,40 +5,37 @@ namespace FFViewer_cs
 {
     //TODO
     /// <summary>
-    /// NI
+    /// Class represents typical fastfile structure.
     /// </summary>
-    public class ZoneData
+    class ZoneData
     {
-        byte[] compressedData;
-        byte[] decompressedData;
-
-        int zoneSize = 0;
-        int[] zoneSizes;
-        int listStringCount;
-        int listStringOffset;
-        string[] listStrings;
-        int assetsCount;
-        int assetsListOffset;
-        int[] assetsTypesCount;
-        int assetsDataOffset;
-
         /// <summary>
-        /// NI
+        /// Constructs <see cref="ZoneData"/> instance according to passed compressed zlib archive.
         /// </summary>
         /// <param name="compressed"></param>
         public ZoneData(byte[] compressed)
         {
             compressedData = compressed;
-            decompressedData = ZlibStream.UncompressBuffer(compressed);
+        }
 
-            //comment line later
-            //System.IO.File.WriteAllBytes("extracted-zone.dat", decompressedData);
-            //
+        /// <summary>
+        /// Decompress Zlib archive.
+        /// </summary>
+        public void DecompressZlib()
+        {
+            decompressedData = ZlibStream.UncompressBuffer(compressedData);
+        }
 
-            zoneSize = ByteHandling.GetDword(decompressedData, 0);
-            zoneSizes = new int[10];
-            for (int i = 0; i < 10; ++i)
-                zoneSizes[i] = ByteHandling.GetDword(decompressedData, 4 * i);
+        /// <summary>
+        /// Extract data from decompressed zlib archive.
+        /// </summary>
+        public void ParseFastfile()
+        {
+            g_streamOutSize = ByteHandling.GetDword(decompressedData, 0);
+            g_streamBlockSize = new int[9];
+            for (int i = 0; i < 9; ++i)
+                g_streamBlockSize[i] = ByteHandling.GetDword(decompressedData, 4 * (i + 1));
+
             listStringCount = ByteHandling.GetDword(decompressedData, 0x2C);
             assetsCount = ByteHandling.GetDword(decompressedData, 0x34);
             listStringOffset = 0x3C + listStringCount * 4;
@@ -69,7 +66,7 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
+        /// Gets compressed zlib arhive.
         /// </summary>
         public byte[] CompressedData
         {
@@ -80,7 +77,7 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
+        /// Gets or sets decompressed zlib archive.
         /// </summary>
         public byte[] DecompressedData
         {
@@ -95,40 +92,29 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
-        /// </summary>
-        public int DecompressedSize
-        {
-            get
-            {
-                return decompressedData.Length;
-            }
-        }
-
-        /// <summary>
-        /// NI
+        /// Gets size of zone file.
         /// </summary>
         public int ZoneSize
         {
             get
             {
-                return zoneSize;
+                return g_streamOutSize;
             }
         }
 
         /// <summary>
-        /// NI
+        /// Gets array of stored in fastfile various sizes used by game.
         /// </summary>
-        public int[] ZoneSizes
+        public int[] BlockSize
         {
             get
             {
-                return zoneSizes;
+                return g_streamBlockSize;
             }
         }
 
         /// <summary>
-        /// NI
+        /// Gets count of pre-compiled strings.
         /// </summary>
         public int ListStringCount
         {
@@ -139,7 +125,7 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
+        /// Gets offset of list of pre-compliled strings.
         /// </summary>
         public int ListStringOffset
         {
@@ -150,7 +136,7 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
+        /// Gets list of precompiled strings.
         /// </summary>
         public string[] ListStrings
         {
@@ -161,7 +147,7 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
+        /// Gets count of assets.
         /// </summary>
         public int AssetsCount
         {
@@ -172,7 +158,7 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
+        /// Gets offset of list of assets.
         /// </summary>
         public int AssetsListOffset
         {
@@ -183,7 +169,7 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
+        /// Gets array contains count of various assets compiled to fastfile.
         /// </summary>
         public int[] AssetsTypesCount
         {
@@ -194,7 +180,7 @@ namespace FFViewer_cs
         }
 
         /// <summary>
-        /// NI
+        /// Gets offset of assets.
         /// </summary>
         public int AssetsDataOffset
         {
@@ -203,5 +189,18 @@ namespace FFViewer_cs
                 return assetsDataOffset;
             }
         }
+
+        byte[] compressedData;
+        byte[] decompressedData;
+
+        int g_streamOutSize;
+        int[] g_streamBlockSize;
+        int listStringCount;
+        int listStringOffset;
+        string[] listStrings;
+        int assetsCount;
+        int assetsListOffset;
+        int[] assetsTypesCount;
+        int assetsDataOffset;
     }
 }

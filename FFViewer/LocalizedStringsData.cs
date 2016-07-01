@@ -1,42 +1,26 @@
 ﻿namespace FFViewer_cs
 {
     /// <summary>
-    /// NI
+    /// Not in use since almost impossible to find correct offset.
     /// </summary>
-    public class LocalizedStringsData
+    class LocalizedStringsData
     {
-        /// <summary>
-        /// NI
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
-        /// <param name="strOffset"></param>
-        public LocalizedStringsData(string name, string value, int strOffset)
+        public LocalizedStringsData(string key, string value, int offset)
         {
-            stringName = name;
+            stringKey = key;
+            stringKeyOriginal = key;
             stringValue = value;
-            origName = name;
-            offset = strOffset;
+            stringOffset = offset;
         }
 
-        /// <summary>
-        /// NI
-        /// </summary>
         public int Offset
         {
             get
             {
-                return offset;
-            }
-            set
-            {
-                offset = value;
+                return stringOffset;
             }
         }
 
-        /// <summary>
-        /// NI
-        /// </summary>
         public string Value
         {
             get
@@ -49,38 +33,29 @@
             }
         }
 
-        /// <summary>
-        /// NI
-        /// </summary>
-        public string Name
+        public string Key
         {
             get
             {
-                return stringName;
+                return stringKey;
             }
             set
             {
-                stringName = value;
+                stringKey = value;
             }
         }
-        /// <summary>
-        /// NI
-        /// </summary>
-        public string OriginalName
+        
+        public string KeyOriginal
         {
             get
             {
-                return origName;
-            }
-            set
-            {
-                origName = value;
+                return stringKeyOriginal;
             }
         }
 
-        string stringName;
+        string stringKey;
+        string stringKeyOriginal;
         string stringValue;
-        string origName;
-        int offset;
+        int stringOffset;
     }
 }

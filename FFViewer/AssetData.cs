@@ -6,7 +6,7 @@ namespace FFViewer_cs
     /// <summary>
     /// A class used to analyze and construct lists contains various assets stored in fastfile.
     /// </summary>
-    public class AssetData
+    class AssetData
     {
         /// <summary>
         /// Constructs <see cref="AssetData"/> class instance according to passed <see cref="ZoneData"/>.

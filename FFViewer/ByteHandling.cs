@@ -3,9 +3,9 @@
 namespace FFViewer_cs
 {
     /// <summary>
-    /// NI
+    /// A helper class contains various methods to work with bytes.
     /// </summary>
-    public class ByteHandling
+    class ByteHandling
     {
         /// <summary>
         /// Count bytes in array.
