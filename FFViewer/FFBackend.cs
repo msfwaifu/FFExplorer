@@ -42,12 +42,12 @@ namespace FFViewer_cs
             {
                 if (!rawFile.Changed)
                     continue;
-    
-                if (rawFile.Size <= rawFile.OriginalSize)
-                {
-                    zoneData.DecompressedData = ByteHandling.SetBytes(zoneData.DecompressedData, rawFile.ContentsOffset, rawFile.OriginalSize, 0x00);
-                    zoneData.DecompressedData = ByteHandling.ReplaceBytes(zoneData.DecompressedData, rawFile.ContentsOffset, ASCIIEncoding.ASCII.GetBytes(rawFile.Contents));
-                }
+
+                if (rawFile.Size > rawFile.OriginalSize)
+                    throw new InternalBufferOverflowException("Attempting to overrun rawfile data: " + rawFile.Name);
+
+                zoneData.DecompressedData = ByteHandling.SetBytes(zoneData.DecompressedData, rawFile.ContentsOffset, rawFile.OriginalSize, 0x00);
+                zoneData.DecompressedData = ByteHandling.ReplaceBytes(zoneData.DecompressedData, rawFile.ContentsOffset, ASCIIEncoding.ASCII.GetBytes(rawFile.Contents));
             }
 
             return zoneData;

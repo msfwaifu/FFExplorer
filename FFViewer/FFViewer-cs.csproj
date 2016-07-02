@@ -61,6 +61,7 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="Localization.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="OptionsHandler.cs" />
     <Compile Include="AssetData.cs" />
     <Compile Include="ByteHandling.cs" />
@@ -89,6 +90,9 @@
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.ru.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Options.resx">
