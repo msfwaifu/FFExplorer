@@ -3,23 +3,13 @@ using System.Text;
 
 namespace FFViewer_cs
 {
-    /// <summary>
-    /// A class used to analyze and construct lists contains various assets stored in fastfile.
-    /// </summary>
     class AssetData
     {
-        /// <summary>
-        /// Constructs <see cref="AssetData"/> class instance according to passed <see cref="ZoneData"/>.
-        /// </summary>
-        /// <param name="zoneData">Uncompressed and extracted fastfile.</param>
         public AssetData(ZoneData zoneData)
         {
             zd = zoneData;
         }
 
-        /// <summary>
-        /// Adds known assets to various lists.
-        /// </summary>
         public void AddKnownAssets()
         {
             byte[] gscFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'g', 's', 'c', '\0' });
@@ -33,17 +23,6 @@ namespace FFViewer_cs
             AddRawFiles(zd, rmbFormat);
             AddRawFiles(zd, defFormat);
             AddRawFiles(zd, cfgFormat);
-        }
-
-        /// <summary>
-        /// Gets list of rawfiles stored in fastfile.
-        /// </summary>
-        public List<RawFileData> RawFiles
-        {
-            get
-            {
-                return rawFiles;
-            }
         }
 
         void AddRawFiles(ZoneData zoneData, byte[] extension)
@@ -61,6 +40,20 @@ namespace FFViewer_cs
     
                 rawFiles.Add(new RawFileData(assetName, startOfNameOffset, contents, assetSize, startOfContents));
                 offset = ByteHandling.FindBytes(zoneData.DecompressedData, extension, offset + 1);
+            }
+        }
+
+        public void Clear()
+        {
+            zd.Clear();
+            rawFiles.Clear();
+        }
+
+        public List<RawFileData> RawFiles
+        {
+            get
+            {
+                return rawFiles;
             }
         }
 

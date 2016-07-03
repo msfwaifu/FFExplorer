@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace FFViewer_cs
 {
@@ -9,8 +10,6 @@ namespace FFViewer_cs
             using (FileStream fs = new FileStream(filePath, FileMode.Open))
             {
                 originalSize = (int)fs.Length;
-                header = new byte[8];
-                version = new byte[4];
                 compressedZone = new byte[originalSize - 12];
                 name = filePath;
 
@@ -18,6 +17,15 @@ namespace FFViewer_cs
                 fs.Read(version, 0, 4);
                 fs.Read(compressedZone, 0, originalSize - 12);
             }
+        }
+
+        public void Clear()
+        {
+            name = "";
+            originalSize = 0;
+            Array.Clear(header, 0, header.Length);
+            Array.Clear(version, 0, version.Length);
+            Array.Clear(compressedZone, 0, compressedZone.Length);
         }
         
         public string FilePath
@@ -66,8 +74,8 @@ namespace FFViewer_cs
         }
 
         string name;
-        byte[] header;
-        byte[] version;
+        byte[] header = new byte[8];
+        byte[] version = new byte[4];
         byte[] compressedZone;
         int originalSize;
     }

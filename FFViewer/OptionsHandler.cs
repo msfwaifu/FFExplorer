@@ -17,7 +17,7 @@ namespace FFViewer_cs
         [DataMember]
         public bool rememberLastFolder = true;
         [DataMember]
-        public bool deleteTemporary = false;
+        public bool saveTemporary = false;
     }
 
     /// <summary>
@@ -106,15 +106,15 @@ namespace FFViewer_cs
         /// <summary>
         /// Gets or sets whether to delete temporary files such as decompressed zone.
         /// </summary>
-        public bool DeleteTemporaryFiles
+        public bool SaveTemporaryFiles
         {
             get
             {
-                return opt.deleteTemporary;
+                return opt.saveTemporary;
             }
             set
             {
-                opt.deleteTemporary = value;
+                opt.saveTemporary = value;
             }
         }
 
@@ -130,15 +130,13 @@ namespace FFViewer_cs
                 return;
 
             using (FileStream config = new FileStream(ConfigFilePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.None))
-                opt = json.ReadObject(config) as AppOptions;
-            
+                opt = json.ReadObject(config) as AppOptions;            
         }
 
         private void SaveOptions()
         {
             using (FileStream config = new FileStream(ConfigFilePath, FileMode.Create, FileAccess.Write, FileShare.None))
                 json.WriteObject(config, opt);
-
         }
 
         AppOptions opt;

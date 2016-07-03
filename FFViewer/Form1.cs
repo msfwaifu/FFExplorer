@@ -37,14 +37,9 @@ namespace FFViewer_cs
         FFData ffInfo;
         ZoneData zoneInfo;
         AssetData assetInfo;
-        TreeNode[] rawFileNodes;
         OptionsHandler options;
         Updater updater;
  
-        OpenFileDialog openDialog;
-        SaveFileDialog saveDialog;
-        FolderBrowserDialog directoryDialog;
-
         About dlgAbout;
         Options dlgOptions;
 
@@ -67,10 +62,6 @@ namespace FFViewer_cs
             currentFFName = "";
 
             ffBackend = new FFBackend();
-
-            openDialog = new OpenFileDialog();
-            saveDialog = new SaveFileDialog();
-            directoryDialog = new FolderBrowserDialog();
 
             dlgAbout = new About();
             dlgOptions = new Options();
@@ -279,19 +270,13 @@ namespace FFViewer_cs
 
             if (currentFFName == "")
             {
-                openDialog.Title = "Открыть .FF";
-                openDialog.Filter = ".FF файлы(*.ff)|*.ff";
-                openDialog.FileName = "";
-                openDialog.FilterIndex = 1;
-
                 if (options.RememberLastFolder)
-                    openDialog.InitialDirectory = options.LastFolder;
+                    OpenFFDialog.InitialDirectory = options.LastFolder;
                 else
-                    openDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                    OpenFFDialog.InitialDirectory = Directory.GetCurrentDirectory();
 
-                openDialog.RestoreDirectory = true;
-                if (openDialog.ShowDialog() == DialogResult.OK && openDialog.CheckFileExists)
-                    currentFFName = openDialog.FileName;
+                if (OpenFFDialog.ShowDialog() == DialogResult.OK && OpenFFDialog.CheckFileExists)
+                    currentFFName = OpenFFDialog.FileName;
                 else
                     return;
             }
@@ -319,22 +304,27 @@ namespace FFViewer_cs
             zoneInfo = await Task<ZoneData>.Run(() => { return ffBackend.GetZoneData(ffInfo); });
             SetProgressBarPercentage(66);
 
+            if (Options.SaveTemporaryFiles)
+            {
+                await Task.Run(() => { zoneInfo.WriteDecompressedZone(currentAppDirectory + "/decompressed-zone.dat"); });
+                SetProgressBarPercentage(90);
+            }
+
             assetInfo = await Task<AssetData>.Run(() => { return ffBackend.GetAssetData(zoneInfo); });
             SetProgressBarPercentage(100);
 
             options.LastFolder = ffInfo.FilePath.Substring(0, ffInfo.FilePath.LastIndexOf("\\"));
             SetWindowFileName(ffInfo.FilePath);
 
-            rawFileNodes = new TreeNode[assetInfo.RawFiles.Count];
             for (int i = 0; i < assetInfo.RawFiles.Count; ++i)
             {
-                rawFileNodes[i] = new TreeNode();
-                rawFileNodes[i].Text = assetInfo.RawFiles[i].OriginalName;
-                rawFileNodes[i].Nodes.Add("Оригинальное название: " + assetInfo.RawFiles[i].OriginalName);
-                rawFileNodes[i].Nodes.Add("Новое название: " + assetInfo.RawFiles[i].Name);
-                rawFileNodes[i].Nodes.Add("Оригинальный размер: " + assetInfo.RawFiles[i].OriginalSize);
+                TreeNode rawFileNode = new TreeNode();
+                rawFileNode.Text = assetInfo.RawFiles[i].OriginalName;
+                rawFileNode.Nodes.Add("Оригинальное название: " + assetInfo.RawFiles[i].OriginalName);
+                rawFileNode.Nodes.Add("Новое название: " + assetInfo.RawFiles[i].Name);
+                rawFileNode.Nodes.Add("Оригинальный размер: " + assetInfo.RawFiles[i].OriginalSize);
 
-                RawFiles.Nodes.Add(rawFileNodes[i]);
+                RawFiles.Nodes.Add(rawFileNode);
                 Application.DoEvents();
             }
 
@@ -380,9 +370,7 @@ namespace FFViewer_cs
             if (str == "" || substr == "")
                 return 0;
 
-            byte[] strBytes = ASCIIEncoding.ASCII.GetBytes(str.ToCharArray());
-            byte[] substrBytes = ASCIIEncoding.ASCII.GetBytes(substr.ToCharArray());
-            return ByteHandling.CountBytes(strBytes, substrBytes);
+            return ByteHandling.CountBytes(Encoding.ASCII.GetBytes(str.ToCharArray()), Encoding.ASCII.GetBytes(substr.ToCharArray()));
         }
 
         private void CloseFFToolStripMenuItem_Click(object sender, EventArgs e)
@@ -399,6 +387,9 @@ namespace FFViewer_cs
                     currentFFName = "";
                     StatusLine_Clear();                    
                     RawFiles.Nodes.Clear();
+                    ffInfo.Clear();
+                    zoneInfo.Clear();
+                    assetInfo.Clear();
 
                     CodeBox.Text = "";
                     SetWindowFileName("");
@@ -410,8 +401,7 @@ namespace FFViewer_cs
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При закрытии Fastfile произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
@@ -746,30 +736,26 @@ namespace FFViewer_cs
         {
             if (!isFastFileOpened)
                 return;
+
             try
             {
-                saveDialog.Title = "Экспортировать файл";
-                saveDialog.Filter = "Все файлы(*.*)|*.*";
-
                 if (assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name.Contains("/"))
-                    saveDialog.FileName = assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name.Substring(assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name.LastIndexOf("/") + 1);
+                    ExtractDialog.FileName = assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name.Substring(assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name.LastIndexOf("/") + 1);
                 else
-                    saveDialog.FileName = assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name;
+                    ExtractDialog.FileName = assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name;
 
-                saveDialog.FilterIndex = 1;
                 if (options.RememberLastFolder)
-                    saveDialog.InitialDirectory = options.LastFolder;
+                    ExtractDialog.InitialDirectory = options.LastFolder;
                 else
-                    saveDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                    ExtractDialog.InitialDirectory = Directory.GetCurrentDirectory();
 
-                saveDialog.RestoreDirectory = true;
-                if (saveDialog.ShowDialog() == DialogResult.OK)
+                if (ExtractDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (saveDialog.CheckFileExists)
-                        File.Delete(saveDialog.FileName);
+                    if (ExtractDialog.CheckFileExists)
+                        File.Delete(ExtractDialog.FileName);
 
                     RawFileData selectedRaw = assetInfo.RawFiles[RawFiles.SelectedNode.Index];
-                    File.WriteAllText(saveDialog.FileName, selectedRaw.Contents);
+                    File.WriteAllText(ExtractDialog.FileName, selectedRaw.Contents);
                 }
             }
             catch(Exception ex)
@@ -791,11 +777,10 @@ namespace FFViewer_cs
 
             try
             {
-                directoryDialog.Description = "Укажите директорию для сохранения файлов";
-                if (directoryDialog.ShowDialog() == DialogResult.OK)
+                if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (!Directory.Exists(directoryDialog.SelectedPath))
-                        Directory.CreateDirectory(directoryDialog.SelectedPath);
+                    if (!Directory.Exists(FolderBrowserDialog.SelectedPath))
+                        Directory.CreateDirectory(FolderBrowserDialog.SelectedPath);
 
                     LockInterface(true);
                     SetProgressBarPercentage_d SPBP_d = SetProgressBarPercentage;
@@ -803,7 +788,7 @@ namespace FFViewer_cs
                     {
                         for (int i = 0; i < assetInfo.RawFiles.Count; ++i)
                         {
-                            string filePath = directoryDialog.SelectedPath + "\\" + assetInfo.RawFiles[i].Name.Replace('/', '\\');
+                            string filePath = FolderBrowserDialog.SelectedPath + "\\" + assetInfo.RawFiles[i].Name.Replace('/', '\\');
                             string fileDir = filePath.Substring(0, filePath.LastIndexOf('\\'));
 
                             if (!Directory.Exists(fileDir))
@@ -839,7 +824,7 @@ namespace FFViewer_cs
                      return;
             
                 currentRawFile.Contents = CodeBox.Text;
-                StatusLine_UpdateSize();
+                RawfileInfo_UpdateSize();
             }
             catch (Exception ex)
             {
@@ -851,7 +836,7 @@ namespace FFViewer_cs
         {
             try
             {
-                StatusLine_UpdateCurrentLine();
+                RawfileInfo_UpdateCurrentLine();
             }
             catch (Exception ex)
             {
@@ -863,7 +848,7 @@ namespace FFViewer_cs
         {
             try
             {
-                StatusLine_UpdateCurrentLine();
+                RawfileInfo_UpdateCurrentLine();
             }
             catch (Exception ex)
             {
@@ -901,24 +886,16 @@ namespace FFViewer_cs
                     return;
 
                 if (currentRawFile.Size >= currentRawFile.OriginalSize)
-                {
-                    MessageBox.Show("Текущий размер файла больше или равен оригинальному.", "Ошибка", MessageBoxButtons.OK);
-                    return;
-                }
+                    throw new Exception("Rawfile size >= original size");
 
                 int required = currentRawFile.OriginalSize - currentRawFile.Size;
-                int numLines = required / 1020 + 1;
-                int maxPortion = required % 1020 > 4 ? 1020 : 1010;
-                string text = CodeBox.Text;
-                for (int i = 0; i < numLines; ++i)
-                {
-                    int portion = required > maxPortion ? maxPortion : required;
-                    text += "//";
-                    for (int j = 0; j < portion - 4; ++j)
-                        text += "/";
-                    text += "\r\n";
-                    required -= portion;
-                }
+
+                if (required < 2)
+                    throw new Exception("Not enough space to place comment");
+
+                string text = CodeBox.Text + "//";
+                for (int i = 0; i < required - 2; ++i)
+                    text += "/";
                 CodeBox.Text = text;
             }
             catch (Exception ex)
@@ -927,38 +904,38 @@ namespace FFViewer_cs
             }
         }
 
-        private void StatusLine_UpdateOriginalSize()
+        private void RawfileInfo_UpdateOriginalSize()
         {
             RawfileInfoSizeOriginal.Text = currentRawFile.OriginalSize.ToString();
         }
 
-        private void StatusLine_UpdateSize()
+        private void RawfileInfo_UpdateSize()
         {
             RawfileInfoSize.Text = currentRawFile.Size.ToString();
         }
 
-        private void StatusLine_UpdateFileName()
+        private void RawfileInfo_UpdateFileName()
         {
             RawfileInfoFileName.Text = currentRawFile.Name;
         }
 
-        private void StatusLine_UpdateCurrentLine()
+        private void RawfileInfo_UpdateCurrentLine()
         {
             GoToLineBox.Text = (CodeBox.GetLineFromCharIndex(CodeBox.SelectionStart) + 1).ToString();
         }
 
-        private void StatusLine_Update()
+        private void RawfileInfo_Update()
         {
-            StatusLine_UpdateCurrentLine();
-            StatusLine_UpdateFileName();
-            StatusLine_UpdateSize();
-            StatusLine_UpdateOriginalSize();
+            RawfileInfo_UpdateCurrentLine();
+            RawfileInfo_UpdateFileName();
+            RawfileInfo_UpdateSize();
+            RawfileInfo_UpdateOriginalSize();
         }
 
         private void StatusLine_Clear()
         {
             currentRawFile = new RawFileData();
-            StatusLine_Update();
+            RawfileInfo_Update();
         }
 
         private void RawFiles_AfterSelect(object sender, TreeViewEventArgs e)
@@ -968,7 +945,7 @@ namespace FFViewer_cs
                 int rawIndex = RawFiles.SelectedNode.Nodes.Count == 0 ? RawFiles.SelectedNode.Parent.Index : RawFiles.SelectedNode.Index;
                 currentRawFile = assetInfo.RawFiles[rawIndex];
                 CodeBox.Text = currentRawFile.Contents;
-                StatusLine_Update();
+                RawfileInfo_Update();
             }
             catch (Exception ex)
             {
@@ -1022,7 +999,11 @@ namespace FFViewer_cs
             options.Height = this.Size.Height;
         }
 
-        private void HandleException(Exception ex)
+        /// <summary>
+        /// Default exception handler for application.
+        /// </summary>
+        /// <param name="ex">An exception class used to get information about exception.</param>
+        static public void HandleException(Exception ex)
         {
             MessageBox.Show(ex.ToString(), "Exception caught", MessageBoxButtons.OK);
             Application.Exit();
@@ -1062,6 +1043,11 @@ namespace FFViewer_cs
             {
                 HandleException(ex);
             }
+        }
+
+        private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dlgOptions.Show();
         }
     }
 }

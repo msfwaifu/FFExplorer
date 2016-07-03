@@ -50,6 +50,13 @@
             this.FindNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RawfileInfoPanel = new System.Windows.Forms.Panel();
+            this.RawfileInfoFileName = new System.Windows.Forms.Label();
+            this.RawfileInfoFileLabel = new System.Windows.Forms.Label();
+            this.RawfileInfoSizeOriginal = new System.Windows.Forms.Label();
+            this.RawfileInfoSizeSeparator = new System.Windows.Forms.Label();
+            this.RawfileInfoSize = new System.Windows.Forms.Label();
+            this.RawfileInfoSizeLabel = new System.Windows.Forms.Label();
             this.SearchBoxAndGoToPanel = new System.Windows.Forms.Panel();
             this.FindTextPanel = new System.Windows.Forms.Panel();
             this.FindTextBox = new System.Windows.Forms.TextBox();
@@ -65,7 +72,6 @@
             this.StatusStrip1 = new System.Windows.Forms.StatusStrip();
             this.ToolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.Wait = new System.Windows.Forms.ToolStripProgressBar();
-            this.RawfileInfoPanel = new System.Windows.Forms.Panel();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -88,18 +94,16 @@
             this.UpdateSnippetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem6 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuStripPanel = new System.Windows.Forms.Panel();
-            this.RawfileInfoSizeLabel = new System.Windows.Forms.Label();
-            this.RawfileInfoSize = new System.Windows.Forms.Label();
-            this.RawfileInfoSizeSeparator = new System.Windows.Forms.Label();
-            this.RawfileInfoSizeOriginal = new System.Windows.Forms.Label();
-            this.RawfileInfoFileLabel = new System.Windows.Forms.Label();
-            this.RawfileInfoFileName = new System.Windows.Forms.Label();
+            this.OpenFFDialog = new System.Windows.Forms.OpenFileDialog();
+            this.ExtractDialog = new System.Windows.Forms.SaveFileDialog();
+            this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer1)).BeginInit();
             this.SplitContainer1.Panel1.SuspendLayout();
             this.SplitContainer1.Panel2.SuspendLayout();
             this.SplitContainer1.SuspendLayout();
             this.FileListRightClick.SuspendLayout();
             this.CodeBoxRightClick.SuspendLayout();
+            this.RawfileInfoPanel.SuspendLayout();
             this.SearchBoxAndGoToPanel.SuspendLayout();
             this.FindTextPanel.SuspendLayout();
             this.GoToLinePanel.SuspendLayout();
@@ -111,7 +115,6 @@
             this.TabPage1.SuspendLayout();
             this.TabPage3.SuspendLayout();
             this.StatusStrip1.SuspendLayout();
-            this.RawfileInfoPanel.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.MenuStripPanel.SuspendLayout();
             this.SuspendLayout();
@@ -123,19 +126,21 @@
             // 
             // SplitContainer1.Panel1
             // 
+            resources.ApplyResources(this.SplitContainer1.Panel1, "SplitContainer1.Panel1");
             this.SplitContainer1.Panel1.Controls.Add(this.RawFiles);
             // 
             // SplitContainer1.Panel2
             // 
+            resources.ApplyResources(this.SplitContainer1.Panel2, "SplitContainer1.Panel2");
             this.SplitContainer1.Panel2.Controls.Add(this.CodeBox);
             this.SplitContainer1.Panel2.Controls.Add(this.RawfileInfoPanel);
             this.SplitContainer1.Panel2.Controls.Add(this.SearchBoxAndGoToPanel);
             // 
             // RawFiles
             // 
+            resources.ApplyResources(this.RawFiles, "RawFiles");
             this.RawFiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RawFiles.ContextMenuStrip = this.FileListRightClick;
-            resources.ApplyResources(this.RawFiles, "RawFiles");
             this.RawFiles.FullRowSelect = true;
             this.RawFiles.HideSelection = false;
             this.RawFiles.Name = "RawFiles";
@@ -144,43 +149,43 @@
             // 
             // FileListRightClick
             // 
+            resources.ApplyResources(this.FileListRightClick, "FileListRightClick");
             this.FileListRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ExportFileToolStripMenuItem,
             this.EditSelectionToolStripMenuItem,
             this.toolStripSeparator1,
             this.ExtractAllGSCsToolStripMenuItem});
             this.FileListRightClick.Name = "FileListRightClick";
-            resources.ApplyResources(this.FileListRightClick, "FileListRightClick");
             // 
             // ExportFileToolStripMenuItem
             // 
-            this.ExportFileToolStripMenuItem.Name = "ExportFileToolStripMenuItem";
             resources.ApplyResources(this.ExportFileToolStripMenuItem, "ExportFileToolStripMenuItem");
+            this.ExportFileToolStripMenuItem.Name = "ExportFileToolStripMenuItem";
             this.ExportFileToolStripMenuItem.Click += new System.EventHandler(this.ExportFileToolStripMenuItem_Click);
             // 
             // EditSelectionToolStripMenuItem
             // 
-            this.EditSelectionToolStripMenuItem.Name = "EditSelectionToolStripMenuItem";
             resources.ApplyResources(this.EditSelectionToolStripMenuItem, "EditSelectionToolStripMenuItem");
+            this.EditSelectionToolStripMenuItem.Name = "EditSelectionToolStripMenuItem";
             this.EditSelectionToolStripMenuItem.Click += new System.EventHandler(this.EditSelectionToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
             resources.ApplyResources(this.toolStripSeparator1, "toolStripSeparator1");
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
             // 
             // ExtractAllGSCsToolStripMenuItem
             // 
-            this.ExtractAllGSCsToolStripMenuItem.Name = "ExtractAllGSCsToolStripMenuItem";
             resources.ApplyResources(this.ExtractAllGSCsToolStripMenuItem, "ExtractAllGSCsToolStripMenuItem");
+            this.ExtractAllGSCsToolStripMenuItem.Name = "ExtractAllGSCsToolStripMenuItem";
             this.ExtractAllGSCsToolStripMenuItem.Click += new System.EventHandler(this.ExtractAllGSCsToolStripMenuItem_Click);
             // 
             // CodeBox
             // 
             this.CodeBox.AcceptsTab = true;
+            resources.ApplyResources(this.CodeBox, "CodeBox");
             this.CodeBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CodeBox.ContextMenuStrip = this.CodeBoxRightClick;
-            resources.ApplyResources(this.CodeBox, "CodeBox");
             this.CodeBox.Name = "CodeBox";
             this.CodeBox.Click += new System.EventHandler(this.CodeBox_Click);
             this.CodeBox.TextChanged += new System.EventHandler(this.CodeBox_TextChanged);
@@ -188,6 +193,7 @@
             // 
             // CodeBoxRightClick
             // 
+            resources.ApplyResources(this.CodeBoxRightClick, "CodeBoxRightClick");
             this.CodeBoxRightClick.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CutToolStripMenuItem,
             this.CopyToolStripMenuItem,
@@ -198,67 +204,107 @@
             this.GotoToolStripMenuItem,
             this.SelectAllToolStripMenuItem});
             this.CodeBoxRightClick.Name = "CodeBoxRightClick";
-            resources.ApplyResources(this.CodeBoxRightClick, "CodeBoxRightClick");
             // 
             // CutToolStripMenuItem
             // 
-            this.CutToolStripMenuItem.Name = "CutToolStripMenuItem";
             resources.ApplyResources(this.CutToolStripMenuItem, "CutToolStripMenuItem");
+            this.CutToolStripMenuItem.Name = "CutToolStripMenuItem";
             this.CutToolStripMenuItem.Click += new System.EventHandler(this.CutToolStripMenuItem_Click);
             // 
             // CopyToolStripMenuItem
             // 
-            this.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem";
             resources.ApplyResources(this.CopyToolStripMenuItem, "CopyToolStripMenuItem");
+            this.CopyToolStripMenuItem.Name = "CopyToolStripMenuItem";
             this.CopyToolStripMenuItem.Click += new System.EventHandler(this.CopyToolStripMenuItem_Click);
             // 
             // PasteToolStripMenuItem
             // 
-            this.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem";
             resources.ApplyResources(this.PasteToolStripMenuItem, "PasteToolStripMenuItem");
+            this.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem";
             this.PasteToolStripMenuItem.Click += new System.EventHandler(this.PasteToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
             resources.ApplyResources(this.toolStripSeparator2, "toolStripSeparator2");
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
             // 
             // FindToolStripMenuItem
             // 
-            this.FindToolStripMenuItem.Name = "FindToolStripMenuItem";
             resources.ApplyResources(this.FindToolStripMenuItem, "FindToolStripMenuItem");
+            this.FindToolStripMenuItem.Name = "FindToolStripMenuItem";
             this.FindToolStripMenuItem.Click += new System.EventHandler(this.FindToolStripMenuItem_Click);
             // 
             // FindNextToolStripMenuItem
             // 
-            this.FindNextToolStripMenuItem.Name = "FindNextToolStripMenuItem";
             resources.ApplyResources(this.FindNextToolStripMenuItem, "FindNextToolStripMenuItem");
+            this.FindNextToolStripMenuItem.Name = "FindNextToolStripMenuItem";
             this.FindNextToolStripMenuItem.Click += new System.EventHandler(this.FindNextToolStripMenuItem_Click);
             // 
             // GotoToolStripMenuItem
             // 
-            this.GotoToolStripMenuItem.Name = "GotoToolStripMenuItem";
             resources.ApplyResources(this.GotoToolStripMenuItem, "GotoToolStripMenuItem");
+            this.GotoToolStripMenuItem.Name = "GotoToolStripMenuItem";
             this.GotoToolStripMenuItem.Click += new System.EventHandler(this.GotoToolStripMenuItem_Click);
             // 
             // SelectAllToolStripMenuItem
             // 
-            this.SelectAllToolStripMenuItem.Name = "SelectAllToolStripMenuItem";
             resources.ApplyResources(this.SelectAllToolStripMenuItem, "SelectAllToolStripMenuItem");
+            this.SelectAllToolStripMenuItem.Name = "SelectAllToolStripMenuItem";
             this.SelectAllToolStripMenuItem.Click += new System.EventHandler(this.SelectAllToolStripMenuItem_Click);
+            // 
+            // RawfileInfoPanel
+            // 
+            resources.ApplyResources(this.RawfileInfoPanel, "RawfileInfoPanel");
+            this.RawfileInfoPanel.Controls.Add(this.RawfileInfoFileName);
+            this.RawfileInfoPanel.Controls.Add(this.RawfileInfoFileLabel);
+            this.RawfileInfoPanel.Controls.Add(this.RawfileInfoSizeOriginal);
+            this.RawfileInfoPanel.Controls.Add(this.RawfileInfoSizeSeparator);
+            this.RawfileInfoPanel.Controls.Add(this.RawfileInfoSize);
+            this.RawfileInfoPanel.Controls.Add(this.RawfileInfoSizeLabel);
+            this.RawfileInfoPanel.Name = "RawfileInfoPanel";
+            // 
+            // RawfileInfoFileName
+            // 
+            resources.ApplyResources(this.RawfileInfoFileName, "RawfileInfoFileName");
+            this.RawfileInfoFileName.Name = "RawfileInfoFileName";
+            // 
+            // RawfileInfoFileLabel
+            // 
+            resources.ApplyResources(this.RawfileInfoFileLabel, "RawfileInfoFileLabel");
+            this.RawfileInfoFileLabel.Name = "RawfileInfoFileLabel";
+            // 
+            // RawfileInfoSizeOriginal
+            // 
+            resources.ApplyResources(this.RawfileInfoSizeOriginal, "RawfileInfoSizeOriginal");
+            this.RawfileInfoSizeOriginal.Name = "RawfileInfoSizeOriginal";
+            // 
+            // RawfileInfoSizeSeparator
+            // 
+            resources.ApplyResources(this.RawfileInfoSizeSeparator, "RawfileInfoSizeSeparator");
+            this.RawfileInfoSizeSeparator.Name = "RawfileInfoSizeSeparator";
+            // 
+            // RawfileInfoSize
+            // 
+            resources.ApplyResources(this.RawfileInfoSize, "RawfileInfoSize");
+            this.RawfileInfoSize.Name = "RawfileInfoSize";
+            // 
+            // RawfileInfoSizeLabel
+            // 
+            resources.ApplyResources(this.RawfileInfoSizeLabel, "RawfileInfoSizeLabel");
+            this.RawfileInfoSizeLabel.Name = "RawfileInfoSizeLabel";
             // 
             // SearchBoxAndGoToPanel
             // 
+            resources.ApplyResources(this.SearchBoxAndGoToPanel, "SearchBoxAndGoToPanel");
             this.SearchBoxAndGoToPanel.Controls.Add(this.FindTextPanel);
             this.SearchBoxAndGoToPanel.Controls.Add(this.GoToLinePanel);
-            resources.ApplyResources(this.SearchBoxAndGoToPanel, "SearchBoxAndGoToPanel");
             this.SearchBoxAndGoToPanel.Name = "SearchBoxAndGoToPanel";
             // 
             // FindTextPanel
             // 
+            resources.ApplyResources(this.FindTextPanel, "FindTextPanel");
             this.FindTextPanel.Controls.Add(this.FindTextBox);
             this.FindTextPanel.Controls.Add(this.FindTextLabel);
-            resources.ApplyResources(this.FindTextPanel, "FindTextPanel");
             this.FindTextPanel.Name = "FindTextPanel";
             // 
             // FindTextBox
@@ -310,13 +356,18 @@
             // 
             // SplitContainer3.Panel1
             // 
+            resources.ApplyResources(this.SplitContainer3.Panel1, "SplitContainer3.Panel1");
             this.SplitContainer3.Panel1.Controls.Add(this.MiscData);
+            // 
+            // SplitContainer3.Panel2
+            // 
+            resources.ApplyResources(this.SplitContainer3.Panel2, "SplitContainer3.Panel2");
             // 
             // MiscData
             // 
+            resources.ApplyResources(this.MiscData, "MiscData");
             this.MiscData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MiscData.ContextMenuStrip = this.FileListRightClick;
-            resources.ApplyResources(this.MiscData, "MiscData");
             this.MiscData.FullRowSelect = true;
             this.MiscData.HideSelection = false;
             this.MiscData.Name = "MiscData";
@@ -331,53 +382,42 @@
             // 
             // TabPage1
             // 
-            this.TabPage1.Controls.Add(this.SplitContainer1);
             resources.ApplyResources(this.TabPage1, "TabPage1");
+            this.TabPage1.Controls.Add(this.SplitContainer1);
             this.TabPage1.Name = "TabPage1";
             this.TabPage1.UseVisualStyleBackColor = true;
             // 
             // TabPage3
             // 
-            this.TabPage3.Controls.Add(this.SplitContainer3);
             resources.ApplyResources(this.TabPage3, "TabPage3");
+            this.TabPage3.Controls.Add(this.SplitContainer3);
             this.TabPage3.Name = "TabPage3";
             this.TabPage3.UseVisualStyleBackColor = true;
             // 
             // StatusStrip1
             // 
+            resources.ApplyResources(this.StatusStrip1, "StatusStrip1");
             this.StatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripStatusLabel5,
             this.Wait});
-            resources.ApplyResources(this.StatusStrip1, "StatusStrip1");
             this.StatusStrip1.Name = "StatusStrip1";
             // 
             // ToolStripStatusLabel5
             // 
-            this.ToolStripStatusLabel5.Name = "ToolStripStatusLabel5";
             resources.ApplyResources(this.ToolStripStatusLabel5, "ToolStripStatusLabel5");
+            this.ToolStripStatusLabel5.Name = "ToolStripStatusLabel5";
             this.ToolStripStatusLabel5.Spring = true;
             // 
             // Wait
             // 
+            resources.ApplyResources(this.Wait, "Wait");
             this.Wait.MarqueeAnimationSpeed = 1;
             this.Wait.Name = "Wait";
-            resources.ApplyResources(this.Wait, "Wait");
-            // 
-            // RawfileInfoPanel
-            // 
-            this.RawfileInfoPanel.Controls.Add(this.RawfileInfoFileName);
-            this.RawfileInfoPanel.Controls.Add(this.RawfileInfoFileLabel);
-            this.RawfileInfoPanel.Controls.Add(this.RawfileInfoSizeOriginal);
-            this.RawfileInfoPanel.Controls.Add(this.RawfileInfoSizeSeparator);
-            this.RawfileInfoPanel.Controls.Add(this.RawfileInfoSize);
-            this.RawfileInfoPanel.Controls.Add(this.RawfileInfoSizeLabel);
-            resources.ApplyResources(this.RawfileInfoPanel, "RawfileInfoPanel");
-            this.RawfileInfoPanel.Name = "RawfileInfoPanel";
             // 
             // MenuStrip
             // 
-            this.MenuStrip.BackColor = System.Drawing.SystemColors.ButtonFace;
             resources.ApplyResources(this.MenuStrip, "MenuStrip");
+            this.MenuStrip.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem,
             this.ToolsToolStripMenuItem,
@@ -387,6 +427,7 @@
             // 
             // FileToolStripMenuItem
             // 
+            resources.ApplyResources(this.FileToolStripMenuItem, "FileToolStripMenuItem");
             this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenFFToolStripMenuItem,
             this.SaveFFToolStripMenuItem,
@@ -395,44 +436,45 @@
             this.OptionsToolStripMenuItem,
             this.ExitToolStripMenuItem});
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
-            resources.ApplyResources(this.FileToolStripMenuItem, "FileToolStripMenuItem");
             // 
             // OpenFFToolStripMenuItem
             // 
-            this.OpenFFToolStripMenuItem.Name = "OpenFFToolStripMenuItem";
             resources.ApplyResources(this.OpenFFToolStripMenuItem, "OpenFFToolStripMenuItem");
+            this.OpenFFToolStripMenuItem.Name = "OpenFFToolStripMenuItem";
             this.OpenFFToolStripMenuItem.Click += new System.EventHandler(this.OpenFFToolStripMenuItem_Click);
             // 
             // SaveFFToolStripMenuItem
             // 
-            this.SaveFFToolStripMenuItem.Name = "SaveFFToolStripMenuItem";
             resources.ApplyResources(this.SaveFFToolStripMenuItem, "SaveFFToolStripMenuItem");
+            this.SaveFFToolStripMenuItem.Name = "SaveFFToolStripMenuItem";
             this.SaveFFToolStripMenuItem.Click += new System.EventHandler(this.SaveFFToolStripMenuItem_Click);
             // 
             // CloseFFToolStripMenuItem
             // 
-            this.CloseFFToolStripMenuItem.Name = "CloseFFToolStripMenuItem";
             resources.ApplyResources(this.CloseFFToolStripMenuItem, "CloseFFToolStripMenuItem");
+            this.CloseFFToolStripMenuItem.Name = "CloseFFToolStripMenuItem";
             this.CloseFFToolStripMenuItem.Click += new System.EventHandler(this.CloseFFToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem1
             // 
-            this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
             resources.ApplyResources(this.ToolStripMenuItem1, "ToolStripMenuItem1");
+            this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
             // 
             // OptionsToolStripMenuItem
             // 
-            this.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem";
             resources.ApplyResources(this.OptionsToolStripMenuItem, "OptionsToolStripMenuItem");
+            this.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem";
+            this.OptionsToolStripMenuItem.Click += new System.EventHandler(this.OptionsToolStripMenuItem_Click);
             // 
             // ExitToolStripMenuItem
             // 
-            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
             resources.ApplyResources(this.ExitToolStripMenuItem, "ExitToolStripMenuItem");
+            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // ToolsToolStripMenuItem
             // 
+            resources.ApplyResources(this.ToolsToolStripMenuItem, "ToolsToolStripMenuItem");
             this.ToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SyntaxCheckerToolStripMenuItem,
             this.RemoveCommentsToolStripMenuItem,
@@ -440,7 +482,6 @@
             this.ToolStripMenuItem5,
             this.zlibToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
-            resources.ApplyResources(this.ToolsToolStripMenuItem, "ToolsToolStripMenuItem");
             // 
             // SyntaxCheckerToolStripMenuItem
             // 
@@ -450,113 +491,96 @@
             // 
             // RemoveCommentsToolStripMenuItem
             // 
-            this.RemoveCommentsToolStripMenuItem.Name = "RemoveCommentsToolStripMenuItem";
             resources.ApplyResources(this.RemoveCommentsToolStripMenuItem, "RemoveCommentsToolStripMenuItem");
+            this.RemoveCommentsToolStripMenuItem.Name = "RemoveCommentsToolStripMenuItem";
             this.RemoveCommentsToolStripMenuItem.Click += new System.EventHandler(this.RemoveCommentsToolStripMenuItem_Click);
             // 
             // PadFileToolStripMenuItem
             // 
-            this.PadFileToolStripMenuItem.Name = "PadFileToolStripMenuItem";
             resources.ApplyResources(this.PadFileToolStripMenuItem, "PadFileToolStripMenuItem");
+            this.PadFileToolStripMenuItem.Name = "PadFileToolStripMenuItem";
             this.PadFileToolStripMenuItem.Click += new System.EventHandler(this.PadFileToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem5
             // 
-            this.ToolStripMenuItem5.Name = "ToolStripMenuItem5";
             resources.ApplyResources(this.ToolStripMenuItem5, "ToolStripMenuItem5");
+            this.ToolStripMenuItem5.Name = "ToolStripMenuItem5";
             // 
             // zlibToolStripMenuItem
             // 
+            resources.ApplyResources(this.zlibToolStripMenuItem, "zlibToolStripMenuItem");
             this.zlibToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ZlibCompressToolStripMenuItem,
             this.ZlibDecompressToolStripMenuItem});
-            resources.ApplyResources(this.zlibToolStripMenuItem, "zlibToolStripMenuItem");
             this.zlibToolStripMenuItem.Name = "zlibToolStripMenuItem";
             // 
             // ZlibCompressToolStripMenuItem
             // 
-            this.ZlibCompressToolStripMenuItem.Name = "ZlibCompressToolStripMenuItem";
             resources.ApplyResources(this.ZlibCompressToolStripMenuItem, "ZlibCompressToolStripMenuItem");
+            this.ZlibCompressToolStripMenuItem.Name = "ZlibCompressToolStripMenuItem";
             this.ZlibCompressToolStripMenuItem.Click += new System.EventHandler(this.ZlibCompressToolStripMenuItem_Click);
             // 
             // ZlibDecompressToolStripMenuItem
             // 
-            this.ZlibDecompressToolStripMenuItem.Name = "ZlibDecompressToolStripMenuItem";
             resources.ApplyResources(this.ZlibDecompressToolStripMenuItem, "ZlibDecompressToolStripMenuItem");
+            this.ZlibDecompressToolStripMenuItem.Name = "ZlibDecompressToolStripMenuItem";
             this.ZlibDecompressToolStripMenuItem.Click += new System.EventHandler(this.ZlibDecompressToolStripMenuItem_Click);
             // 
             // AboutToolStripMenuItem
             // 
-            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
             resources.ApplyResources(this.AboutToolStripMenuItem, "AboutToolStripMenuItem");
+            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // Snippets
             // 
+            resources.ApplyResources(this.Snippets, "Snippets");
             this.Snippets.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.InstructionsToolStripMenuItem,
             this.UpdateSnippetsToolStripMenuItem,
             this.ToolStripMenuItem6});
             this.Snippets.Name = "Snippets";
-            resources.ApplyResources(this.Snippets, "Snippets");
             // 
             // InstructionsToolStripMenuItem
             // 
-            this.InstructionsToolStripMenuItem.Name = "InstructionsToolStripMenuItem";
             resources.ApplyResources(this.InstructionsToolStripMenuItem, "InstructionsToolStripMenuItem");
+            this.InstructionsToolStripMenuItem.Name = "InstructionsToolStripMenuItem";
             this.InstructionsToolStripMenuItem.Click += new System.EventHandler(this.InstructionsToolStripMenuItem_Click);
             // 
             // UpdateSnippetsToolStripMenuItem
             // 
-            this.UpdateSnippetsToolStripMenuItem.Name = "UpdateSnippetsToolStripMenuItem";
             resources.ApplyResources(this.UpdateSnippetsToolStripMenuItem, "UpdateSnippetsToolStripMenuItem");
+            this.UpdateSnippetsToolStripMenuItem.Name = "UpdateSnippetsToolStripMenuItem";
             this.UpdateSnippetsToolStripMenuItem.Click += new System.EventHandler(this.UpdateSnippetsToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem6
             // 
-            this.ToolStripMenuItem6.Name = "ToolStripMenuItem6";
             resources.ApplyResources(this.ToolStripMenuItem6, "ToolStripMenuItem6");
+            this.ToolStripMenuItem6.Name = "ToolStripMenuItem6";
             // 
             // MenuStripPanel
             // 
-            this.MenuStripPanel.Controls.Add(this.MenuStrip);
             resources.ApplyResources(this.MenuStripPanel, "MenuStripPanel");
+            this.MenuStripPanel.Controls.Add(this.MenuStrip);
             this.MenuStripPanel.Name = "MenuStripPanel";
             // 
-            // RawfileInfoSizeLabel
+            // OpenFFDialog
             // 
-            resources.ApplyResources(this.RawfileInfoSizeLabel, "RawfileInfoSizeLabel");
-            this.RawfileInfoSizeLabel.Name = "RawfileInfoSizeLabel";
+            this.OpenFFDialog.DefaultExt = "ff";
+            resources.ApplyResources(this.OpenFFDialog, "OpenFFDialog");
             // 
-            // RawfileInfoSize
+            // ExtractDialog
             // 
-            resources.ApplyResources(this.RawfileInfoSize, "RawfileInfoSize");
-            this.RawfileInfoSize.Name = "RawfileInfoSize";
+            resources.ApplyResources(this.ExtractDialog, "ExtractDialog");
             // 
-            // RawfileInfoSizeSeparator
+            // FolderBrowserDialog
             // 
-            resources.ApplyResources(this.RawfileInfoSizeSeparator, "RawfileInfoSizeSeparator");
-            this.RawfileInfoSizeSeparator.Name = "RawfileInfoSizeSeparator";
-            // 
-            // RawfileInfoSizeOriginal
-            // 
-            resources.ApplyResources(this.RawfileInfoSizeOriginal, "RawfileInfoSizeOriginal");
-            this.RawfileInfoSizeOriginal.Name = "RawfileInfoSizeOriginal";
-            // 
-            // RawfileInfoFileLabel
-            // 
-            resources.ApplyResources(this.RawfileInfoFileLabel, "RawfileInfoFileLabel");
-            this.RawfileInfoFileLabel.Name = "RawfileInfoFileLabel";
-            // 
-            // RawfileInfoFileName
-            // 
-            resources.ApplyResources(this.RawfileInfoFileName, "RawfileInfoFileName");
-            this.RawfileInfoFileName.Name = "RawfileInfoFileName";
+            resources.ApplyResources(this.FolderBrowserDialog, "FolderBrowserDialog");
             // 
             // Form1
             // 
-            this.AllowDrop = true;
             resources.ApplyResources(this, "$this");
+            this.AllowDrop = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.MenuStripPanel);
             this.Controls.Add(this.StatusStrip1);
@@ -578,6 +602,8 @@
             this.SplitContainer1.ResumeLayout(false);
             this.FileListRightClick.ResumeLayout(false);
             this.CodeBoxRightClick.ResumeLayout(false);
+            this.RawfileInfoPanel.ResumeLayout(false);
+            this.RawfileInfoPanel.PerformLayout();
             this.SearchBoxAndGoToPanel.ResumeLayout(false);
             this.SearchBoxAndGoToPanel.PerformLayout();
             this.FindTextPanel.ResumeLayout(false);
@@ -593,8 +619,6 @@
             this.TabPage3.ResumeLayout(false);
             this.StatusStrip1.ResumeLayout(false);
             this.StatusStrip1.PerformLayout();
-            this.RawfileInfoPanel.ResumeLayout(false);
-            this.RawfileInfoPanel.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
             this.MenuStripPanel.ResumeLayout(false);
@@ -666,6 +690,9 @@
         internal System.Windows.Forms.ToolStripMenuItem UpdateSnippetsToolStripMenuItem;
         internal System.Windows.Forms.ToolStripSeparator ToolStripMenuItem6;
         private System.Windows.Forms.Panel MenuStripPanel;
+        private System.Windows.Forms.OpenFileDialog OpenFFDialog;
+        private System.Windows.Forms.SaveFileDialog ExtractDialog;
+        private System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog;
     }
 }
 
