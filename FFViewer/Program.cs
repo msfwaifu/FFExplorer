@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-//TODO: remove try-catch blocks inside form. Whole app now catches any exception thworn.
-//TODO: logger with its own dialog to show.
+//TODO: remove try-catch blocks inside form. Whole app now catches any exception thrown.
 //TODO: localized assets find
 //TODO: localized assets prefix table
 //TODO: sound seek and extract
