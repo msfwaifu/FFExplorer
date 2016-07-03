@@ -70,8 +70,8 @@
             this.TabPage1 = new System.Windows.Forms.TabPage();
             this.TabPage3 = new System.Windows.Forms.TabPage();
             this.StatusStripLine = new System.Windows.Forms.StatusStrip();
-            this.StatusLogLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.StatusLogValue = new System.Windows.Forms.ToolStripStatusLabel();
+            this.StatusBarLogLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.StatusBarLogValue = new System.Windows.Forms.ToolStripStatusLabel();
             this.ToolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.Wait = new System.Windows.Forms.ToolStripProgressBar();
             this.MenuStripLine = new System.Windows.Forms.MenuStrip();
@@ -393,23 +393,23 @@
             // StatusStripLine
             // 
             this.StatusStripLine.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.StatusLogLabel,
-            this.StatusLogValue,
+            this.StatusBarLogLabel,
+            this.StatusBarLogValue,
             this.ToolStripStatusLabel5,
             this.Wait});
             resources.ApplyResources(this.StatusStripLine, "StatusStripLine");
             this.StatusStripLine.Name = "StatusStripLine";
             // 
-            // StatusLogLabel
+            // StatusBarLogLabel
             // 
-            this.StatusLogLabel.Name = "StatusLogLabel";
-            resources.ApplyResources(this.StatusLogLabel, "StatusLogLabel");
-            this.StatusLogLabel.Click += new System.EventHandler(this.StatusLogLabel_Click);
+            this.StatusBarLogLabel.Name = "StatusBarLogLabel";
+            resources.ApplyResources(this.StatusBarLogLabel, "StatusBarLogLabel");
+            this.StatusBarLogLabel.Click += new System.EventHandler(this.StatusLogLabel_Click);
             // 
-            // StatusLogValue
+            // StatusBarLogValue
             // 
-            this.StatusLogValue.Name = "StatusLogValue";
-            resources.ApplyResources(this.StatusLogValue, "StatusLogValue");
+            this.StatusBarLogValue.Name = "StatusBarLogValue";
+            resources.ApplyResources(this.StatusBarLogValue, "StatusBarLogValue");
             // 
             // ToolStripStatusLabel5
             // 
@@ -709,8 +709,8 @@
         private System.Windows.Forms.OpenFileDialog OpenFFDialog;
         private System.Windows.Forms.SaveFileDialog ExtractDialog;
         private System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog;
-        private System.Windows.Forms.ToolStripStatusLabel StatusLogLabel;
-        private System.Windows.Forms.ToolStripStatusLabel StatusLogValue;
+        private System.Windows.Forms.ToolStripStatusLabel StatusBarLogLabel;
+        private System.Windows.Forms.ToolStripStatusLabel StatusBarLogValue;
         private System.Windows.Forms.MenuStrip MenuStripLine;
         private System.Windows.Forms.StatusStrip StatusStripLine;
         private System.Windows.Forms.GroupBox LogGroup;

@@ -1032,13 +1032,13 @@
   <metadata name="StatusStripLine.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 48</value>
   </metadata>
-  <data name="StatusLogLabel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="StatusBarLogLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>30, 17</value>
   </data>
-  <data name="StatusLogLabel.Text" xml:space="preserve">
+  <data name="StatusBarLogLabel.Text" xml:space="preserve">
     <value>Log:</value>
   </data>
-  <data name="StatusLogValue.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="StatusBarLogValue.Size" type="System.Drawing.Size, System.Drawing">
     <value>0, 17</value>
   </data>
   <data name="ToolStripStatusLabel5.Size" type="System.Drawing.Size, System.Drawing">
@@ -1189,19 +1189,19 @@
     <value>About</value>
   </data>
   <data name="InstructionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="InstructionsToolStripMenuItem.Text" xml:space="preserve">
     <value>Manual</value>
   </data>
   <data name="UpdateSnippetsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>130, 22</value>
   </data>
   <data name="UpdateSnippetsToolStripMenuItem.Text" xml:space="preserve">
     <value>Update list</value>
   </data>
   <data name="ToolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 6</value>
+    <value>127, 6</value>
   </data>
   <data name="Snippets.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 20</value>
@@ -3754,16 +3754,16 @@
   <data name="&gt;&gt;SelectAllToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;StatusLogLabel.Name" xml:space="preserve">
-    <value>StatusLogLabel</value>
+  <data name="&gt;&gt;StatusBarLogLabel.Name" xml:space="preserve">
+    <value>StatusBarLogLabel</value>
   </data>
-  <data name="&gt;&gt;StatusLogLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;StatusBarLogLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;StatusLogValue.Name" xml:space="preserve">
-    <value>StatusLogValue</value>
+  <data name="&gt;&gt;StatusBarLogValue.Name" xml:space="preserve">
+    <value>StatusBarLogValue</value>
   </data>
-  <data name="&gt;&gt;StatusLogValue.Type" xml:space="preserve">
+  <data name="&gt;&gt;StatusBarLogValue.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ToolStripStatusLabel5.Name" xml:space="preserve">

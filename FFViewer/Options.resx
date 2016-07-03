@@ -118,100 +118,145 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="GroupBox2.AutoSize" type="System.Boolean, mscorlib">
+  <data name="MainGroup.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="SaveTemp.AutoSize" type="System.Boolean, mscorlib">
+  <data name="MainShowLog.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SaveTemp.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="MainShowLog.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
+  </data>
+  <data name="MainShowLog.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="SaveTemp.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 33</value>
+  <data name="MainShowLog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 50</value>
   </data>
-  <data name="SaveTemp.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 17</value>
+  <data name="MainShowLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>386, 17</value>
   </data>
-  <data name="SaveTemp.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="MainShowLog.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
-  <data name="SaveTemp.Text" xml:space="preserve">
-    <value>Save temporary files on .FF opening</value>
+  <data name="MainShowLog.Text" xml:space="preserve">
+    <value>Show log panel.</value>
   </data>
-  <data name="&gt;&gt;SaveTemp.Name" xml:space="preserve">
-    <value>SaveTemp</value>
+  <data name="&gt;&gt;MainShowLog.Name" xml:space="preserve">
+    <value>MainShowLog</value>
   </data>
-  <data name="&gt;&gt;SaveTemp.Type" xml:space="preserve">
+  <data name="&gt;&gt;MainShowLog.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;SaveTemp.Parent" xml:space="preserve">
-    <value>GroupBox2</value>
+  <data name="&gt;&gt;MainShowLog.Parent" xml:space="preserve">
+    <value>MainGroup</value>
   </data>
-  <data name="&gt;&gt;SaveTemp.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;MainShowLog.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="RLF.AutoSize" type="System.Boolean, mscorlib">
+  <data name="MainSaveTemporary.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="RLF.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="MainSaveTemporary.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
-  <data name="RLF.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 16</value>
+  <data name="MainSaveTemporary.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 33</value>
   </data>
-  <data name="RLF.Size" type="System.Drawing.Size, System.Drawing">
-    <value>247, 17</value>
+  <data name="MainSaveTemporary.Size" type="System.Drawing.Size, System.Drawing">
+    <value>386, 17</value>
   </data>
-  <data name="RLF.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="MainSaveTemporary.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
-  <data name="RLF.Text" xml:space="preserve">
-    <value>Remember last directory</value>
+  <data name="MainSaveTemporary.Text" xml:space="preserve">
+    <value>Save temporary files on .FF opening.</value>
   </data>
-  <data name="&gt;&gt;RLF.Name" xml:space="preserve">
-    <value>RLF</value>
+  <data name="&gt;&gt;MainSaveTemporary.Name" xml:space="preserve">
+    <value>MainSaveTemporary</value>
   </data>
-  <data name="&gt;&gt;RLF.Type" xml:space="preserve">
+  <data name="&gt;&gt;MainSaveTemporary.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;RLF.Parent" xml:space="preserve">
-    <value>GroupBox2</value>
+  <data name="&gt;&gt;MainSaveTemporary.Parent" xml:space="preserve">
+    <value>MainGroup</value>
   </data>
-  <data name="&gt;&gt;RLF.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;MainSaveTemporary.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="GroupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 10</value>
+  <data name="MainRememberLastFolder.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="GroupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 53</value>
+  <data name="MainRememberLastFolder.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
   </data>
-  <data name="GroupBox2.TabIndex" type="System.Int32, mscorlib">
+  <data name="MainRememberLastFolder.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="MainRememberLastFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>386, 17</value>
+  </data>
+  <data name="MainRememberLastFolder.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="MainRememberLastFolder.Text" xml:space="preserve">
+    <value>Remember last directory.</value>
+  </data>
+  <data name="&gt;&gt;MainRememberLastFolder.Name" xml:space="preserve">
+    <value>MainRememberLastFolder</value>
+  </data>
+  <data name="&gt;&gt;MainRememberLastFolder.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MainRememberLastFolder.Parent" xml:space="preserve">
+    <value>MainGroup</value>
+  </data>
+  <data name="&gt;&gt;MainRememberLastFolder.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="MainGroup.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="MainGroup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="MainGroup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>392, 70</value>
+  </data>
+  <data name="MainGroup.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="GroupBox2.Text" xml:space="preserve">
+  <data name="MainGroup.Text" xml:space="preserve">
     <value>Main</value>
   </data>
-  <data name="&gt;&gt;GroupBox2.Name" xml:space="preserve">
-    <value>GroupBox2</value>
+  <data name="&gt;&gt;MainGroup.Name" xml:space="preserve">
+    <value>MainGroup</value>
   </data>
-  <data name="&gt;&gt;GroupBox2.Type" xml:space="preserve">
+  <data name="&gt;&gt;MainGroup.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;GroupBox2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;MainGroup.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;GroupBox2.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;MainGroup.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="SaveButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="SaveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>101, 66</value>
+    <value>232, 109</value>
+  </data>
+  <data name="SaveButton.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>80, 0</value>
+  </data>
+  <data name="SaveButton.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>80, 0</value>
   </data>
   <data name="SaveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 23</value>
+    <value>80, 37</value>
   </data>
   <data name="SaveButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -229,30 +274,243 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;SaveButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
-  <data name="CnclButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>186, 66</value>
+  <data name="CancelButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="CnclButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 23</value>
+  <data name="CancelButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>312, 109</value>
   </data>
-  <data name="CnclButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="CancelButton.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>80, 0</value>
+  </data>
+  <data name="CancelButton.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>80, 0</value>
+  </data>
+  <data name="CancelButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 37</value>
+  </data>
+  <data name="CancelButton.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="CnclButton.Text" xml:space="preserve">
+  <data name="CancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="&gt;&gt;CnclButton.Name" xml:space="preserve">
-    <value>CnclButton</value>
+  <data name="&gt;&gt;CancelButton.Name" xml:space="preserve">
+    <value>CancelButton</value>
   </data>
-  <data name="&gt;&gt;CnclButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;CancelButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CnclButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;CancelButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;CnclButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;CancelButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="LoggerGroup.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LoggerLogDaysLimitPanel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LoggerLogDaysLimitFooter.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LoggerLogDaysLimitFooter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="LoggerLogDaysLimitFooter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LoggerLogDaysLimitFooter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 0</value>
+  </data>
+  <data name="LoggerLogDaysLimitFooter.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
+  <data name="LoggerLogDaysLimitFooter.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
+  <data name="LoggerLogDaysLimitFooter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 17</value>
+  </data>
+  <data name="LoggerLogDaysLimitFooter.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="LoggerLogDaysLimitFooter.Text" xml:space="preserve">
+    <value>days.</value>
+  </data>
+  <data name="LoggerLogDaysLimitFooter.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitFooter.Name" xml:space="preserve">
+    <value>LoggerLogDaysLimitFooter</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitFooter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitFooter.Parent" xml:space="preserve">
+    <value>LoggerLogDaysLimitPanel</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitFooter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LoggerLogDaysLimitValue.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LoggerLogDaysLimitValue.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="LoggerLogDaysLimitValue.Location" type="System.Drawing.Point, System.Drawing">
+    <value>111, 0</value>
+  </data>
+  <data name="LoggerLogDaysLimitValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 20</value>
+  </data>
+  <data name="LoggerLogDaysLimitValue.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitValue.Name" xml:space="preserve">
+    <value>LoggerLogDaysLimitValue</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitValue.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitValue.Parent" xml:space="preserve">
+    <value>LoggerLogDaysLimitPanel</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitValue.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="LoggerLogDaysLimitLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LoggerLogDaysLimitLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="LoggerLogDaysLimitLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="LoggerLogDaysLimitLabel.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
+  <data name="LoggerLogDaysLimitLabel.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
+  <data name="LoggerLogDaysLimitLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 17</value>
+  </data>
+  <data name="LoggerLogDaysLimitLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="LoggerLogDaysLimitLabel.Text" xml:space="preserve">
+    <value>Cleanup log files after </value>
+  </data>
+  <data name="LoggerLogDaysLimitLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitLabel.Name" xml:space="preserve">
+    <value>LoggerLogDaysLimitLabel</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitLabel.Parent" xml:space="preserve">
+    <value>LoggerLogDaysLimitPanel</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="LoggerLogDaysLimitPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="LoggerLogDaysLimitPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="LoggerLogDaysLimitPanel.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 20</value>
+  </data>
+  <data name="LoggerLogDaysLimitPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>386, 20</value>
+  </data>
+  <data name="LoggerLogDaysLimitPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitPanel.Name" xml:space="preserve">
+    <value>LoggerLogDaysLimitPanel</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitPanel.Parent" xml:space="preserve">
+    <value>LoggerGroup</value>
+  </data>
+  <data name="&gt;&gt;LoggerLogDaysLimitPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LoggerGroup.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="LoggerGroup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 70</value>
+  </data>
+  <data name="LoggerGroup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>392, 39</value>
+  </data>
+  <data name="LoggerGroup.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="LoggerGroup.Text" xml:space="preserve">
+    <value>Logger</value>
+  </data>
+  <data name="&gt;&gt;LoggerGroup.Name" xml:space="preserve">
+    <value>LoggerGroup</value>
+  </data>
+  <data name="&gt;&gt;LoggerGroup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LoggerGroup.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LoggerGroup.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ResetButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="ResetButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ResetButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 109</value>
+  </data>
+  <data name="ResetButton.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>80, 0</value>
+  </data>
+  <data name="ResetButton.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>80, 0</value>
+  </data>
+  <data name="ResetButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 37</value>
+  </data>
+  <data name="ResetButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="ResetButton.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="&gt;&gt;ResetButton.Name" xml:space="preserve">
+    <value>ResetButton</value>
+  </data>
+  <data name="&gt;&gt;ResetButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ResetButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ResetButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -265,7 +523,10 @@
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>272, 96</value>
+    <value>392, 146</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Options</value>

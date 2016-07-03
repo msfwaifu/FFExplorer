@@ -1,8 +1,5 @@
 ﻿namespace FFViewer_cs
 {
-    /// <summary>
-    /// NI
-    /// </summary>
     partial class Options
     {
         /// <summary>
@@ -32,33 +29,50 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Options));
-            this.GroupBox2 = new System.Windows.Forms.GroupBox();
-            this.SaveTemp = new System.Windows.Forms.CheckBox();
-            this.RLF = new System.Windows.Forms.CheckBox();
+            this.MainGroup = new System.Windows.Forms.GroupBox();
+            this.MainShowLog = new System.Windows.Forms.CheckBox();
+            this.MainSaveTemporary = new System.Windows.Forms.CheckBox();
+            this.MainRememberLastFolder = new System.Windows.Forms.CheckBox();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.CnclButton = new System.Windows.Forms.Button();
-            this.GroupBox2.SuspendLayout();
+            this.CancelButton = new System.Windows.Forms.Button();
+            this.LoggerGroup = new System.Windows.Forms.GroupBox();
+            this.LoggerLogDaysLimitPanel = new System.Windows.Forms.Panel();
+            this.LoggerLogDaysLimitFooter = new System.Windows.Forms.Label();
+            this.LoggerLogDaysLimitValue = new System.Windows.Forms.NumericUpDown();
+            this.LoggerLogDaysLimitLabel = new System.Windows.Forms.Label();
+            this.ResetButton = new System.Windows.Forms.Button();
+            this.MainGroup.SuspendLayout();
+            this.LoggerGroup.SuspendLayout();
+            this.LoggerLogDaysLimitPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LoggerLogDaysLimitValue)).BeginInit();
             this.SuspendLayout();
             // 
-            // GroupBox2
+            // MainGroup
             // 
-            resources.ApplyResources(this.GroupBox2, "GroupBox2");
-            this.GroupBox2.Controls.Add(this.SaveTemp);
-            this.GroupBox2.Controls.Add(this.RLF);
-            this.GroupBox2.Name = "GroupBox2";
-            this.GroupBox2.TabStop = false;
+            resources.ApplyResources(this.MainGroup, "MainGroup");
+            this.MainGroup.Controls.Add(this.MainShowLog);
+            this.MainGroup.Controls.Add(this.MainSaveTemporary);
+            this.MainGroup.Controls.Add(this.MainRememberLastFolder);
+            this.MainGroup.Name = "MainGroup";
+            this.MainGroup.TabStop = false;
             // 
-            // SaveTemp
+            // MainShowLog
             // 
-            resources.ApplyResources(this.SaveTemp, "SaveTemp");
-            this.SaveTemp.Name = "SaveTemp";
-            this.SaveTemp.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.MainShowLog, "MainShowLog");
+            this.MainShowLog.Name = "MainShowLog";
+            this.MainShowLog.UseVisualStyleBackColor = true;
             // 
-            // RLF
+            // MainSaveTemporary
             // 
-            resources.ApplyResources(this.RLF, "RLF");
-            this.RLF.Name = "RLF";
-            this.RLF.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.MainSaveTemporary, "MainSaveTemporary");
+            this.MainSaveTemporary.Name = "MainSaveTemporary";
+            this.MainSaveTemporary.UseVisualStyleBackColor = true;
+            // 
+            // MainRememberLastFolder
+            // 
+            resources.ApplyResources(this.MainRememberLastFolder, "MainRememberLastFolder");
+            this.MainRememberLastFolder.Name = "MainRememberLastFolder";
+            this.MainRememberLastFolder.UseVisualStyleBackColor = true;
             // 
             // SaveButton
             // 
@@ -67,21 +81,75 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // CnclButton
+            // CancelButton
             // 
-            resources.ApplyResources(this.CnclButton, "CnclButton");
-            this.CnclButton.Name = "CnclButton";
-            this.CnclButton.UseVisualStyleBackColor = true;
-            this.CnclButton.Click += new System.EventHandler(this.CancelButton_Click);
+            resources.ApplyResources(this.CancelButton, "CancelButton");
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
+            // LoggerGroup
+            // 
+            resources.ApplyResources(this.LoggerGroup, "LoggerGroup");
+            this.LoggerGroup.Controls.Add(this.LoggerLogDaysLimitPanel);
+            this.LoggerGroup.Name = "LoggerGroup";
+            this.LoggerGroup.TabStop = false;
+            // 
+            // LoggerLogDaysLimitPanel
+            // 
+            resources.ApplyResources(this.LoggerLogDaysLimitPanel, "LoggerLogDaysLimitPanel");
+            this.LoggerLogDaysLimitPanel.Controls.Add(this.LoggerLogDaysLimitFooter);
+            this.LoggerLogDaysLimitPanel.Controls.Add(this.LoggerLogDaysLimitValue);
+            this.LoggerLogDaysLimitPanel.Controls.Add(this.LoggerLogDaysLimitLabel);
+            this.LoggerLogDaysLimitPanel.Name = "LoggerLogDaysLimitPanel";
+            // 
+            // LoggerLogDaysLimitFooter
+            // 
+            resources.ApplyResources(this.LoggerLogDaysLimitFooter, "LoggerLogDaysLimitFooter");
+            this.LoggerLogDaysLimitFooter.Name = "LoggerLogDaysLimitFooter";
+            // 
+            // LoggerLogDaysLimitValue
+            // 
+            resources.ApplyResources(this.LoggerLogDaysLimitValue, "LoggerLogDaysLimitValue");
+            this.LoggerLogDaysLimitValue.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.LoggerLogDaysLimitValue.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.LoggerLogDaysLimitValue.Name = "LoggerLogDaysLimitValue";
+            this.LoggerLogDaysLimitValue.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // LoggerLogDaysLimitLabel
+            // 
+            resources.ApplyResources(this.LoggerLogDaysLimitLabel, "LoggerLogDaysLimitLabel");
+            this.LoggerLogDaysLimitLabel.Name = "LoggerLogDaysLimitLabel";
+            // 
+            // ResetButton
+            // 
+            resources.ApplyResources(this.ResetButton, "ResetButton");
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlBox = false;
-            this.Controls.Add(this.CnclButton);
-            this.Controls.Add(this.GroupBox2);
+            this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.LoggerGroup);
+            this.Controls.Add(this.MainGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -90,8 +158,13 @@
             this.ShowInTaskbar = false;
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Options_Load);
-            this.GroupBox2.ResumeLayout(false);
-            this.GroupBox2.PerformLayout();
+            this.MainGroup.ResumeLayout(false);
+            this.MainGroup.PerformLayout();
+            this.LoggerGroup.ResumeLayout(false);
+            this.LoggerGroup.PerformLayout();
+            this.LoggerLogDaysLimitPanel.ResumeLayout(false);
+            this.LoggerLogDaysLimitPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LoggerLogDaysLimitValue)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -99,10 +172,17 @@
 
         #endregion
 
-        internal System.Windows.Forms.GroupBox GroupBox2;
-        internal System.Windows.Forms.CheckBox SaveTemp;
-        internal System.Windows.Forms.CheckBox RLF;
-        internal System.Windows.Forms.Button SaveButton;
-        internal System.Windows.Forms.Button CnclButton;
+        private System.Windows.Forms.GroupBox MainGroup;
+        private System.Windows.Forms.CheckBox MainSaveTemporary;
+        private System.Windows.Forms.CheckBox MainRememberLastFolder;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.GroupBox LoggerGroup;
+        private System.Windows.Forms.Label LoggerLogDaysLimitLabel;
+        private System.Windows.Forms.Panel LoggerLogDaysLimitPanel;
+        private System.Windows.Forms.Label LoggerLogDaysLimitFooter;
+        private System.Windows.Forms.NumericUpDown LoggerLogDaysLimitValue;
+        private System.Windows.Forms.CheckBox MainShowLog;
+        private System.Windows.Forms.Button ResetButton;
     }
 }

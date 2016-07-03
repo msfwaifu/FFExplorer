@@ -9,17 +9,35 @@ namespace FFViewer_cs
     class AppOptions
     {
         [DataMember]
-        public int width = 1000;
+        public int width;
         [DataMember]
-        public int height = 600;
+        public int height;
         [DataMember]
-        public string lastFolder = "";
+        public string lastFolder;
         [DataMember]
-        public bool rememberLastFolder = true;
+        public bool rememberLastFolder;
         [DataMember]
-        public bool saveTemporary = false;
+        public bool saveTemporary;
         [DataMember]
-        public bool showLog = true;
+        public bool showLog;
+        [DataMember]
+        public int logFilesDaysLimit;
+
+        public AppOptions()
+        {
+            Reset();
+        }
+
+        public void Reset()
+        {
+            width = 1000;
+            height = 600;
+            lastFolder = "";
+            rememberLastFolder = true;
+            saveTemporary = false;
+            showLog = true;
+            logFilesDaysLimit = 7;
+        }
     }
 
     /// <summary>
@@ -49,6 +67,14 @@ namespace FFViewer_cs
         ~OptionsHandler()
         {
             SaveOptions();
+        }
+
+        /// <summary>
+        /// Resets all preferences to its default states.
+        /// </summary>
+        public void Reset()
+        {
+            opt.Reset();
         }
 
         /// <summary>
@@ -138,6 +164,21 @@ namespace FFViewer_cs
             set
             {
                 opt.showLog = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets how long keep logfiles.
+        /// </summary>
+        public int LogFilesDaysLimit
+        {
+            get
+            {
+                return opt.logFilesDaysLimit;
+            }
+            set
+            {
+                opt.logFilesDaysLimit = value;
             }
         }
 

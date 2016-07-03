@@ -4,57 +4,63 @@ using System.Windows.Forms;
 namespace FFViewer_cs
 {
     /// <summary>
-    /// NI
+    /// A delegate used to apply some logic after changing options through dialog.
     /// </summary>
-    public partial class Options : Form
-    {
-        private Form1 owner;
+    public delegate void OnOptionsSaved_d();
 
+    /// <summary>
+    /// This dialog contains controls for changing various options.
+    /// </summary>
+    partial class Options : Form
+    {
+        Form1 owner;
+        public event OnOptionsSaved_d OnOptionsSaved;
         /// <summary>
-        /// NI
+        /// Default constructor.
         /// </summary>
         public Options()
         {
             InitializeComponent();
-            owner = null;
         }
 
         private void Options_Load(object sender, EventArgs e)
         {
-            if (owner == null)
-                owner = this.Owner as Form1;
-
-            try
-            {
-                RLF.Checked = owner.Options.RememberLastFolder;
-                SaveTemp.Checked = owner.Options.SaveTemporaryFiles;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при загрузке файла настроек:\n"+ex.Message);
-            }
+            owner = this.Owner as Form1;
+            UpdateFields();            
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            Close();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                owner.Options.RememberLastFolder = RLF.Checked;
-                owner.Options.SaveTemporaryFiles = SaveTemp.Checked;
-                MessageBox.Show("Настройки успешно сохранены", "Сохранено", MessageBoxButtons.OK);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка при сохранении настроек:\n" + ex.Message, "Ошибка", MessageBoxButtons.OK);
-            }
+            owner.Options.RememberLastFolder = MainRememberLastFolder.Checked;
+            owner.Options.SaveTemporaryFiles = MainSaveTemporary.Checked;
+            owner.Options.ShowLog = MainShowLog.Checked;
+            owner.Options.LogFilesDaysLimit = (int)LoggerLogDaysLimitValue.Value;
 
-            this.Hide();
-            owner.Focus();
+            OnOptionsSaved?.Invoke();
+
+            Close();
+        }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            owner.Options.Reset();
+            UpdateFields();
+        }
+
+        private void UpdateFields()
+        {
+            MainRememberLastFolder.Checked = owner.Options.RememberLastFolder;
+            MainSaveTemporary.Checked = owner.Options.SaveTemporaryFiles;
+            MainShowLog.Checked = owner.Options.ShowLog;
+            LoggerLogDaysLimitValue.Value =
+                owner.Options.LogFilesDaysLimit < LoggerLogDaysLimitValue.Minimum? LoggerLogDaysLimitValue.Minimum :
+                owner.Options.LogFilesDaysLimit > LoggerLogDaysLimitValue.Maximum? LoggerLogDaysLimitValue.Maximum :
+                owner.Options.LogFilesDaysLimit;
         }
     }
 }

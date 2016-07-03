@@ -42,7 +42,7 @@ namespace FFViewer_cs
         Logger logger;
  
         About dlgAbout;
-        Options dlgOptions;
+        //Options dlgOptions;
 
         RawFileData currentRawFile;
 
@@ -65,10 +65,10 @@ namespace FFViewer_cs
             ffBackend = new FFBackend();
 
             dlgAbout = new About();
-            dlgOptions = new Options();
+            //dlgOptions = new Options();
 
             dlgAbout.Owner = this;
-            dlgOptions.Owner = this;
+            //dlgOptions.Owner = this;
 
             StatusLine_Clear();
             SaveFFToolStripMenuItem.Enabled = false;
@@ -81,11 +81,27 @@ namespace FFViewer_cs
             updater.OnUpdateDone += Updater_OnUpdateDone;
 
             logger = new Logger();
+            logger.OnWriteLine += Logger_OnWriteLine;
+            logger.OnWriteException += Logger_OnWriteException;
 
             currentRawFile = new RawFileData();
             ShowSearchPanel(SearchBoxShowMode.HIDE);
             SetWindowFileName("");
             LogGroup.Visible = options.ShowLog;
+        }
+
+        private void Logger_OnWriteException(string timestamp, Exception ex)
+        {
+            StatusBarLogValue.Text = ex.Message;
+            LogTextBox.Text += timestamp + ex.Message + "\r\n" + ex.StackTrace + "\r\n";
+            LogTextBox.ScrollToCaret();
+        }
+
+        private void Logger_OnWriteLine(string timestamp, string line)
+        {
+            StatusBarLogValue.Text = line;
+            LogTextBox.Text += timestamp + line + "\r\n";
+            LogTextBox.ScrollToCaret();
         }
 
         private void Updater_OnUpdateDone()
@@ -648,7 +664,9 @@ namespace FFViewer_cs
             {
                 DirectoryInfo allFiles = new DirectoryInfo(currentAppDirectory + "\\snippets");
                 foreach (FileInfo gsc in allFiles.GetFiles("*.gsc"))
+                {
                     Snippets.DropDownItems.Add(gsc.Name, null, new EventHandler(onClickCustomSnippets));
+                }
             }
             catch (Exception ex)
             {
@@ -1039,8 +1057,10 @@ namespace FFViewer_cs
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            logger.PrintLine("FFViewer started!");
             try
             {
+                logger.PrintLine("Getting update information.");
                 updater.GetUpdateInfo();
             }
             catch(Exception ex)
@@ -1051,7 +1071,18 @@ namespace FFViewer_cs
 
         private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dlgOptions.ShowDialog();
+            Options dlg = new Options();
+            dlg.Owner = this;
+            dlg.OnOptionsSaved += Dlg_OnOptionsSaved;
+            dlg.ShowDialog();
+        }
+
+        private void Dlg_OnOptionsSaved()
+        {
+            if (options.ShowLog)
+                LogGroup.Visible = true;
+            else
+                LogGroup.Visible = false;
         }
 
         private void StatusLogLabel_Click(object sender, EventArgs e)
