@@ -39,6 +39,7 @@ namespace FFViewer_cs
         AssetData assetInfo;
         OptionsHandler options;
         Updater updater;
+        Logger logger;
  
         About dlgAbout;
         Options dlgOptions;
@@ -79,9 +80,12 @@ namespace FFViewer_cs
             updater.OnFileDownloaded += Updater_OnFileDownloaded;
             updater.OnUpdateDone += Updater_OnUpdateDone;
 
+            logger = new Logger();
+
             currentRawFile = new RawFileData();
             ShowSearchPanel(SearchBoxShowMode.HIDE);
             SetWindowFileName("");
+            LogGroup.Visible = options.ShowLog;
         }
 
         private void Updater_OnUpdateDone()
@@ -630,7 +634,7 @@ namespace FFViewer_cs
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dlgAbout.Show();
+            dlgAbout.ShowDialog();
         }
 
         private void InstructionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1016,7 +1020,7 @@ namespace FFViewer_cs
         /// <param name="state">True for lock, false for unlock.</param>
         protected void LockInterface(bool state)
         {
-            MenuStrip.Enabled = !state;
+            MenuStripLine.Enabled = !state;
             Tabs.Enabled = !state;
             Wait.Visible = state;
         }
@@ -1047,7 +1051,12 @@ namespace FFViewer_cs
 
         private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dlgOptions.Show();
+            dlgOptions.ShowDialog();
+        }
+
+        private void StatusLogLabel_Click(object sender, EventArgs e)
+        {
+            LogGroup.Visible = !LogGroup.Visible;
         }
     }
 }

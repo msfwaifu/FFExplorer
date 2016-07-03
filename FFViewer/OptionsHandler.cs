@@ -18,6 +18,8 @@ namespace FFViewer_cs
         public bool rememberLastFolder = true;
         [DataMember]
         public bool saveTemporary = false;
+        [DataMember]
+        public bool showLog = true;
     }
 
     /// <summary>
@@ -25,6 +27,12 @@ namespace FFViewer_cs
     /// </summary>
     public class OptionsHandler
     {
+
+        static string PreferencesDirName = "prefs";
+        static string PreferencesDir = Application.StartupPath + "\\" + PreferencesDirName;
+        static string ConfigFileName = "config.json";
+        static string ConfigFilePath = PreferencesDir + "\\" + ConfigFileName;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -118,6 +126,21 @@ namespace FFViewer_cs
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether to show log panel.
+        /// </summary>
+        public bool ShowLog
+        {
+            get
+            {
+                return opt.showLog;
+            }
+            set
+            {
+                opt.showLog = value;
+            }
+        }
+
         private void LoadOptions()
         {
             if (!Directory.Exists(PreferencesDir))
@@ -141,10 +164,5 @@ namespace FFViewer_cs
 
         AppOptions opt;
         DataContractJsonSerializer json;
-
-        static string PreferencesDirName = "prefs";
-        static string PreferencesDir = Application.StartupPath + "\\" + PreferencesDirName;
-        static string ConfigFileName = "config.json";
-        static string ConfigFilePath = PreferencesDir + "\\" + ConfigFileName;
     }
 }
