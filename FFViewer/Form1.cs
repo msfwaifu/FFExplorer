@@ -7,39 +7,41 @@ using System.Threading.Tasks;
 namespace FFViewer_cs
 {
     /// <summary>
-    /// NI
+    /// Delegate used to handle all thrown exception.
     /// </summary>
     /// <param name="ex"></param>
     public delegate void HandleException_d(Exception ex);
 
     /// <summary>
-    /// NI
+    /// Delegate used to change application's progress bar value.
     /// </summary>
     /// <param name="val"></param>
     public delegate void SetProgressBarPercentage_d(int val);
 
+    enum SearchBoxShowMode
+    {
+        SHOW = 0,
+        HIDE = 1,
+        INVERT = 2
+    };
+
     public partial class Form1 : Form
     {
         static string currentAppDirectory = Application.StartupPath;
+        static string applicationWindowName = Application.ProductName;
 
         bool isFastFileOpened;
         string currentFFName;
-        int codeBoxLine;
 
         FFBackend ffBackend;
         FFData ffInfo;
         ZoneData zoneInfo;
         AssetData assetInfo;
-        TreeNode[] rawFileNodes;
         OptionsHandler options;
         Updater updater;
+        Logger logger;
  
-        OpenFileDialog openDialog;
-        SaveFileDialog saveDialog;
-        FolderBrowserDialog directoryDialog;
-
         About dlgAbout;
-        GotoLine dlgGoto;
         Options dlgOptions;
 
         RawFileData currentRawFile;
@@ -57,24 +59,15 @@ namespace FFViewer_cs
             InitializeComponent();
             options = new OptionsHandler();
 
-            //
             isFastFileOpened = false;
             currentFFName = "";
-            //
-            //FFViewerVersion = "1.0";
 
             ffBackend = new FFBackend();
 
-            openDialog = new OpenFileDialog();
-            saveDialog = new SaveFileDialog();
-            directoryDialog = new FolderBrowserDialog();
-
             dlgAbout = new About();
-            dlgGoto = new GotoLine();
             dlgOptions = new Options();
 
             dlgAbout.Owner = this;
-            dlgGoto.Owner = this;
             dlgOptions.Owner = this;
 
             StatusLine_Clear();
@@ -87,7 +80,12 @@ namespace FFViewer_cs
             updater.OnFileDownloaded += Updater_OnFileDownloaded;
             updater.OnUpdateDone += Updater_OnUpdateDone;
 
+            logger = new Logger();
+
             currentRawFile = new RawFileData();
+            ShowSearchPanel(SearchBoxShowMode.HIDE);
+            SetWindowFileName("");
+            LogGroup.Visible = options.ShowLog;
         }
 
         private void Updater_OnUpdateDone()
@@ -105,9 +103,14 @@ namespace FFViewer_cs
             throw new NotImplementedException();
         }
 
-        private void SetWindowName(string name)
+        private void SetWindowFileName(string filePath)
         {
-            Text = name;
+            if(filePath == "")
+                Text = applicationWindowName;
+            else
+            {
+                Text = String.Format("{0} - [ {1} ]", applicationWindowName, filePath);
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -117,9 +120,15 @@ namespace FFViewer_cs
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            bool handled = false;
-            if (CodeBox.Focused)
+            try
             {
+                bool handled = false;
+
+                if (e.KeyCode == Keys.Escape)
+                {
+                    ShowSearchPanel(SearchBoxShowMode.HIDE);
+                    handled = true;
+                }
                 if (e.Control)
                 {
                     if (e.KeyCode == Keys.F)
@@ -127,107 +136,135 @@ namespace FFViewer_cs
                         FindToolStripMenuItem.PerformClick();
                         handled = true;
                     }
-                    if (e.KeyCode == Keys.G)
+                    else if (e.KeyCode == Keys.G)
                     {
-                        dlgGoto.Show();
+                        GotoToolStripMenuItem.PerformClick();
                         handled = true;
                     }
-                    if (e.KeyCode == Keys.A)
-                    {
-                        CodeBox.SelectAll();
-                        handled = true;
-                    }
-                    if (e.KeyCode == Keys.C)
-                    { 
-                        if (CodeBox.SelectedText.Length > 0)
-                            Clipboard.SetText(CodeBox.SelectedText);
-                        handled = true;
-                    }
+                }
 
-                    if (e.KeyCode == Keys.X)
+                if (CodeBox.Focused)
+                {
+                    if (e.Control)
+                    {                        
+                        if (e.KeyCode == Keys.A)
+                        {
+                            CodeBox.SelectAll();
+                            handled = true;
+                        }
+                        if (e.KeyCode == Keys.C)
+                        {
+                            if (CodeBox.SelectedText.Length > 0)
+                                Clipboard.SetText(CodeBox.SelectedText);
+                            handled = true;
+                        }
+
+                        if (e.KeyCode == Keys.X)
+                        {
+                            CodeBox.Cut();
+                            handled = true;
+                        }
+                    }
+                    if (e.KeyCode == Keys.F3)
                     {
-                        CodeBox.Cut();
+                        FindNextToolStripMenuItem.PerformClick();
                         handled = true;
                     }
-                    /*if (e.KeyCode == Keys.V)
-                        CodeBox.Paste();*/
-                    //TODO:
-                    if (e.KeyCode == Keys.Z)
-                        handled = true;
-                    if (e.KeyCode == Keys.Y)
-                        handled = true;
                 }
-                if (e.KeyCode == Keys.F3)
+                else if (FindTextBox.Focused)
                 {
-                    FindNextToolStripMenuItem.PerformClick();
-                    handled = true;
-                }
-            }
-            else if (FindTextPanel.Focused)
-            {
-                if(e.KeyCode == Keys.Enter)
-                {
-                    FindNextOccurence();
-                    handled = true;
-                }
-            }
-            if (e.Control)
-            {
-                if (e.KeyCode == Keys.O)
-                {
-                    if (OpenFFToolStripMenuItem.Enabled)
-                        OpenFFToolStripMenuItem.PerformClick();
-                    handled = true;
-                }
-                if (e.KeyCode == Keys.S)
-                {
-                    if (SaveFFToolStripMenuItem.Enabled)
-                        SaveFFToolStripMenuItem.PerformClick();
-                    handled = true;
-                }
-                if (e.KeyCode == Keys.Q)
-                {
-                    if (CloseFFToolStripMenuItem.Enabled)
-                        CloseFFToolStripMenuItem.PerformClick();
-                    handled = true;
-                }
-            }
-            if (e.KeyCode == Keys.Escape)
-            {
-                HideTextSearchBox();
-                handled = true;
-            }
-            e.Handled = handled;
-            e.SuppressKeyPress = handled;
-        }
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        int selectionStart = CodeBox.Text.IndexOf(FindTextBox.Text);
+                        if (selectionStart >= 0)
+                        {
+                            CodeBox.Select(selectionStart, FindTextBox.TextLength);
+                            CodeBox.ScrollToCaret();
+                            ShowSearchPanel(SearchBoxShowMode.HIDE);
+                        }
 
-        private void FindNextOccurence()
-        {
-            int selectionStart = CodeBox.Text.IndexOf(FindTextPanel.Text, CodeBox.SelectionStart + CodeBox.SelectionLength);
-            if (selectionStart > 0)
+                        handled = true;
+                    }
+                }
+                else if (GoToLineBox.Focused)
+                {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        GoToLine();
+                        ShowSearchPanel(SearchBoxShowMode.HIDE);
+                        handled = true;
+                    }
+                }
+                if (e.Control)
+                {
+                    if (e.KeyCode == Keys.O)
+                    {
+                        if (OpenFFToolStripMenuItem.Enabled)
+                            OpenFFToolStripMenuItem.PerformClick();
+                        handled = true;
+                    }
+                    if (e.KeyCode == Keys.S)
+                    {
+                        if (SaveFFToolStripMenuItem.Enabled)
+                            SaveFFToolStripMenuItem.PerformClick();
+                        handled = true;
+                    }
+                    if (e.KeyCode == Keys.Q)
+                    {
+                        if (CloseFFToolStripMenuItem.Enabled)
+                            CloseFFToolStripMenuItem.PerformClick();
+                        handled = true;
+                    }
+                }
+                e.Handled = handled;
+                e.SuppressKeyPress = handled;
+            }
+            catch(Exception ex)
             {
-                CodeBox.Select(selectionStart, FindTextPanel.TextLength);
-                CodeBox.ScrollToCaret();
-                CodeBox.Focus();
-                HideTextSearchBox();
+                HandleException(ex);
             }
         }
 
         private void OpenFFToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AnalyzeFastfile();
+            try
+            {
+                AnalyzeFastfile();
+            }
+            catch(Exception ex)
+            {
+                HandleException(ex);
+            }
         }
 
-        private void ShowTextSearchBox()
+        /// <returns>
+        /// <para><see cref="SearchBoxShowMode.HIDE"/> when hidden.</para>
+        /// <para><see cref="SearchBoxShowMode.SHOW"/> when shown.</para>
+        /// </returns>
+        private SearchBoxShowMode ShowSearchPanel(SearchBoxShowMode mode)
         {
-            if(!FindTextPanel.Visible)
-                FindTextPanel.Show();
-        }
-
-        private void HideTextSearchBox()
-        {
-            if(FindTextPanel.Visible)
-                FindTextPanel.Hide();
+            if (mode == SearchBoxShowMode.SHOW)
+                SearchBoxAndGoToPanel.Show();
+            else if (mode == SearchBoxShowMode.HIDE)
+            {
+                SearchBoxAndGoToPanel.Hide();
+                CodeBox.Focus();
+            }
+            else if (mode == SearchBoxShowMode.INVERT)
+            {
+                if (SearchBoxAndGoToPanel.Visible)
+                {
+                    SearchBoxAndGoToPanel.Hide();
+                    CodeBox.Focus();
+                    return SearchBoxShowMode.HIDE;
+                }
+                else
+                {
+                    SearchBoxAndGoToPanel.Show();
+                    return SearchBoxShowMode.SHOW;
+                }
+            }
+            return mode;
         }
 
         private async void AnalyzeFastfile()
@@ -235,88 +272,71 @@ namespace FFViewer_cs
             if (isFastFileOpened)
                 CloseFFToolStripMenuItem.PerformClick();
 
-            try
+            if (currentFFName == "")
             {
-                if (currentFFName == "")
-                {
-                    openDialog.Title = "Открыть .FF";
-                    openDialog.Filter = ".FF файлы(*.ff)|*.ff";
-                    openDialog.FileName = "";
-                    openDialog.FilterIndex = 1;
+                if (options.RememberLastFolder)
+                    OpenFFDialog.InitialDirectory = options.LastFolder;
+                else
+                    OpenFFDialog.InitialDirectory = Directory.GetCurrentDirectory();
 
-                    if (options.RememberLastFolder)
-                        openDialog.InitialDirectory = options.LastFolder;
-                    else
-                        openDialog.InitialDirectory = Directory.GetCurrentDirectory();
-
-                    openDialog.RestoreDirectory = true;
-                    if (openDialog.ShowDialog() == DialogResult.OK && openDialog.CheckFileExists)
-                        currentFFName = openDialog.FileName;
-                    else
-                        return;
-                }
-
-                if (File.GetAttributes(currentFFName) == FileAttributes.ReadOnly)
-                {
-                    MessageBox.Show("Файл не может быть открыт из-за флага \"Только чтение\"", "Ошибка при открытии файла", MessageBoxButtons.OK);
-                    currentFFName = "";
+                if (OpenFFDialog.ShowDialog() == DialogResult.OK && OpenFFDialog.CheckFileExists)
+                    currentFFName = OpenFFDialog.FileName;
+                else
                     return;
-                }
-
-                if (File.GetAttributes(currentFFName) == FileAttributes.Directory)
-                {
-                    MessageBox.Show("Файл не может быть открыт потому, что является директорией", "Ошибка при открытии файла", MessageBoxButtons.OK);
-                    currentFFName = "";
-                    return;
-                }
-
-                if (currentFFName.Substring(currentFFName.LastIndexOf("."), 3).ToLower() != ".ff")
-                {
-                    MessageBox.Show("Неверное расширение файла: " + currentFFName.Substring(currentFFName.LastIndexOf(".") + 1, 2), "Ошибка при открытии файла", MessageBoxButtons.OK);
-                    currentFFName = "";
-                    return;
-                }
-
-                LockInterface(true);
-                SetProgressBarPercentage(0);
-                
-                ffInfo = await Task<FFData>.Run(() => { return ffBackend.GetFFData(currentFFName); });
-                SetProgressBarPercentage(33);
-
-                zoneInfo = await Task<ZoneData>.Run(() => { return ffBackend.GetZoneData(ffInfo); });
-                SetProgressBarPercentage(66);
-
-                assetInfo = await Task<AssetData>.Run(() => { return ffBackend.GetAssetData(zoneInfo); });
-                SetProgressBarPercentage(100);
-
-                options.LastFolder = ffInfo.Name.Substring(0, ffInfo.Name.LastIndexOf("\\"));
-                SetWindowName("FF Viewer - [" + ffInfo.Name + "]");
-
-                rawFileNodes = new TreeNode[assetInfo.RawFiles.Count];
-                for (int i = 0; i < assetInfo.RawFiles.Count; ++i)
-                {
-                    rawFileNodes[i] = new TreeNode();
-                    rawFileNodes[i].Text = assetInfo.RawFiles[i].OriginalName;
-                    rawFileNodes[i].Nodes.Add("Оригинальное название: " + assetInfo.RawFiles[i].OriginalName);
-                    rawFileNodes[i].Nodes.Add("Новое название: " + assetInfo.RawFiles[i].NewName);
-                    rawFileNodes[i].Nodes.Add("Оригинальный размер: " + assetInfo.RawFiles[i].OriginalSize);
-
-                    RawFiles.Nodes.Add(rawFileNodes[i]);
-                    //Application.DoEvents();
-                }
-
-                RawFiles.Sort();
-                isFastFileOpened = true;
-                OpenFFToolStripMenuItem.Enabled = false;
-                SaveFFToolStripMenuItem.Enabled = true;
-                CloseFFToolStripMenuItem.Enabled = true;
-                LockInterface(false);
             }
-            catch (Exception ex)
+
+            if (File.GetAttributes(currentFFName) == FileAttributes.ReadOnly)
             {
-                MessageBox.Show("При загрузке Fastfile'a произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                MessageBox.Show("Файл не может быть открыт из-за флага \"Только чтение\"", "Ошибка при открытии файла", MessageBoxButtons.OK);
+                currentFFName = "";
+                return;
             }
+
+            if (currentFFName.Substring(currentFFName.LastIndexOf("."), 3).ToLower() != ".ff")
+            {
+                MessageBox.Show("Неверное расширение файла: " + currentFFName.Substring(currentFFName.LastIndexOf(".") + 1, 2), "Ошибка при открытии файла", MessageBoxButtons.OK);
+                currentFFName = "";
+                return;
+            }
+
+            LockInterface(true);
+            SetProgressBarPercentage(0);
+            
+            ffInfo = await Task<FFData>.Run(() => { return ffBackend.GetFFData(currentFFName); });
+            SetProgressBarPercentage(33);
+
+            zoneInfo = await Task<ZoneData>.Run(() => { return ffBackend.GetZoneData(ffInfo); });
+            SetProgressBarPercentage(66);
+
+            if (Options.SaveTemporaryFiles)
+            {
+                await Task.Run(() => { zoneInfo.WriteDecompressedZone(currentAppDirectory + "/decompressed-zone.dat"); });
+                SetProgressBarPercentage(90);
+            }
+
+            assetInfo = await Task<AssetData>.Run(() => { return ffBackend.GetAssetData(zoneInfo); });
+            SetProgressBarPercentage(100);
+
+            options.LastFolder = ffInfo.FilePath.Substring(0, ffInfo.FilePath.LastIndexOf("\\"));
+            SetWindowFileName(ffInfo.FilePath);
+
+            for (int i = 0; i < assetInfo.RawFiles.Count; ++i)
+            {
+                TreeNode rawFileNode = new TreeNode();
+                rawFileNode.Text = assetInfo.RawFiles[i].OriginalName;
+                rawFileNode.Nodes.Add("Оригинальное название: " + assetInfo.RawFiles[i].OriginalName);
+                rawFileNode.Nodes.Add("Новое название: " + assetInfo.RawFiles[i].Name);
+                rawFileNode.Nodes.Add("Оригинальный размер: " + assetInfo.RawFiles[i].OriginalSize);
+
+                RawFiles.Nodes.Add(rawFileNode);
+                Application.DoEvents();
+            }
+
+            isFastFileOpened = true;
+            OpenFFToolStripMenuItem.Enabled = false;
+            SaveFFToolStripMenuItem.Enabled = true;
+            CloseFFToolStripMenuItem.Enabled = true;
+            LockInterface(false);
         }
 
         private void SaveFFToolStripMenuItem_Click(object sender, EventArgs e)
@@ -339,37 +359,22 @@ namespace FFViewer_cs
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При сохранении Fastfile произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
+            }
+            finally
+            {
+                SetProgressBarPercentage(0);
+                LockInterface(false);
+                OpenFFToolStripMenuItem.PerformClick();
             }
         }
 
-        /// <summary>
-        /// NI
-        /// </summary>
-        /// <param name="str"></param>
-        /// <param name="substr"></param>
-        /// <returns></returns>
-        public int SubStrCount(string str, string substr)
+        int SubStrCount(string str, string substr)
         {
             if (str == "" || substr == "")
                 return 0;
 
-            try
-            {
-                if (str == "" || substr == "")
-                    return 0;
-
-                byte[] strBytes = ASCIIEncoding.ASCII.GetBytes(str.ToCharArray());
-                byte[] substrBytes = ASCIIEncoding.ASCII.GetBytes(substr.ToCharArray());
-                return ByteHandling.CountBytes(strBytes, substrBytes);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Ошибка подсчёте количество подстрок в строке:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
-            }
-            return 0;
+            return ByteHandling.CountBytes(Encoding.ASCII.GetBytes(str.ToCharArray()), Encoding.ASCII.GetBytes(substr.ToCharArray()));
         }
 
         private void CloseFFToolStripMenuItem_Click(object sender, EventArgs e)
@@ -386,9 +391,12 @@ namespace FFViewer_cs
                     currentFFName = "";
                     StatusLine_Clear();                    
                     RawFiles.Nodes.Clear();
+                    ffInfo.Clear();
+                    zoneInfo.Clear();
+                    assetInfo.Clear();
 
                     CodeBox.Text = "";
-                    SetWindowName("FF Viewer");
+                    SetWindowFileName("");
                     
                     OpenFFToolStripMenuItem.Enabled = true;
                     SaveFFToolStripMenuItem.Enabled = false;
@@ -397,14 +405,20 @@ namespace FFViewer_cs
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При закрытии Fastfile произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            try
+            {
+                Close();
+            }
+            catch(Exception ex)
+            {
+                HandleException(ex);
+            }
         }
 
         private void SyntaxCheckerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -604,8 +618,7 @@ namespace FFViewer_cs
             }
             catch(Exception ex)
             {
-                MessageBox.Show("При удалении комментариев произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
@@ -621,7 +634,7 @@ namespace FFViewer_cs
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dlgAbout.Show();
+            dlgAbout.ShowDialog();
         }
 
         private void InstructionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -639,8 +652,7 @@ namespace FFViewer_cs
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При обновлении списка произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
@@ -662,35 +674,47 @@ namespace FFViewer_cs
 
         private void FindToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ShowTextSearchBox();
-            FindTextPanel.Focus();
+            if (ShowSearchPanel(SearchBoxShowMode.INVERT) == SearchBoxShowMode.HIDE)
+                return;
+            
+            FindTextBox.Focus();
             if (CodeBox.SelectionLength > 0)
             {
-                FindTextPanel.Text = CodeBox.SelectedText;
-                FindTextPanel.SelectionStart = CodeBox.SelectionLength;
+                FindTextBox.Text = CodeBox.SelectedText;
+                FindTextBox.SelectionStart = 0;
+                FindTextBox.SelectionLength = CodeBox.SelectionLength;
             }
         }
 
         private void FindNextToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                int selectionStart = CodeBox.Text.IndexOf(CodeBox.SelectedText, CodeBox.SelectionStart + CodeBox.SelectionLength);
-                if (selectionStart == -1)
-                    selectionStart = CodeBox.Text.IndexOf(CodeBox.SelectedText, 0);
-                CodeBox.SelectionStart = selectionStart;
-                CodeBox.ScrollToCaret();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("При попытке найти следующий элемент произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
-            }
+            int selectionStart = CodeBox.Text.IndexOf(CodeBox.SelectedText, CodeBox.SelectionStart + CodeBox.SelectionLength);
+            if (selectionStart == -1)
+                selectionStart = CodeBox.Text.IndexOf(CodeBox.SelectedText, 0);
+            CodeBox.SelectionStart = selectionStart;
+            CodeBox.ScrollToCaret();
         }
 
         private void GotoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dlgGoto.Show();
+            if (ShowSearchPanel(SearchBoxShowMode.INVERT) == SearchBoxShowMode.HIDE)
+                return;
+
+            GoToLineBox.Focus();
+            GoToLineBox.Select(0, GoToLineBox.Value.ToString().Length);
+        }
+
+        private void GoToLine()
+        {
+            if (GoToLineBox.Value > 0)
+            {
+                CodeBox.SelectionStart = 0;
+                for (int i = 0; i < GoToLineBox.Value - 1; ++i)
+                    CodeBox.SelectionStart = CodeBox.Text.IndexOf("\r\n", CodeBox.SelectionStart) + 2;
+
+                CodeBox.ScrollToCaret();
+                CodeBox.Focus();
+            }
         }
 
         private void SelectAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -708,8 +732,7 @@ namespace FFViewer_cs
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При вставке отрывка произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
@@ -717,36 +740,31 @@ namespace FFViewer_cs
         {
             if (!isFastFileOpened)
                 return;
+
             try
             {
-                saveDialog.Title = "Экспортировать файл";
-                saveDialog.Filter = "Все файлы(*.*)|*.*";
-
-                if (assetInfo.RawFiles[RawFiles.SelectedNode.Index].NewName.Contains("/"))
-                    saveDialog.FileName = assetInfo.RawFiles[RawFiles.SelectedNode.Index].NewName.Substring(assetInfo.RawFiles[RawFiles.SelectedNode.Index].NewName.LastIndexOf("/") + 1);
+                if (assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name.Contains("/"))
+                    ExtractDialog.FileName = assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name.Substring(assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name.LastIndexOf("/") + 1);
                 else
-                    saveDialog.FileName = assetInfo.RawFiles[RawFiles.SelectedNode.Index].NewName;
+                    ExtractDialog.FileName = assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name;
 
-                saveDialog.FilterIndex = 1;
                 if (options.RememberLastFolder)
-                    saveDialog.InitialDirectory = options.LastFolder;
+                    ExtractDialog.InitialDirectory = options.LastFolder;
                 else
-                    saveDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                    ExtractDialog.InitialDirectory = Directory.GetCurrentDirectory();
 
-                saveDialog.RestoreDirectory = true;
-                if (saveDialog.ShowDialog() == DialogResult.OK)
+                if (ExtractDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (saveDialog.CheckFileExists)
-                        File.Delete(saveDialog.FileName);
+                    if (ExtractDialog.CheckFileExists)
+                        File.Delete(ExtractDialog.FileName);
 
                     RawFileData selectedRaw = assetInfo.RawFiles[RawFiles.SelectedNode.Index];
-                    File.WriteAllText(saveDialog.FileName, selectedRaw.Contents);
+                    File.WriteAllText(ExtractDialog.FileName, selectedRaw.Contents);
                 }
             }
             catch(Exception ex)
             {
-                MessageBox.Show("При экспорте файла произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
@@ -763,11 +781,10 @@ namespace FFViewer_cs
 
             try
             {
-                directoryDialog.Description = "Укажите директорию для сохранения файлов";
-                if (directoryDialog.ShowDialog() == DialogResult.OK)
+                if (FolderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (!Directory.Exists(directoryDialog.SelectedPath))
-                        Directory.CreateDirectory(directoryDialog.SelectedPath);
+                    if (!Directory.Exists(FolderBrowserDialog.SelectedPath))
+                        Directory.CreateDirectory(FolderBrowserDialog.SelectedPath);
 
                     LockInterface(true);
                     SetProgressBarPercentage_d SPBP_d = SetProgressBarPercentage;
@@ -775,7 +792,7 @@ namespace FFViewer_cs
                     {
                         for (int i = 0; i < assetInfo.RawFiles.Count; ++i)
                         {
-                            string filePath = directoryDialog.SelectedPath + "\\" + assetInfo.RawFiles[i].NewName.Replace('/', '\\');
+                            string filePath = FolderBrowserDialog.SelectedPath + "\\" + assetInfo.RawFiles[i].Name.Replace('/', '\\');
                             string fileDir = filePath.Substring(0, filePath.LastIndexOf('\\'));
 
                             if (!Directory.Exists(fileDir))
@@ -797,20 +814,21 @@ namespace FFViewer_cs
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При экспорте файлов произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
         private void CodeBox_TextChanged(object sender, EventArgs e)
         {
-            if (!isFastFileOpened)
-                return;
-
             try
             {
+                GoToLineBox.Maximum = SubStrCount(CodeBox.Text, "\r\n") + 1;
+
+                 if (!isFastFileOpened)
+                     return;
+            
                 currentRawFile.Contents = CodeBox.Text;
-                StatusLine_UpdateRawFileNewSize();
+                RawfileInfo_UpdateSize();
             }
             catch (Exception ex)
             {
@@ -822,13 +840,11 @@ namespace FFViewer_cs
         {
             try
             {
-                codeBoxLine = CodeBox.GetLineFromCharIndex(CodeBox.SelectionStart) + 1;
-                StatusLine_UpdateLine();
+                RawfileInfo_UpdateCurrentLine();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При обновлении произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
@@ -836,13 +852,11 @@ namespace FFViewer_cs
         {
             try
             {
-                codeBoxLine = CodeBox.GetLineFromCharIndex(CodeBox.SelectionStart) + 1;
-                StatusLine_UpdateLine();
+                RawfileInfo_UpdateCurrentLine();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При обновлении произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
@@ -864,8 +878,7 @@ namespace FFViewer_cs
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При переносе файла произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
@@ -876,67 +889,57 @@ namespace FFViewer_cs
                 if (!CodeBox.Focused)
                     return;
 
-                if (currentRawFile.ActualSize >= currentRawFile.OriginalSize)
-                {
-                    MessageBox.Show("Текущий размер файла больше или равен оригинальному.", "Ошибка", MessageBoxButtons.OK);
-                    return;
-                }
+                if (currentRawFile.Size >= currentRawFile.OriginalSize)
+                    throw new Exception("Rawfile size >= original size");
 
-                int required = currentRawFile.OriginalSize - currentRawFile.ActualSize;
-                int numLines = required / 1020 + 1;
-                int maxPortion = required % 1020 > 4 ? 1020 : 1010;
-                string text = CodeBox.Text;
-                for (int i = 0; i < numLines; ++i)
-                {
-                    int portion = required > maxPortion ? maxPortion : required;
-                    text += "//";
-                    for (int j = 0; j < portion - 4; ++j)
-                        text += "/";
-                    text += "\r\n";
-                    required -= portion;
-                }
+                int required = currentRawFile.OriginalSize - currentRawFile.Size;
+
+                if (required < 2)
+                    throw new Exception("Not enough space to place comment");
+
+                string text = CodeBox.Text + "//";
+                for (int i = 0; i < required - 2; ++i)
+                    text += "/";
                 CodeBox.Text = text;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При заполнении файла произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
-        private void StatusLine_UpdateRawFileOriginalSize()
+        private void RawfileInfo_UpdateOriginalSize()
         {
-            OldSizeLbl.Text = "Макс. размер: " + currentRawFile.OriginalSize.ToString();
+            RawfileInfoSizeOriginal.Text = currentRawFile.OriginalSize.ToString();
         }
 
-        private void StatusLine_UpdateRawFileNewSize()
+        private void RawfileInfo_UpdateSize()
         {
-            NewSizeLbl.Text = "Нов. размер: " + currentRawFile.ActualSize.ToString();
+            RawfileInfoSize.Text = currentRawFile.Size.ToString();
         }
 
-        private void StatusLine_UpdateRawFileName()
+        private void RawfileInfo_UpdateFileName()
         {
-            OpenRawFile.Text = "Файл: " + currentRawFile.NewName;
+            RawfileInfoFileName.Text = currentRawFile.Name;
         }
 
-        private void StatusLine_UpdateLine()
+        private void RawfileInfo_UpdateCurrentLine()
         {
-            LnLbl.Text = "Строка: " + codeBoxLine.ToString();
+            GoToLineBox.Text = (CodeBox.GetLineFromCharIndex(CodeBox.SelectionStart) + 1).ToString();
         }
 
-        private void StatusLine_Update()
+        private void RawfileInfo_Update()
         {
-            StatusLine_UpdateLine();
-            StatusLine_UpdateRawFileName();
-            StatusLine_UpdateRawFileNewSize();
-            StatusLine_UpdateRawFileOriginalSize();
+            RawfileInfo_UpdateCurrentLine();
+            RawfileInfo_UpdateFileName();
+            RawfileInfo_UpdateSize();
+            RawfileInfo_UpdateOriginalSize();
         }
 
         private void StatusLine_Clear()
         {
-            codeBoxLine = 1;
             currentRawFile = new RawFileData();
-            StatusLine_Update();
+            RawfileInfo_Update();
         }
 
         private void RawFiles_AfterSelect(object sender, TreeViewEventArgs e)
@@ -946,13 +949,11 @@ namespace FFViewer_cs
                 int rawIndex = RawFiles.SelectedNode.Nodes.Count == 0 ? RawFiles.SelectedNode.Parent.Index : RawFiles.SelectedNode.Index;
                 currentRawFile = assetInfo.RawFiles[rawIndex];
                 CodeBox.Text = currentRawFile.Contents;
-                codeBoxLine = 1;
-                StatusLine_Update();
+                RawfileInfo_Update();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("При открытии файла произошла ошибка:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
@@ -964,7 +965,7 @@ namespace FFViewer_cs
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            SetWindowName("FF Viewer");
+            SetWindowFileName("");
             this.Width = options.Width;
             this.Height = options.Height;
 
@@ -992,8 +993,7 @@ namespace FFViewer_cs
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка при загрузке программы:\n" + ex.Message + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
-                Application.Exit();
+                HandleException(ex);
             }
         }
 
@@ -1003,10 +1003,15 @@ namespace FFViewer_cs
             options.Height = this.Size.Height;
         }
 
-        private void HandleException(Exception ex)
+        /// <summary>
+        /// Default exception handler for application.
+        /// </summary>
+        /// <param name="ex">An exception class used to get information about exception.</param>
+        static public void HandleException(Exception ex)
         {
-            MessageBox.Show(ex.Message + "\n" + ex.StackTrace, "Ошибка", MessageBoxButtons.OK);
+            MessageBox.Show(ex.ToString(), "Exception caught", MessageBoxButtons.OK);
             Application.Exit();
+            //TODO: handle error and apply finally blocks to it instead of exiting.
         }
 
         /// <summary>
@@ -1015,13 +1020,13 @@ namespace FFViewer_cs
         /// <param name="state">True for lock, false for unlock.</param>
         protected void LockInterface(bool state)
         {
-            MenuStrip.Enabled = !state;
+            MenuStripLine.Enabled = !state;
             Tabs.Enabled = !state;
             Wait.Visible = state;
         }
 
         /// <summary>
-        /// NI
+        /// Used to change application's progress bar value.
         /// </summary>
         /// <param name="percent"></param>
         protected void SetProgressBarPercentage(int percent)
@@ -1042,6 +1047,16 @@ namespace FFViewer_cs
             {
                 HandleException(ex);
             }
+        }
+
+        private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dlgOptions.ShowDialog();
+        }
+
+        private void StatusLogLabel_Click(object sender, EventArgs e)
+        {
+            LogGroup.Visible = !LogGroup.Visible;
         }
     }
 }

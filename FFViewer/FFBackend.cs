@@ -13,7 +13,10 @@ namespace FFViewer_cs
 
         public ZoneData GetZoneData(FFData ffData)
         {
-            return new ZoneData(ffData.ZoneData);
+            ZoneData result = new ZoneData(ffData.CompressedZone);
+            result.DecompressZlib();
+            result.ParseFastfile();
+            return result;
         }
 
         public AssetData GetAssetData(ZoneData zoneData)
@@ -39,12 +42,12 @@ namespace FFViewer_cs
             {
                 if (!rawFile.Changed)
                     continue;
-    
-                if (rawFile.ActualSize <= rawFile.OriginalSize)
-                {
-                    zoneData.DecompressedData = ByteHandling.SetBytes(zoneData.DecompressedData, rawFile.ContentsOffset, rawFile.OriginalSize, 0x00);
-                    zoneData.DecompressedData = ByteHandling.ReplaceBytes(zoneData.DecompressedData, rawFile.ContentsOffset, ASCIIEncoding.ASCII.GetBytes(rawFile.Contents));
-                }
+
+                if (rawFile.Size > rawFile.OriginalSize)
+                    throw new InternalBufferOverflowException("Attempting to overrun rawfile data: " + rawFile.Name);
+
+                zoneData.DecompressedData = ByteHandling.SetBytes(zoneData.DecompressedData, rawFile.ContentsOffset, rawFile.OriginalSize, 0x00);
+                zoneData.DecompressedData = ByteHandling.ReplaceBytes(zoneData.DecompressedData, rawFile.ContentsOffset, ASCIIEncoding.ASCII.GetBytes(rawFile.Contents));
             }
 
             return zoneData;
@@ -52,20 +55,20 @@ namespace FFViewer_cs
 
         public FFData WriteZoneData(FFData ffData, ZoneData zoneData)
         {
-            ffData.ZoneData = CompressZone(zoneData.DecompressedData);
+            ffData.CompressedZone = CompressZone(zoneData.DecompressedData);
             return ffData;
         }
 
         public void WriteFastFile(FFData ffData)
         {
-            using (FileStream fs = new FileStream(ffData.Name, FileMode.Create))
+            using (FileStream fs = new FileStream(ffData.FilePath, FileMode.Create))
             {
 
                 fs.Write(ffData.Header, 0, ffData.Header.Length);
                 fs.Write(ffData.Version, 0, 4);
-                fs.Write(ffData.ZoneData, 0, ffData.ZoneData.Length);
+                fs.Write(ffData.CompressedZone, 0, ffData.CompressedZone.Length);
 
-                int nullsSize = ffData.Size - (ffData.ZoneData.Length + 12);
+                int nullsSize = ffData.OriginalSize - (ffData.CompressedZone.Length + 12);
                 nullsSize = nullsSize > 0 ? nullsSize : 1;
                 byte[] nulls = new byte[nullsSize];
 

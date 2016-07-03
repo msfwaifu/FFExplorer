@@ -17,7 +17,9 @@ namespace FFViewer_cs
         [DataMember]
         public bool rememberLastFolder = true;
         [DataMember]
-        public bool deleteTemporary = false;
+        public bool saveTemporary = false;
+        [DataMember]
+        public bool showLog = true;
     }
 
     /// <summary>
@@ -25,6 +27,12 @@ namespace FFViewer_cs
     /// </summary>
     public class OptionsHandler
     {
+
+        static string PreferencesDirName = "prefs";
+        static string PreferencesDir = Application.StartupPath + "\\" + PreferencesDirName;
+        static string ConfigFileName = "config.json";
+        static string ConfigFilePath = PreferencesDir + "\\" + ConfigFileName;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -106,15 +114,30 @@ namespace FFViewer_cs
         /// <summary>
         /// Gets or sets whether to delete temporary files such as decompressed zone.
         /// </summary>
-        public bool DeleteTemporaryFiles
+        public bool SaveTemporaryFiles
         {
             get
             {
-                return opt.deleteTemporary;
+                return opt.saveTemporary;
             }
             set
             {
-                opt.deleteTemporary = value;
+                opt.saveTemporary = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to show log panel.
+        /// </summary>
+        public bool ShowLog
+        {
+            get
+            {
+                return opt.showLog;
+            }
+            set
+            {
+                opt.showLog = value;
             }
         }
 
@@ -130,23 +153,16 @@ namespace FFViewer_cs
                 return;
 
             using (FileStream config = new FileStream(ConfigFilePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.None))
-                opt = json.ReadObject(config) as AppOptions;
-            
+                opt = json.ReadObject(config) as AppOptions;            
         }
 
         private void SaveOptions()
         {
             using (FileStream config = new FileStream(ConfigFilePath, FileMode.Create, FileAccess.Write, FileShare.None))
                 json.WriteObject(config, opt);
-
         }
 
         AppOptions opt;
         DataContractJsonSerializer json;
-
-        static string PreferencesDirName = "prefs";
-        static string PreferencesDir = Application.StartupPath + "\\" + PreferencesDirName;
-        static string ConfigFileName = "config.json";
-        static string ConfigFilePath = PreferencesDir + "\\" + ConfigFileName;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace FFViewer_cs
 {
@@ -8,19 +9,26 @@ namespace FFViewer_cs
         {
             using (FileStream fs = new FileStream(filePath, FileMode.Open))
             {
-                size = (int)fs.Length;
-                header = new byte[8];
-                version = new byte[4];
-                zoneData = new byte[size - 12];
+                originalSize = (int)fs.Length;
+                compressedZone = new byte[originalSize - 12];
                 name = filePath;
 
                 fs.Read(header, 0, 8);
                 fs.Read(version, 0, 4);
-                fs.Read(zoneData, 0, size - 12);
+                fs.Read(compressedZone, 0, originalSize - 12);
             }
         }
+
+        public void Clear()
+        {
+            name = "";
+            originalSize = 0;
+            Array.Clear(header, 0, header.Length);
+            Array.Clear(version, 0, version.Length);
+            Array.Clear(compressedZone, 0, compressedZone.Length);
+        }
         
-        public string Name
+        public string FilePath
         {
             get
             {
@@ -44,31 +52,31 @@ namespace FFViewer_cs
                 return version;
             }
         }
-        
-        public int Size
+             
+        public byte[] CompressedZone
         {
             get
             {
-                return size;
-            }
-        }
-        
-        public byte[] ZoneData
-        {
-            get
-            {
-                return zoneData;
+                return compressedZone;
             }
             set
             {
-                zoneData = value;
+                compressedZone = value;
+            }
+        }
+
+        public int OriginalSize
+        {
+            get
+            {
+                return originalSize;
             }
         }
 
         string name;
-        byte[] header;
-        byte[] version;
-        int size;
-        byte[] zoneData;
+        byte[] header = new byte[8];
+        byte[] version = new byte[4];
+        byte[] compressedZone;
+        int originalSize;
     }
 }

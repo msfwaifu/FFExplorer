@@ -27,7 +27,7 @@ namespace FFViewer_cs
             try
             {
                 RLF.Checked = owner.Options.RememberLastFolder;
-                DeleteTemp.Checked = owner.Options.DeleteTemporaryFiles;
+                SaveTemp.Checked = owner.Options.SaveTemporaryFiles;
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@ namespace FFViewer_cs
             try
             {
                 owner.Options.RememberLastFolder = RLF.Checked;
-                owner.Options.DeleteTemporaryFiles = DeleteTemp.Checked;
+                owner.Options.SaveTemporaryFiles = SaveTemp.Checked;
                 MessageBox.Show("Настройки успешно сохранены", "Сохранено", MessageBoxButtons.OK);
             }
             catch (Exception ex)

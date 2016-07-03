@@ -1,6 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 
+//TODO: remove try-catch blocks inside form. Whole app now catches any exception thworn.
+//TODO: logger with its own dialog to show.
+//TODO: localized assets find
+//TODO: localized assets prefix table
+//TODO: sound seek and extract
+
 namespace FFViewer_cs
 {
     static class Program
@@ -11,18 +17,25 @@ namespace FFViewer_cs
         [STAThread]
         static void Main()
         {
-            string[] args = Environment.GetCommandLineArgs();
-            foreach (string arg in args)
+            try
             {
-                if (arg == "-u" || arg == "--update")
+                string[] args = Environment.GetCommandLineArgs();
+                foreach (string arg in args)
                 {
-                    Updater.ApplyUpdate(args);
-                    return;
+                    if (arg == "-u" || arg == "--update")
+                    {
+                        Updater.ApplyUpdate(args);
+                        return;
+                    }
                 }
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Form1());
             }
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            catch(Exception ex)
+            {
+                Form1.HandleException(ex);
+            }
         }
     }
 }

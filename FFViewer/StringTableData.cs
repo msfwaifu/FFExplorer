@@ -1,17 +1,10 @@
 ﻿namespace FFViewer_cs
 {
     /// <summary>
-    /// NI
+    /// Currently not implemented because stringtables are different in original and custom fastfiles.
     /// </summary>
-    public class StringTableData
+    class StringTableData
     {
-        /// <summary>
-        /// NI
-        /// </summary>
-        /// <param name="tName"></param>
-        /// <param name="tColumns"></param>
-        /// <param name="tRows"></param>
-        /// <param name="tOffset"></param>
         public StringTableData(string tName, int tColumns, int tRows, int tOffset)
         {
             filename = tName;
@@ -20,9 +13,6 @@
             offset = tOffset;
         }
 
-        /// <summary>
-        /// NI
-        /// </summary>
         public string Filename
         {
             get
@@ -31,9 +21,6 @@
             }
         }
 
-        /// <summary>
-        /// NI
-        /// </summary>
         public int Offset
         {
             get
@@ -42,9 +29,6 @@
             }
         }
 
-        /// <summary>
-        /// NI
-        /// </summary>
         public int Columns
         {
             get
@@ -53,9 +37,6 @@
             }
         }
 
-        /// <summary>
-        /// NI
-        /// </summary>
         public int Rows
         {
             get
