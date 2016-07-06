@@ -34,9 +34,6 @@ namespace FFViewer_cs
         string currentFFName;
 
         FFBackend ffBackend;
-        FFData ffInfo;
-        ZoneData zoneInfo;
-        AssetData assetInfo;
         OptionsHandler options;
         Updater updater;
         Logger logger;
@@ -62,6 +59,8 @@ namespace FFViewer_cs
             currentFFName = "";
 
             ffBackend = new FFBackend();
+            ffBackend.OnProgressChanged += SetProgressBarPercentage;
+            ffBackend.OnRawfileDiscovered += FFBackend_OnRawfileDiscovered;
 
             dlgAbout = new About();
             //dlgOptions = new Options();
@@ -88,6 +87,27 @@ namespace FFViewer_cs
             ShowSearchPanel(SearchBoxShowMode.HIDE);
             SetWindowFileName("");
             LogGroup.Visible = options.ShowLog;
+        }
+
+        private void FFBackend_OnRawfileDiscovered(int index, string name, string originalName, int originalSize)
+        {
+            if (InvokeRequired)
+            {
+                RawFileDiscovered_d d = FFBackend_OnRawfileDiscovered;
+                BeginInvoke(d, index, name, originalName, originalSize);
+                return;
+            }
+
+            TreeNode rawFileNode = new TreeNode();
+         
+            rawFileNode.Text = name;
+            rawFileNode.Nodes.Add("Index: " + index);
+            rawFileNode.Nodes.Add("Name: " + name);
+            rawFileNode.Nodes.Add("Original name: " + originalName);
+            rawFileNode.Nodes.Add("Original size: " + originalSize.ToString());
+            rawFileNode.Tag = index;
+
+            RawFiles.Nodes.Add(rawFileNode);
         }
 
         private void Logger_OnWriteException(string timestamp, Exception ex)
@@ -316,38 +336,15 @@ namespace FFViewer_cs
             }
 
             LockInterface(true);
-            SetProgressBarPercentage(0);
-            
-            ffInfo = await Task<FFData>.Run(() => { return ffBackend.GetFFData(currentFFName); });
-            SetProgressBarPercentage(33);
+            await Task.Run(() => { ffBackend.OpenFastfile(currentFFName); });
 
-            zoneInfo = await Task<ZoneData>.Run(() => { return ffBackend.GetZoneData(ffInfo); });
-            SetProgressBarPercentage(66);
+            if (options.SaveTemporaryFiles)
+                await Task.Run(() => { ffBackend.ExportZone(currentAppDirectory + "/decompressed-zone.dat"); });
 
-            if (Options.SaveTemporaryFiles)
-            {
-                await Task.Run(() => { zoneInfo.WriteDecompressedZone(currentAppDirectory + "/decompressed-zone.dat"); });
-                SetProgressBarPercentage(90);
-            }
+            options.LastFolder = ffBackend.FFPath.Substring(0, ffBackend.FFPath.LastIndexOf("\\"));
+            SetWindowFileName(ffBackend.FFPath);
 
-            assetInfo = await Task<AssetData>.Run(() => { return ffBackend.GetAssetData(zoneInfo); });
-            SetProgressBarPercentage(100);
-
-            options.LastFolder = ffInfo.FilePath.Substring(0, ffInfo.FilePath.LastIndexOf("\\"));
-            SetWindowFileName(ffInfo.FilePath);
-
-            for (int i = 0; i < assetInfo.RawFiles.Count; ++i)
-            {
-                TreeNode rawFileNode = new TreeNode();
-                rawFileNode.Text = assetInfo.RawFiles[i].OriginalName;
-                rawFileNode.Nodes.Add("Оригинальное название: " + assetInfo.RawFiles[i].OriginalName);
-                rawFileNode.Nodes.Add("Новое название: " + assetInfo.RawFiles[i].Name);
-                rawFileNode.Nodes.Add("Оригинальный размер: " + assetInfo.RawFiles[i].OriginalSize);
-
-                RawFiles.Nodes.Add(rawFileNode);
-                Application.DoEvents();
-            }
-
+            RawFiles.Sort();
             isFastFileOpened = true;
             OpenFFToolStripMenuItem.Enabled = false;
             SaveFFToolStripMenuItem.Enabled = true;
@@ -356,34 +353,25 @@ namespace FFViewer_cs
             LockInterface(false);
         }
 
-        private void SaveFFToolStripMenuItem_Click(object sender, EventArgs e)
+        //TODO: move to backend
+        private async void SaveFFToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!isFastFileOpened)
                 return;
 
-            try
-            {
-                SetProgressBarPercentage(0);
-                LockInterface(true);
-                SetProgressBarPercentage(33);
-                zoneInfo = ffBackend.WriteAssetData(zoneInfo, assetInfo);
-                SetProgressBarPercentage(66);
-                ffInfo = ffBackend.WriteZoneData(ffInfo, zoneInfo);
-                SetProgressBarPercentage(100);
-                ffBackend.WriteFastFile(ffInfo);
-                StatusLine_Clear();
-                LockInterface(false);
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
+            SetProgressBarPercentage(0);
+            LockInterface(true);
+            await Task.Run(() => { ffBackend.SaveFastfile(); });
+            StatusLine_Clear();
+            LockInterface(false);
+
+            /*
             finally
             {
                 SetProgressBarPercentage(0);
                 LockInterface(false);
                 OpenFFToolStripMenuItem.PerformClick();
-            }
+            }*/
         }
 
         int SubStrCount(string str, string substr)
@@ -408,9 +396,7 @@ namespace FFViewer_cs
                     currentFFName = "";
                     StatusLine_Clear();                    
                     RawFiles.Nodes.Clear();
-                    ffInfo.Clear();
-                    zoneInfo.Clear();
-                    assetInfo.Clear();
+                    ffBackend.Cleanup();
 
                     CodeBox.Text = "";
                     SetWindowFileName("");
@@ -761,31 +747,19 @@ namespace FFViewer_cs
             if (!isFastFileOpened)
                 return;
 
-            try
-            {
-                if (assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name.Contains("/"))
-                    ExtractDialog.FileName = assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name.Substring(assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name.LastIndexOf("/") + 1);
-                else
-                    ExtractDialog.FileName = assetInfo.RawFiles[RawFiles.SelectedNode.Index].Name;
+            RawFileData r = ffBackend.RawfileAtIndex(RawFiles.SelectedNode.Index);
+            if (r.Name.Contains("/"))
+                ExtractDialog.FileName = r.Name.Substring(r.Name.LastIndexOf("/") + 1);
+            else
+                ExtractDialog.FileName = r.Name;
 
-                if (options.RememberLastFolder)
-                    ExtractDialog.InitialDirectory = options.LastFolder;
-                else
-                    ExtractDialog.InitialDirectory = Directory.GetCurrentDirectory();
+            if (options.RememberLastFolder)
+                ExtractDialog.InitialDirectory = options.LastFolder;
+            else
+                ExtractDialog.InitialDirectory = Directory.GetCurrentDirectory();
 
-                if (ExtractDialog.ShowDialog() == DialogResult.OK)
-                {
-                    if (ExtractDialog.CheckFileExists)
-                        File.Delete(ExtractDialog.FileName);
-
-                    RawFileData selectedRaw = assetInfo.RawFiles[RawFiles.SelectedNode.Index];
-                    File.WriteAllText(ExtractDialog.FileName, selectedRaw.Contents);
-                }
-            }
-            catch(Exception ex)
-            {
-                HandleException(ex);
-            }
+            if (ExtractDialog.ShowDialog() == DialogResult.OK)
+                ffBackend.ExtractRawFile(ExtractDialog.FileName, RawFiles.SelectedNode.Index);
         }
 
         private void EditSelectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -794,6 +768,7 @@ namespace FFViewer_cs
                 return;
         }
 
+        //TODO: move to ffbackend.ExtractRawfiles, progressbar?!
         private async void ExtractAllGSCsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!isFastFileOpened)
@@ -807,28 +782,7 @@ namespace FFViewer_cs
                         Directory.CreateDirectory(FolderBrowserDialog.SelectedPath);
 
                     LockInterface(true);
-                    SetProgressBarPercentage_d SPBP_d = SetProgressBarPercentage;
-                    await Task.Run(() =>
-                    {
-                        for (int i = 0; i < assetInfo.RawFiles.Count; ++i)
-                        {
-                            string filePath = FolderBrowserDialog.SelectedPath + "\\" + assetInfo.RawFiles[i].Name.Replace('/', '\\');
-                            string fileDir = filePath.Substring(0, filePath.LastIndexOf('\\'));
-
-                            if (!Directory.Exists(fileDir))
-                                Directory.CreateDirectory(fileDir);
-
-                            if (File.Exists(filePath))
-                                File.Delete(filePath);
-
-                            // A hack to make progress bar show up faster
-                            int progress = (i * 100) / assetInfo.RawFiles.Count;
-                            this.BeginInvoke(SPBP_d, progress+1);
-                            this.BeginInvoke(SPBP_d, progress);
-
-                            File.WriteAllText(filePath, assetInfo.RawFiles[i].Contents);
-                        }
-                    });
+                    await Task.Run(() => { ffBackend.ExtractAllRawfiles(FolderBrowserDialog.SelectedPath); });
                     LockInterface(false);
                 }
             }
@@ -966,8 +920,8 @@ namespace FFViewer_cs
         {
             try
             {
-                int rawIndex = RawFiles.SelectedNode.Nodes.Count == 0 ? RawFiles.SelectedNode.Parent.Index : RawFiles.SelectedNode.Index;
-                currentRawFile = assetInfo.RawFiles[rawIndex];
+                int rawIndex = (int)(RawFiles.SelectedNode.Nodes.Count == 0 ? RawFiles.SelectedNode.Parent.Tag : RawFiles.SelectedNode.Tag);
+                currentRawFile = ffBackend.RawfileAtIndex(rawIndex);
                 CodeBox.Text = currentRawFile.Contents;
                 RawfileInfo_Update();
             }
@@ -1049,8 +1003,15 @@ namespace FFViewer_cs
         /// Used to change application's progress bar value.
         /// </summary>
         /// <param name="percent"></param>
-        protected void SetProgressBarPercentage(int percent)
+        private void SetProgressBarPercentage(int percent)
         {
+            if (this.InvokeRequired)
+            {
+                SetProgressBarPercentage_d d = SetProgressBarPercentage;
+                this.BeginInvoke(d, percent);
+                return;
+            }
+
             percent = percent < 0 ? 0 : percent;
             percent = percent > 100 ? 100 : percent;
             Wait.Value = percent;
@@ -1112,19 +1073,7 @@ namespace FFViewer_cs
             //TODO
         }
 
-        private async void ZoneFileToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (ExportZoneDialog.ShowDialog() != DialogResult.OK)
-                return;
-
-            if (File.Exists(ExportZoneDialog.FileName))
-                File.Delete(ExportZoneDialog.FileName);
-
-            SetProgressBarPercentage(100);
-            await Task.Run(() => { File.WriteAllBytes(ExportZoneDialog.FileName, zoneInfo.DecompressedData); });
-            SetProgressBarPercentage(0);
-        }
-
+        //TODO: remake it inside backend
         private void SaveAsFastfileToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             if (OpenZoneDialog.ShowDialog() != DialogResult.OK)
@@ -1148,6 +1097,19 @@ namespace FFViewer_cs
             }
 
             logger.PrintLine("Fastfile saved");
+        }
+
+        private async void ExportZoneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(ExportZoneDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            if (File.Exists(ExportZoneDialog.FileName))
+                File.Delete(ExportZoneDialog.FileName);
+
+            SetProgressBarPercentage(100); //TODO: check if this progress works incorrect.
+            await Task.Run(() => { ffBackend.ExportZone(ExportZoneDialog.FileName); });
+            SetProgressBarPercentage(0);
         }
     }
 }

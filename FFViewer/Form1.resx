@@ -131,27 +131,6 @@
   <metadata name="FileListRightClick.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>283, 7</value>
   </metadata>
-  <data name="ExportFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
-  </data>
-  <data name="ExportFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Extract file</value>
-  </data>
-  <data name="EditSelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
-  </data>
-  <data name="EditSelectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Rename file</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 6</value>
-  </data>
-  <data name="ExtractAllGSCsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
-  </data>
-  <data name="ExtractAllGSCsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Extract all</value>
-  </data>
   <data name="FileListRightClick.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 76</value>
   </data>
@@ -204,6 +183,267 @@
   <metadata name="CodeBoxRightClick.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>138, 5</value>
   </metadata>
+  <data name="CodeBoxRightClick.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 164</value>
+  </data>
+  <data name="&gt;&gt;CodeBoxRightClick.Name" xml:space="preserve">
+    <value>CodeBoxRightClick</value>
+  </data>
+  <data name="&gt;&gt;CodeBoxRightClick.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="CodeBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="CodeBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Consolas, 9.75pt</value>
+  </data>
+  <data name="CodeBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 25</value>
+  </data>
+  <data name="CodeBox.MaxLength" type="System.Int32, mscorlib">
+    <value>2147483647</value>
+  </data>
+  <data name="CodeBox.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CodeBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Both</value>
+  </data>
+  <data name="CodeBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 109</value>
+  </data>
+  <data name="CodeBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="CodeBox.WordWrap" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;CodeBox.Name" xml:space="preserve">
+    <value>CodeBox</value>
+  </data>
+  <data name="&gt;&gt;CodeBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CodeBox.Parent" xml:space="preserve">
+    <value>SplitContainer1.Panel2</value>
+  </data>
+  <data name="&gt;&gt;CodeBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoFileName.Name" xml:space="preserve">
+    <value>RawfileInfoFileName</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoFileName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoFileName.Parent" xml:space="preserve">
+    <value>RawfileInfoPanel</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoFileName.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoFileLabel.Name" xml:space="preserve">
+    <value>RawfileInfoFileLabel</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoFileLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoFileLabel.Parent" xml:space="preserve">
+    <value>RawfileInfoPanel</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoFileLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSizeOriginal.Name" xml:space="preserve">
+    <value>RawfileInfoSizeOriginal</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSizeOriginal.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSizeOriginal.Parent" xml:space="preserve">
+    <value>RawfileInfoPanel</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSizeOriginal.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSizeSeparator.Name" xml:space="preserve">
+    <value>RawfileInfoSizeSeparator</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSizeSeparator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSizeSeparator.Parent" xml:space="preserve">
+    <value>RawfileInfoPanel</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSizeSeparator.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSize.Name" xml:space="preserve">
+    <value>RawfileInfoSize</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSize.Parent" xml:space="preserve">
+    <value>RawfileInfoPanel</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSize.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSizeLabel.Name" xml:space="preserve">
+    <value>RawfileInfoSizeLabel</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSizeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSizeLabel.Parent" xml:space="preserve">
+    <value>RawfileInfoPanel</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoSizeLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="RawfileInfoPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="RawfileInfoPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="RawfileInfoPanel.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 25</value>
+  </data>
+  <data name="RawfileInfoPanel.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 25</value>
+  </data>
+  <data name="RawfileInfoPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 25</value>
+  </data>
+  <data name="RawfileInfoPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoPanel.Name" xml:space="preserve">
+    <value>RawfileInfoPanel</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoPanel.Parent" xml:space="preserve">
+    <value>SplitContainer1.Panel2</value>
+  </data>
+  <data name="&gt;&gt;RawfileInfoPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;FindTextPanel.Name" xml:space="preserve">
+    <value>FindTextPanel</value>
+  </data>
+  <data name="&gt;&gt;FindTextPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FindTextPanel.Parent" xml:space="preserve">
+    <value>SearchBoxAndGoToPanel</value>
+  </data>
+  <data name="&gt;&gt;FindTextPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;GoToLinePanel.Name" xml:space="preserve">
+    <value>GoToLinePanel</value>
+  </data>
+  <data name="&gt;&gt;GoToLinePanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GoToLinePanel.Parent" xml:space="preserve">
+    <value>SearchBoxAndGoToPanel</value>
+  </data>
+  <data name="&gt;&gt;GoToLinePanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SearchBoxAndGoToPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="SearchBoxAndGoToPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 134</value>
+  </data>
+  <data name="SearchBoxAndGoToPanel.MaximumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 25</value>
+  </data>
+  <data name="SearchBoxAndGoToPanel.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 25</value>
+  </data>
+  <data name="SearchBoxAndGoToPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 25</value>
+  </data>
+  <data name="SearchBoxAndGoToPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;SearchBoxAndGoToPanel.Name" xml:space="preserve">
+    <value>SearchBoxAndGoToPanel</value>
+  </data>
+  <data name="&gt;&gt;SearchBoxAndGoToPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SearchBoxAndGoToPanel.Parent" xml:space="preserve">
+    <value>SplitContainer1.Panel2</value>
+  </data>
+  <data name="&gt;&gt;SearchBoxAndGoToPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;SplitContainer1.Panel2.Name" xml:space="preserve">
+    <value>SplitContainer1.Panel2</value>
+  </data>
+  <data name="&gt;&gt;SplitContainer1.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SplitContainer1.Panel2.Parent" xml:space="preserve">
+    <value>SplitContainer1</value>
+  </data>
+  <data name="&gt;&gt;SplitContainer1.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="SplitContainer1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>516, 159</value>
+  </data>
+  <data name="SplitContainer1.SplitterDistance" type="System.Int32, mscorlib">
+    <value>195</value>
+  </data>
+  <data name="SplitContainer1.SplitterWidth" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="SplitContainer1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;SplitContainer1.Name" xml:space="preserve">
+    <value>SplitContainer1</value>
+  </data>
+  <data name="&gt;&gt;SplitContainer1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SplitContainer1.Parent" xml:space="preserve">
+    <value>TabPage1</value>
+  </data>
+  <data name="&gt;&gt;SplitContainer1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ExportFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 22</value>
+  </data>
+  <data name="ExportFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Extract file</value>
+  </data>
+  <data name="EditSelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 22</value>
+  </data>
+  <data name="EditSelectionToolStripMenuItem.Text" xml:space="preserve">
+    <value>Rename file</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>133, 6</value>
+  </data>
+  <data name="ExtractAllGSCsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 22</value>
+  </data>
+  <data name="ExtractAllGSCsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Extract all</value>
+  </data>
   <data name="CutToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+X</value>
   </data>
@@ -269,54 +509,6 @@
   </data>
   <data name="SelectAllToolStripMenuItem.Text" xml:space="preserve">
     <value>Select all</value>
-  </data>
-  <data name="CodeBoxRightClick.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 164</value>
-  </data>
-  <data name="&gt;&gt;CodeBoxRightClick.Name" xml:space="preserve">
-    <value>CodeBoxRightClick</value>
-  </data>
-  <data name="&gt;&gt;CodeBoxRightClick.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="CodeBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="CodeBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Consolas, 9.75pt</value>
-  </data>
-  <data name="CodeBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 25</value>
-  </data>
-  <data name="CodeBox.MaxLength" type="System.Int32, mscorlib">
-    <value>2147483647</value>
-  </data>
-  <data name="CodeBox.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="CodeBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Both</value>
-  </data>
-  <data name="CodeBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 109</value>
-  </data>
-  <data name="CodeBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="CodeBox.WordWrap" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;CodeBox.Name" xml:space="preserve">
-    <value>CodeBox</value>
-  </data>
-  <data name="&gt;&gt;CodeBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;CodeBox.Parent" xml:space="preserve">
-    <value>SplitContainer1.Panel2</value>
-  </data>
-  <data name="&gt;&gt;CodeBox.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="RawfileInfoFileName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -567,35 +759,59 @@
   <data name="&gt;&gt;RawfileInfoSizeLabel.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="RawfileInfoPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
+  <data name="&gt;&gt;FindTextBox.Name" xml:space="preserve">
+    <value>FindTextBox</value>
   </data>
-  <data name="RawfileInfoPanel.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="&gt;&gt;FindTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FindTextBox.Parent" xml:space="preserve">
+    <value>FindTextPanel</value>
+  </data>
+  <data name="&gt;&gt;FindTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;FindTextLabel.Name" xml:space="preserve">
+    <value>FindTextLabel</value>
+  </data>
+  <data name="&gt;&gt;FindTextLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FindTextLabel.Parent" xml:space="preserve">
+    <value>FindTextPanel</value>
+  </data>
+  <data name="&gt;&gt;FindTextLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="FindTextPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="FindTextPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="RawfileInfoPanel.MaximumSize" type="System.Drawing.Size, System.Drawing">
+  <data name="FindTextPanel.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 25</value>
   </data>
-  <data name="RawfileInfoPanel.MinimumSize" type="System.Drawing.Size, System.Drawing">
+  <data name="FindTextPanel.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 25</value>
   </data>
-  <data name="RawfileInfoPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 25</value>
+  <data name="FindTextPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 25</value>
   </data>
-  <data name="RawfileInfoPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="FindTextPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
-  <data name="&gt;&gt;RawfileInfoPanel.Name" xml:space="preserve">
-    <value>RawfileInfoPanel</value>
+  <data name="&gt;&gt;FindTextPanel.Name" xml:space="preserve">
+    <value>FindTextPanel</value>
   </data>
-  <data name="&gt;&gt;RawfileInfoPanel.Type" xml:space="preserve">
+  <data name="&gt;&gt;FindTextPanel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;RawfileInfoPanel.Parent" xml:space="preserve">
-    <value>SplitContainer1.Panel2</value>
+  <data name="&gt;&gt;FindTextPanel.Parent" xml:space="preserve">
+    <value>SearchBoxAndGoToPanel</value>
   </data>
-  <data name="&gt;&gt;RawfileInfoPanel.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;FindTextPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="FindTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -666,38 +882,56 @@
   <data name="&gt;&gt;FindTextLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="FindTextPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="FindTextPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="FindTextPanel.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 25</value>
-  </data>
-  <data name="FindTextPanel.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 25</value>
-  </data>
-  <data name="FindTextPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 25</value>
-  </data>
-  <data name="FindTextPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;FindTextPanel.Name" xml:space="preserve">
-    <value>FindTextPanel</value>
-  </data>
-  <data name="&gt;&gt;FindTextPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;FindTextPanel.Parent" xml:space="preserve">
-    <value>SearchBoxAndGoToPanel</value>
-  </data>
-  <data name="&gt;&gt;FindTextPanel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="GoToLinePanel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="&gt;&gt;GoToLineLabel.Name" xml:space="preserve">
+    <value>GoToLineLabel</value>
+  </data>
+  <data name="&gt;&gt;GoToLineLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GoToLineLabel.Parent" xml:space="preserve">
+    <value>GoToLinePanel</value>
+  </data>
+  <data name="&gt;&gt;GoToLineLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;GoToLineBox.Name" xml:space="preserve">
+    <value>GoToLineBox</value>
+  </data>
+  <data name="&gt;&gt;GoToLineBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GoToLineBox.Parent" xml:space="preserve">
+    <value>GoToLinePanel</value>
+  </data>
+  <data name="&gt;&gt;GoToLineBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="GoToLinePanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="GoToLinePanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 0</value>
+  </data>
+  <data name="GoToLinePanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 25</value>
+  </data>
+  <data name="GoToLinePanel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;GoToLinePanel.Name" xml:space="preserve">
+    <value>GoToLinePanel</value>
+  </data>
+  <data name="&gt;&gt;GoToLinePanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GoToLinePanel.Parent" xml:space="preserve">
+    <value>SearchBoxAndGoToPanel</value>
+  </data>
+  <data name="&gt;&gt;GoToLinePanel.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="GoToLineLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -773,96 +1007,6 @@
   </data>
   <data name="&gt;&gt;GoToLineBox.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="GoToLinePanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="GoToLinePanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>215, 0</value>
-  </data>
-  <data name="GoToLinePanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 25</value>
-  </data>
-  <data name="GoToLinePanel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;GoToLinePanel.Name" xml:space="preserve">
-    <value>GoToLinePanel</value>
-  </data>
-  <data name="&gt;&gt;GoToLinePanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GoToLinePanel.Parent" xml:space="preserve">
-    <value>SearchBoxAndGoToPanel</value>
-  </data>
-  <data name="&gt;&gt;GoToLinePanel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="SearchBoxAndGoToPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Bottom</value>
-  </data>
-  <data name="SearchBoxAndGoToPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 134</value>
-  </data>
-  <data name="SearchBoxAndGoToPanel.MaximumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 25</value>
-  </data>
-  <data name="SearchBoxAndGoToPanel.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>0, 25</value>
-  </data>
-  <data name="SearchBoxAndGoToPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 25</value>
-  </data>
-  <data name="SearchBoxAndGoToPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;SearchBoxAndGoToPanel.Name" xml:space="preserve">
-    <value>SearchBoxAndGoToPanel</value>
-  </data>
-  <data name="&gt;&gt;SearchBoxAndGoToPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SearchBoxAndGoToPanel.Parent" xml:space="preserve">
-    <value>SplitContainer1.Panel2</value>
-  </data>
-  <data name="&gt;&gt;SearchBoxAndGoToPanel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer1.Panel2.Name" xml:space="preserve">
-    <value>SplitContainer1.Panel2</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer1.Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer1.Panel2.Parent" xml:space="preserve">
-    <value>SplitContainer1</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer1.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="SplitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>516, 159</value>
-  </data>
-  <data name="SplitContainer1.SplitterDistance" type="System.Int32, mscorlib">
-    <value>195</value>
-  </data>
-  <data name="SplitContainer1.SplitterWidth" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="SplitContainer1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer1.Name" xml:space="preserve">
-    <value>SplitContainer1</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer1.Parent" xml:space="preserve">
-    <value>TabPage1</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer1.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <data name="SplitContainer3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -948,6 +1092,57 @@
   <data name="&gt;&gt;SplitContainer3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;TabPage1.Name" xml:space="preserve">
+    <value>TabPage1</value>
+  </data>
+  <data name="&gt;&gt;TabPage1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TabPage1.Parent" xml:space="preserve">
+    <value>Tabs</value>
+  </data>
+  <data name="&gt;&gt;TabPage1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;TabPage3.Name" xml:space="preserve">
+    <value>TabPage3</value>
+  </data>
+  <data name="&gt;&gt;TabPage3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TabPage3.Parent" xml:space="preserve">
+    <value>Tabs</value>
+  </data>
+  <data name="&gt;&gt;TabPage3.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Tabs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="Tabs.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 24</value>
+  </data>
+  <data name="Tabs.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="Tabs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>524, 185</value>
+  </data>
+  <data name="Tabs.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;Tabs.Name" xml:space="preserve">
+    <value>Tabs</value>
+  </data>
+  <data name="&gt;&gt;Tabs.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Tabs.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;Tabs.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="TabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
   </data>
@@ -1002,54 +1197,9 @@
   <data name="&gt;&gt;TabPage3.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="Tabs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="Tabs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 24</value>
-  </data>
-  <data name="Tabs.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="Tabs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>524, 185</value>
-  </data>
-  <data name="Tabs.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;Tabs.Name" xml:space="preserve">
-    <value>Tabs</value>
-  </data>
-  <data name="&gt;&gt;Tabs.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Tabs.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;Tabs.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <metadata name="StatusStripLine.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 48</value>
   </metadata>
-  <data name="StatusBarLogLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 17</value>
-  </data>
-  <data name="StatusBarLogLabel.Text" xml:space="preserve">
-    <value>Log:</value>
-  </data>
-  <data name="StatusBarLogValue.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 17</value>
-  </data>
-  <data name="ToolStripStatusLabel5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>479, 17</value>
-  </data>
-  <data name="Wait.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 16</value>
-  </data>
-  <data name="Wait.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="StatusStripLine.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 309</value>
   </data>
@@ -1073,6 +1223,24 @@
   </data>
   <data name="&gt;&gt;StatusStripLine.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="StatusBarLogLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 17</value>
+  </data>
+  <data name="StatusBarLogLabel.Text" xml:space="preserve">
+    <value>Log:</value>
+  </data>
+  <data name="StatusBarLogValue.Size" type="System.Drawing.Size, System.Drawing">
+    <value>0, 17</value>
+  </data>
+  <data name="ToolStripStatusLabel5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>479, 17</value>
+  </data>
+  <data name="Wait.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 16</value>
+  </data>
+  <data name="Wait.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <metadata name="MenuStripLine.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -1107,10 +1275,10 @@
   <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 6</value>
   </data>
-  <data name="ZoneFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 22</value>
+  <data name="ExportZoneToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
   </data>
-  <data name="ZoneFileToolStripMenuItem.Text" xml:space="preserve">
+  <data name="ExportZoneToolStripMenuItem.Text" xml:space="preserve">
     <value>Zone file...</value>
   </data>
   <data name="ExportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -1146,93 +1314,6 @@
   <data name="FileToolStripMenuItem.Text" xml:space="preserve">
     <value>File</value>
   </data>
-  <data name="CheckSyntaxToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="CheckSyntaxToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="CheckSyntaxToolStripMenuItem.Text" xml:space="preserve">
-    <value>Check syntax</value>
-  </data>
-  <data name="RemoveCommentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="RemoveCommentsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Remove comments</value>
-  </data>
-  <data name="FillFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="FillFileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Fill file</value>
-  </data>
-  <data name="ToolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 6</value>
-  </data>
-  <data name="ZlibCompressToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 22</value>
-  </data>
-  <data name="ZlibCompressToolStripMenuItem.Text" xml:space="preserve">
-    <value>Deflate</value>
-  </data>
-  <data name="ZlibDecompressToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 22</value>
-  </data>
-  <data name="ZlibDecompressToolStripMenuItem.Text" xml:space="preserve">
-    <value>Inflate</value>
-  </data>
-  <data name="ZlibStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="ZlibStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="ZlibStripMenuItem.Text" xml:space="preserve">
-    <value>Zlib</value>
-  </data>
-  <data name="SaveExtractedZoneToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="SaveExtractedZoneToolStripMenuItem.Text" xml:space="preserve">
-    <value>Save extracted zone</value>
-  </data>
-  <data name="OpenExtractedZoneToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>182, 22</value>
-  </data>
-  <data name="OpenExtractedZoneToolStripMenuItem.Text" xml:space="preserve">
-    <value>Open extracted zone</value>
-  </data>
-  <data name="FastfileToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="FastfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="FastfileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Fastfile?!</value>
-  </data>
-  <data name="ExtractZoneToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="ExtractZoneToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="ExtractZoneToolStripMenuItem.Text" xml:space="preserve">
-    <value>Extract zone...</value>
-  </data>
-  <data name="SaveAsFastfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="SaveAsFastfileToolStripMenuItem.Text" xml:space="preserve">
-    <value>Save as Fastfile...</value>
-  </data>
-  <data name="CoD4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 22</value>
-  </data>
-  <data name="CoD4ToolStripMenuItem.Text" xml:space="preserve">
-    <value>CoD4</value>
-  </data>
   <data name="ToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
   </data>
@@ -1244,21 +1325,6 @@
   </data>
   <data name="AboutToolStripMenuItem.Text" xml:space="preserve">
     <value>About</value>
-  </data>
-  <data name="InstructionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 22</value>
-  </data>
-  <data name="InstructionsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Manual</value>
-  </data>
-  <data name="UpdateSnippetsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 22</value>
-  </data>
-  <data name="UpdateSnippetsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Update list</value>
-  </data>
-  <data name="ToolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>127, 6</value>
   </data>
   <data name="Snippets.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 20</value>
@@ -1293,6 +1359,108 @@
   <data name="&gt;&gt;MenuStripLine.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="CheckSyntaxToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="CheckSyntaxToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="CheckSyntaxToolStripMenuItem.Text" xml:space="preserve">
+    <value>Check syntax</value>
+  </data>
+  <data name="RemoveCommentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="RemoveCommentsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Remove comments</value>
+  </data>
+  <data name="FillFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="FillFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fill file</value>
+  </data>
+  <data name="ToolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 6</value>
+  </data>
+  <data name="ZlibStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ZlibStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="ZlibStripMenuItem.Text" xml:space="preserve">
+    <value>Zlib</value>
+  </data>
+  <data name="ZlibCompressToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 22</value>
+  </data>
+  <data name="ZlibCompressToolStripMenuItem.Text" xml:space="preserve">
+    <value>Deflate</value>
+  </data>
+  <data name="ZlibDecompressToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 22</value>
+  </data>
+  <data name="ZlibDecompressToolStripMenuItem.Text" xml:space="preserve">
+    <value>Inflate</value>
+  </data>
+  <data name="FastfileToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="FastfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="FastfileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fastfile?!</value>
+  </data>
+  <data name="SaveExtractedZoneToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="SaveExtractedZoneToolStripMenuItem.Text" xml:space="preserve">
+    <value>Save extracted zone</value>
+  </data>
+  <data name="OpenExtractedZoneToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="OpenExtractedZoneToolStripMenuItem.Text" xml:space="preserve">
+    <value>Open extracted zone</value>
+  </data>
+  <data name="CoD4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="CoD4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>CoD4</value>
+  </data>
+  <data name="ExtractZoneToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ExtractZoneToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="ExtractZoneToolStripMenuItem.Text" xml:space="preserve">
+    <value>Extract zone...</value>
+  </data>
+  <data name="SaveAsFastfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="SaveAsFastfileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Save as Fastfile...</value>
+  </data>
+  <data name="InstructionsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 22</value>
+  </data>
+  <data name="InstructionsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Manual</value>
+  </data>
+  <data name="UpdateSnippetsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 22</value>
+  </data>
+  <data name="UpdateSnippetsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Update list</value>
+  </data>
+  <data name="ToolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>127, 6</value>
+  </data>
   <metadata name="OpenFFDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>423, 7</value>
   </metadata>
@@ -1316,24 +1484,6 @@
   </metadata>
   <data name="FolderBrowserDialog.Description" xml:space="preserve">
     <value>Specify directory</value>
-  </data>
-  <data name="LogTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="LogTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 16</value>
-  </data>
-  <data name="LogTextBox.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="LogTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Horizontal</value>
-  </data>
-  <data name="LogTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>518, 81</value>
-  </data>
-  <data name="LogTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
   </data>
   <data name="&gt;&gt;LogTextBox.Name" xml:space="preserve">
     <value>LogTextBox</value>
@@ -1376,6 +1526,36 @@
   </data>
   <data name="&gt;&gt;LogGroup.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="LogTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="LogTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="LogTextBox.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LogTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="LogTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>518, 81</value>
+  </data>
+  <data name="LogTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;LogTextBox.Name" xml:space="preserve">
+    <value>LogTextBox</value>
+  </data>
+  <data name="&gt;&gt;LogTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LogTextBox.Parent" xml:space="preserve">
+    <value>LogGroup</value>
+  </data>
+  <data name="&gt;&gt;LogTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="ExportZoneDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>681, 42</value>
@@ -3898,10 +4078,10 @@
   <data name="&gt;&gt;ExportToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ZoneFileToolStripMenuItem.Name" xml:space="preserve">
-    <value>ZoneFileToolStripMenuItem</value>
+  <data name="&gt;&gt;ExportZoneToolStripMenuItem.Name" xml:space="preserve">
+    <value>ExportZoneToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;ZoneFileToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;ExportZoneToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">

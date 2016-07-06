@@ -21,9 +21,7 @@ namespace FFViewer_cs
             this.filePath = filePath;  
         }
 
-        /// <summary>
-        /// Detects header type and calls appropriate header parser.
-        /// </summary>
+        // Detects fastfile type and calls appropriate header parser.
         public void Parse()
         {
             byte[] ffContents;

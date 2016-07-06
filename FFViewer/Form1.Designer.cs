@@ -81,7 +81,7 @@
             this.CloseFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.ExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ZoneFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportZoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.OptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -486,15 +486,15 @@
             // ExportToolStripMenuItem
             // 
             this.ExportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ZoneFileToolStripMenuItem});
+            this.ExportZoneToolStripMenuItem});
             this.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem";
             resources.ApplyResources(this.ExportToolStripMenuItem, "ExportToolStripMenuItem");
             // 
-            // ZoneFileToolStripMenuItem
+            // ExportZoneToolStripMenuItem
             // 
-            this.ZoneFileToolStripMenuItem.Name = "ZoneFileToolStripMenuItem";
-            resources.ApplyResources(this.ZoneFileToolStripMenuItem, "ZoneFileToolStripMenuItem");
-            this.ZoneFileToolStripMenuItem.Click += new System.EventHandler(this.ZoneFileToolStripMenuItem_Click);
+            this.ExportZoneToolStripMenuItem.Name = "ExportZoneToolStripMenuItem";
+            resources.ApplyResources(this.ExportZoneToolStripMenuItem, "ExportZoneToolStripMenuItem");
+            this.ExportZoneToolStripMenuItem.Click += new System.EventHandler(this.ExportZoneToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -805,7 +805,7 @@
         private System.Windows.Forms.ToolStripMenuItem SaveExtractedZoneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OpenExtractedZoneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ZoneFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExportZoneToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.SaveFileDialog ExportZoneDialog;
         private System.Windows.Forms.ToolStripMenuItem CoD4ToolStripMenuItem;

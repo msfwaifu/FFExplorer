@@ -14,10 +14,14 @@ namespace FFViewer_cs
 
         public void DecompressZlib()
         {
+            if (compressedData.Length == 0)
+                throw new Exception("Compressed stream buffer is empty");
+
             decompressedData = ZlibStream.UncompressBuffer(compressedData);
+            Array.Clear(compressedData, 0, compressedData.Length);
         }
 
-        public void ParseFastfile()
+        public void ParseZoneHeader()
         {
             g_streamOutSize = ByteHandling.GetDword(decompressedData, 0);
             for (int i = 0; i < 9; ++i)

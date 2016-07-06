@@ -4,8 +4,9 @@
     {
         public RawFileData(){}
 
-        public RawFileData(string origName, int nameOff, string content, int origSize, int fileOff)
+        public RawFileData(int idx, string origName, int nameOff, string content, int origSize, int fileOff)
         {
+            index = idx;
             nameOffset = nameOff;
             contentsOffset = fileOff;
             originalName = origName;
@@ -90,6 +91,15 @@
             }
         }
 
+        public int Index
+        {
+            get
+            {
+                return index;
+            }
+        }
+
+        int index;
         int nameOffset = 0;
         int contentsOffset = 0;
         string originalName = "unnamed";

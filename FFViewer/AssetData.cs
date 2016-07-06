@@ -18,6 +18,7 @@ namespace FFViewer_cs
             byte[] cfgFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'c', 'f', 'g', '\0' });
             byte[] defFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'd', 'e', 'f', '\0' });
 
+            rawFileIndex = 0;
             AddRawFiles(zd, gsxFormat);
             AddRawFiles(zd, gscFormat);
             AddRawFiles(zd, rmbFormat);
@@ -38,7 +39,8 @@ namespace FFViewer_cs
                 int endOfContents = ByteHandling.FindByte(zoneData.DecompressedData, 0x00, startOfContents);
                 string contents = ByteHandling.GetString(zoneData.DecompressedData, startOfContents, endOfContents);
     
-                rawFiles.Add(new RawFileData(assetName, startOfNameOffset, contents, assetSize, startOfContents));
+                rawFiles.Add(new RawFileData(rawFileIndex, assetName, startOfNameOffset, contents, assetSize, startOfContents));
+                ++rawFileIndex;
                 offset = ByteHandling.FindBytes(zoneData.DecompressedData, extension, offset + 1);
             }
         }
@@ -59,5 +61,6 @@ namespace FFViewer_cs
 
         ZoneData zd;
         List<RawFileData> rawFiles = new List<RawFileData>();
+        int rawFileIndex;
     }
 }
