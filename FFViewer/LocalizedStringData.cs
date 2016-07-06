@@ -3,9 +3,9 @@
     /// <summary>
     /// Not in use since almost impossible to find correct offset.
     /// </summary>
-    class LocalizedStringsData
+    class LocalizedStringData
     {
-        public LocalizedStringsData(string key, string value, int offset)
+        public LocalizedStringData(string key, string value, int offset)
         {
             stringKey = key;
             stringKeyOriginal = key;

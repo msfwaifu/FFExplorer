@@ -39,25 +39,21 @@ namespace FFViewer_cs
         ZoneData zoneData;
         AssetData assetData;
 
-        //TODO: check if async required
-        public /*async*/ void OpenFastfile(string path)
+        public void OpenFastfile(string path)
         {
-            OnProgressChanged?.Invoke(0);
-
-            //ffData = await Task<FFData>.Run(() => { return GetFFData(path); });
-            ffData = GetFFData(path);
             OnProgressChanged?.Invoke(33);
+            ffData = GetFFData(path);
 
-            //zoneData = await Task<ZoneData>.Run(() => { return ffBackend.GetZoneData(ffInfo); });
-            zoneData = GetZoneData();
             OnProgressChanged?.Invoke(66);
+            zoneData = GetZoneData();
 
-            // assetData = await Task<AssetData>.Run(() => { return ffBackend.GetAssetData(zoneInfo); });
-            assetData = GetAssetData();
             OnProgressChanged?.Invoke(100);
+            assetData = GetAssetData();            
 
             for (int i = 0; i < assetData.RawFiles.Count; ++i)
                 OnRawfileDiscovered?.Invoke(assetData.RawFiles[i].Index, assetData.RawFiles[i].Name, assetData.RawFiles[i].OriginalName, assetData.RawFiles[i].OriginalSize);
+
+            OnProgressChanged?.Invoke(0);
         }
 
         public void SaveFastfile()
