@@ -145,10 +145,12 @@ namespace FFViewer_cs
             }
         }
 
-        //TODO!
         public void ExportZone(string path)
         {
+            if (zoneData.DecompressedData.Length == 0)
+                throw new Exception("No opened fastfile");
 
+            File.WriteAllBytes(path, zoneData.DecompressedData);
         }
 
         public RawFileData RawfileAtIndex(int index)
@@ -208,6 +210,60 @@ namespace FFViewer_cs
             ffData.Clear();
             zoneData.Clear();
             assetData.Clear();
+        }
+
+        private RawFileData FindRawfile(int index)
+        {
+            foreach (RawFileData r in assetData.RawFiles)
+            {
+                if (r.Index == index)
+                    return r;
+            }
+            throw new FileNotFoundException("Rawfile with index " + index + " not found");
+        }
+
+        public int GetRawfileSize(int index)
+        {
+            return FindRawfile(index).Size;            
+        }
+
+        public int GetRawfileOriginalSize(int index)
+        {
+            return FindRawfile(index).OriginalSize;
+        }
+
+        public string GetRawfileContents(int index)
+        {
+            return FindRawfile(index).Contents;
+        }
+
+        public void SetRawfileContents(int index, string text)
+        {
+            FindRawfile(index).Contents = text;
+        }
+
+        public string GetRawfileName(int index)
+        {
+            return FindRawfile(index).Name;
+        }
+
+        public void PadRawfile(int index)
+        {
+            RawFileData r = FindRawfile(index);
+
+            if (r.Size >= r.OriginalSize)
+                throw new Exception("Rawfile size >= original size");
+
+            int required = r.OriginalSize - r.Size;
+
+            if (required < 2)
+                throw new Exception("Not enough space to place comment");
+
+            string text = r.Contents + "//";
+            for (int i = 0; i < required - 2; ++i)
+                text += "/";
+
+            r.Contents = text;
         }
     }
 }

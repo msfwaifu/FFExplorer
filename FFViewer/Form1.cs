@@ -40,7 +40,7 @@ namespace FFViewer_cs
  
         About dlgAbout;
 
-        RawFileData currentRawFile;
+        int currentRawfileIndex;
 
         /// <summary>
         /// Gets options handler to access any preferences saved by application.
@@ -83,7 +83,7 @@ namespace FFViewer_cs
             logger.OnWriteLine += Logger_OnWriteLine;
             logger.OnWriteException += Logger_OnWriteException;
 
-            currentRawFile = new RawFileData();
+            currentRawfileIndex = -1;
             ShowSearchPanel(SearchBoxShowMode.HIDE);
             SetWindowFileName("");
             LogGroup.Visible = options.ShowLog;
@@ -800,8 +800,8 @@ namespace FFViewer_cs
 
                  if (!isFastFileOpened)
                      return;
-            
-                currentRawFile.Contents = CodeBox.Text;
+
+                ffBackend.SetRawfileContents(currentRawfileIndex, CodeBox.Text);
                 RawfileInfo_UpdateSize();
             }
             catch (Exception ex)
@@ -858,43 +858,32 @@ namespace FFViewer_cs
 
         private void PadFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (!CodeBox.Focused)
-                    return;
-
-                if (currentRawFile.Size >= currentRawFile.OriginalSize)
-                    throw new Exception("Rawfile size >= original size");
-
-                int required = currentRawFile.OriginalSize - currentRawFile.Size;
-
-                if (required < 2)
-                    throw new Exception("Not enough space to place comment");
-
-                string text = CodeBox.Text + "//";
-                for (int i = 0; i < required - 2; ++i)
-                    text += "/";
-                CodeBox.Text = text;
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
+            ffBackend.PadRawfile(currentRawfileIndex);
+            RawfileInfo_Update();
         }
 
         private void RawfileInfo_UpdateOriginalSize()
         {
-            RawfileInfoSizeOriginal.Text = currentRawFile.OriginalSize.ToString();
+            if (currentRawfileIndex == -1)
+                RawfileInfoSizeOriginal.Text = "0";
+            else
+                RawfileInfoSizeOriginal.Text = ffBackend.GetRawfileOriginalSize(currentRawfileIndex).ToString();
         }
 
         private void RawfileInfo_UpdateSize()
         {
-            RawfileInfoSize.Text = currentRawFile.Size.ToString();
+            if (currentRawfileIndex == -1)
+                RawfileInfoSize.Text = "0";
+            else
+                RawfileInfoSize.Text = ffBackend.GetRawfileSize(currentRawfileIndex).ToString();
         }
 
         private void RawfileInfo_UpdateFileName()
         {
-            RawfileInfoFileName.Text = currentRawFile.Name;
+            if (currentRawfileIndex == -1)
+                RawfileInfoFileName.Text = "unnamed";
+            else
+                RawfileInfoFileName.Text = ffBackend.GetRawfileName(currentRawfileIndex);
         }
 
         private void RawfileInfo_UpdateCurrentLine()
@@ -912,23 +901,15 @@ namespace FFViewer_cs
 
         private void StatusLine_Clear()
         {
-            currentRawFile = new RawFileData();
+            currentRawfileIndex = -1;
             RawfileInfo_Update();
         }
 
         private void RawFiles_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            try
-            {
-                int rawIndex = (int)(RawFiles.SelectedNode.Nodes.Count == 0 ? RawFiles.SelectedNode.Parent.Tag : RawFiles.SelectedNode.Tag);
-                currentRawFile = ffBackend.RawfileAtIndex(rawIndex);
-                CodeBox.Text = currentRawFile.Contents;
-                RawfileInfo_Update();
-            }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
+           currentRawfileIndex = (int)(RawFiles.SelectedNode.Nodes.Count == 0 ? RawFiles.SelectedNode.Parent.Tag : RawFiles.SelectedNode.Tag);
+           CodeBox.Text = ffBackend.GetRawfileContents(currentRawfileIndex);
+           RawfileInfo_Update();
         }
 
         private void RawFiles_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
