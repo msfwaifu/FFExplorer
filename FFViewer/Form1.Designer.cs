@@ -180,7 +180,6 @@
             // 
             this.EditSelectionToolStripMenuItem.Name = "EditSelectionToolStripMenuItem";
             resources.ApplyResources(this.EditSelectionToolStripMenuItem, "EditSelectionToolStripMenuItem");
-            this.EditSelectionToolStripMenuItem.Click += new System.EventHandler(this.EditSelectionToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 

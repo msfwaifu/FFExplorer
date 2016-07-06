@@ -13,8 +13,8 @@ namespace FFViewer_cs
 
     class FFData
     {
-        static byte[] HeaderIW3Unsigned = Encoding.ASCII.GetBytes("IWffu100");
-        static byte[] HeaderIW3VersionUnsigned = new byte[] { 5, 0, 0, 0 };
+        static public byte[] HeaderIW3Unsigned = Encoding.ASCII.GetBytes("IWffu100");
+        static public byte[] HeaderIW3VersionUnsigned = new byte[] { 5, 0, 0, 0 };
 
         public FFData(string filePath)
         {

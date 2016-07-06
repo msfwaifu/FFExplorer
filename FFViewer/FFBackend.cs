@@ -153,15 +153,6 @@ namespace FFViewer_cs
             File.WriteAllBytes(path, zoneData.DecompressedData);
         }
 
-        public RawFileData RawfileAtIndex(int index)
-        {
-            foreach (RawFileData r in assetData.RawFiles)
-                if (r.Index == index)
-                    return r;
-
-            return null;
-        }
-
         public int RawFilesCount
         {
             get
@@ -264,6 +255,220 @@ namespace FFViewer_cs
                 text += "/";
 
             r.Contents = text;
+        }
+
+        public void RawfileCheckSyntax(int index)
+        {
+            /*int i = 1;
+            int openStasheCount = 0;
+            int closeStasheCount = 0;
+            int startLineSearchBracket = -1;
+            int currentSearchBracket = -1;
+            string[] totalLines = CodeBox.Text.Split("\r\n".ToCharArray());
+            string[] functions = new string[450];
+            string[] includes = new string[25]; //  it actually stores the included files :O
+            int functionCount = 0;
+            int includeCount = 0;
+
+            //  Go line by line, counting up the amounts of things like curly braces
+            foreach (string line in totalLines)
+            {
+                int commentChar = line.Length;
+                if (line.LastIndexOf("//") != -1)
+                    commentChar = line.IndexOf("//");
+
+                string beforeComment = line.Substring(0, commentChar);
+                openStasheCount = openStasheCount + SubStrCount(beforeComment, "{");
+                closeStasheCount = closeStasheCount + SubStrCount(beforeComment, "}");
+                if (openStasheCount == closeStasheCount && line.IndexOf("}") >= 0 && line.IndexOf("#include") == -1)
+                {
+                    //  if the line isn't in a function....
+                    if ((line.IndexOf("(") == -1))
+                    {
+                        // functions(functionCount) = line.Substring(0, line.Length)
+                        //  tbh, it should not even do this :S
+                    }
+                    else
+                    {
+                        functions[functionCount] = line.Substring(0, line.IndexOf("("));
+                        ++functionCount;
+                    }
+                }
+
+                if (line.IndexOf("#include") != -1)
+                {
+                    includes[includeCount++] = line.Substring((line.IndexOf("#include") + 8));
+                    ++includeCount;
+                }
+
+                i++;
+            }
+
+            //  So, we have all of the functions. Now see if anything is called that ins't a function!
+            string allFunctions = "";
+            string allIncludes = "";
+            for (int k = 0; (k
+                        <= (functions.Length - 1)); k++)
+            {
+                allFunctions = (allFunctions
+                            + (functions[k] + ","));
+            }
+
+            object functions;
+            for (int k = 0; (k
+                        <= (includes.Length - 1)); k++)
+            {
+                allIncludes = (allIncludes
+                            + (includes[k] + ","));
+            }
+
+            object functions;
+            i = 1;
+            foreach (string line in totalLines)
+            {
+                if ((line.IndexOf("self thread ") != -1))
+                {
+                    //  here is a function called...
+                    int endOffset = (line.IndexOfAny(new char[] {
+                            "(",
+                            " "}, (line.IndexOf(" thread ") + 8))
+                                - (line.IndexOf(" thread ") - 8));
+                    string called = line.Substring((line.IndexOf(" thread ") + 8), endOffset);
+                    if ((allFunctions.IndexOf((called + ",")) == -1))
+                    {
+                        //  the function was NOT found! Check the includes...
+                        if ((called.IndexOf("\\") == -1))
+                        {
+                            //  there was also no file reference, so it is an unknown function.
+                            MessageBox.Show(("Script compile error: Unknown function \""
+                                            + (called + ("\" on line " + i.ToString()))));
+                        }
+
+                    }
+
+                }
+
+                i++;
+            }
+
+            if (openStasheCount < closeStasheCount)
+            {
+                MessageBox.Show("Syntax error: Too many close braces }");
+            }
+
+            if (openStasheCount > closeStasheCount)
+            {
+                MessageBox.Show("Syntax error: Too many open braces {");
+            }
+            MessageBox.Show("Finished checking syntax.", "Finished", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, 0, false);
+        */
+        }
+
+        public void RawfileRemoveComments(int index)
+        {
+            RawFileData r = FindRawfile(index);
+            string[] lines = r.Contents.Split(new char[] { '\r', '\n' });
+
+            int oneLineCommentIndex = -1;
+            int multiLineCommentIndexStart = -1;
+            int multiLineCommentIndexEnd = -1;
+            int devCommentIndexStart = -1;
+            int devCommentIndexEnd = -1;
+
+            bool isInMultiLineComment = false;
+            bool isInDevComment = false;
+            for (int i = 0; i < lines.Length; ++i)
+            {
+                if (isInMultiLineComment)
+                {
+                    multiLineCommentIndexEnd = lines[i].IndexOf("*/");
+                    if (multiLineCommentIndexEnd != -1)
+                    {
+                        isInMultiLineComment = false;
+                        lines[i] = lines[i].Substring(multiLineCommentIndexEnd + 2);
+                    }
+                    else
+                    {
+                        lines[i] = "";
+                        continue;
+                    }
+                }
+                if (isInDevComment)
+                {
+                    devCommentIndexEnd = lines[i].IndexOf("#/");
+                    if (devCommentIndexEnd != -1)
+                    {
+                        isInDevComment = false;
+                        lines[i] = lines[i].Substring(devCommentIndexEnd + 2);
+                    }
+                    else
+                    {
+                        lines[i] = "";
+                        continue;
+                    }
+                }
+                //one-line comment
+                oneLineCommentIndex = lines[i].IndexOf("//");
+                if (oneLineCommentIndex != -1)
+                    lines[i] = lines[i].Substring(0, oneLineCommentIndex);
+
+                //multi-line comment
+                multiLineCommentIndexStart = lines[i].IndexOf("/*");
+                if (multiLineCommentIndexStart != -1)
+                {
+                    multiLineCommentIndexEnd = lines[i].IndexOf("*/");
+                    if (multiLineCommentIndexEnd == -1)
+                    {
+                        isInMultiLineComment = true;
+                        lines[i] = lines[i].Substring(0, multiLineCommentIndexStart);
+                    }
+                    else
+                        lines[i] = lines[i].Substring(0, multiLineCommentIndexStart) + lines[i].Substring(multiLineCommentIndexEnd + 2);
+
+                    continue;
+                }
+
+                //dev comment
+                devCommentIndexStart = lines[i].IndexOf("/#");
+                if (devCommentIndexStart != -1)
+                {
+                    devCommentIndexEnd = lines[i].IndexOf("#/");
+                    if (devCommentIndexEnd == -1)
+                    {
+                        isInMultiLineComment = true;
+                        lines[i] = lines[i].Substring(0, devCommentIndexStart);
+                    }
+                    else
+                        lines[i] = lines[i].Substring(0, devCommentIndexStart) + lines[i].Substring(devCommentIndexEnd + 2);
+
+                    continue;
+                }
+            }
+
+            string text = "";
+            for (int i = 0; i < lines.Length; ++i)
+                if (lines[i] != "")
+                    text += (i == lines.Length - 1 ? lines[i] : lines[i] + "\r\n");
+
+            r.Contents = text;
+        }
+
+        public void SaveAsFastfile(string what, string where)
+        {
+            OnProgressChanged?.Invoke(33);
+            byte[] decompressed = File.ReadAllBytes(what);
+
+            OnProgressChanged?.Invoke(66);
+            byte[] compressed = ZlibInflate(decompressed);
+
+            OnProgressChanged?.Invoke(100);
+            using (FileStream fs = new FileStream(where, FileMode.Create))
+            {
+                fs.Write(FFData.HeaderIW3Unsigned, 0, FFData.HeaderIW3Unsigned.Length);
+                fs.Write(FFData.HeaderIW3VersionUnsigned, 0, FFData.HeaderIW3VersionUnsigned.Length);
+                fs.Write(compressed, 0, compressed.Length);
+            }
+            OnProgressChanged?.Invoke(0);
         }
     }
 }

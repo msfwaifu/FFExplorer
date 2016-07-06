@@ -132,28 +132,28 @@
     <value>283, 7</value>
   </metadata>
   <data name="ExportFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="ExportFileToolStripMenuItem.Text" xml:space="preserve">
     <value>Extract file</value>
   </data>
   <data name="EditSelectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="EditSelectionToolStripMenuItem.Text" xml:space="preserve">
-    <value>Rename file</value>
+    <value>Rename file?</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>133, 6</value>
+    <value>149, 6</value>
   </data>
   <data name="ExtractAllGSCsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="ExtractAllGSCsToolStripMenuItem.Text" xml:space="preserve">
     <value>Extract all</value>
   </data>
   <data name="FileListRightClick.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 76</value>
+    <value>153, 98</value>
   </data>
   <data name="&gt;&gt;FileListRightClick.Name" xml:space="preserve">
     <value>FileListRightClick</value>
