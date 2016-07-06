@@ -276,37 +276,40 @@
   <data name="&gt;&gt;SaveButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="CancelButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="CnclButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="CancelButton.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="CnclButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CnclButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>312, 109</value>
   </data>
-  <data name="CancelButton.MaximumSize" type="System.Drawing.Size, System.Drawing">
+  <data name="CnclButton.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>80, 0</value>
   </data>
-  <data name="CancelButton.MinimumSize" type="System.Drawing.Size, System.Drawing">
+  <data name="CnclButton.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>80, 0</value>
   </data>
-  <data name="CancelButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="CnclButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 37</value>
   </data>
-  <data name="CancelButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="CnclButton.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="CancelButton.Text" xml:space="preserve">
+  <data name="CnclButton.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="&gt;&gt;CancelButton.Name" xml:space="preserve">
-    <value>CancelButton</value>
+  <data name="&gt;&gt;CnclButton.Name" xml:space="preserve">
+    <value>CnclButton</value>
   </data>
-  <data name="&gt;&gt;CancelButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;CnclButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CancelButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;CnclButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;CancelButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;CnclButton.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="LoggerGroup.AutoSize" type="System.Boolean, mscorlib">

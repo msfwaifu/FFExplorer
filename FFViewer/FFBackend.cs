@@ -8,7 +8,9 @@ namespace FFViewer_cs
     {
         public FFData GetFFData(string filePath)
         {
-            return new FFData(filePath);
+            FFData result = new FFData(filePath);
+            result.Parse();
+            return result;
         }
 
         public ZoneData GetZoneData(FFData ffData)

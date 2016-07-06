@@ -80,16 +80,25 @@
             this.SaveFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CloseFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ZoneFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.OptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SyntaxCheckerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CheckSyntaxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RemoveCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FillFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
-            this.zlibToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ZlibStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ZlibCompressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ZlibDecompressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FastfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveExtractedZoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenExtractedZoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CoD4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExtractZoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveAsFastfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Snippets = new System.Windows.Forms.ToolStripMenuItem();
             this.InstructionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -100,6 +109,9 @@
             this.FolderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.LogGroup = new System.Windows.Forms.GroupBox();
             this.LogTextBox = new System.Windows.Forms.TextBox();
+            this.ExportZoneDialog = new System.Windows.Forms.SaveFileDialog();
+            this.SaveFastfileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.OpenZoneDialog = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer1)).BeginInit();
             this.SplitContainer1.Panel1.SuspendLayout();
             this.SplitContainer1.Panel2.SuspendLayout();
@@ -441,6 +453,8 @@
             this.SaveFFToolStripMenuItem,
             this.CloseFFToolStripMenuItem,
             this.ToolStripMenuItem1,
+            this.ExportToolStripMenuItem,
+            this.toolStripSeparator3,
             this.OptionsToolStripMenuItem,
             this.ExitToolStripMenuItem});
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
@@ -469,6 +483,24 @@
             this.ToolStripMenuItem1.Name = "ToolStripMenuItem1";
             resources.ApplyResources(this.ToolStripMenuItem1, "ToolStripMenuItem1");
             // 
+            // ExportToolStripMenuItem
+            // 
+            this.ExportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ZoneFileToolStripMenuItem});
+            this.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem";
+            resources.ApplyResources(this.ExportToolStripMenuItem, "ExportToolStripMenuItem");
+            // 
+            // ZoneFileToolStripMenuItem
+            // 
+            this.ZoneFileToolStripMenuItem.Name = "ZoneFileToolStripMenuItem";
+            resources.ApplyResources(this.ZoneFileToolStripMenuItem, "ZoneFileToolStripMenuItem");
+            this.ZoneFileToolStripMenuItem.Click += new System.EventHandler(this.ZoneFileToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            resources.ApplyResources(this.toolStripSeparator3, "toolStripSeparator3");
+            // 
             // OptionsToolStripMenuItem
             // 
             this.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem";
@@ -484,19 +516,21 @@
             // ToolsToolStripMenuItem
             // 
             this.ToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SyntaxCheckerToolStripMenuItem,
+            this.CheckSyntaxToolStripMenuItem,
             this.RemoveCommentsToolStripMenuItem,
-            this.PadFileToolStripMenuItem,
+            this.FillFileToolStripMenuItem,
             this.ToolStripMenuItem5,
-            this.zlibToolStripMenuItem});
+            this.ZlibStripMenuItem,
+            this.FastfileToolStripMenuItem,
+            this.CoD4ToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             resources.ApplyResources(this.ToolsToolStripMenuItem, "ToolsToolStripMenuItem");
             // 
-            // SyntaxCheckerToolStripMenuItem
+            // CheckSyntaxToolStripMenuItem
             // 
-            resources.ApplyResources(this.SyntaxCheckerToolStripMenuItem, "SyntaxCheckerToolStripMenuItem");
-            this.SyntaxCheckerToolStripMenuItem.Name = "SyntaxCheckerToolStripMenuItem";
-            this.SyntaxCheckerToolStripMenuItem.Click += new System.EventHandler(this.SyntaxCheckerToolStripMenuItem_Click);
+            resources.ApplyResources(this.CheckSyntaxToolStripMenuItem, "CheckSyntaxToolStripMenuItem");
+            this.CheckSyntaxToolStripMenuItem.Name = "CheckSyntaxToolStripMenuItem";
+            this.CheckSyntaxToolStripMenuItem.Click += new System.EventHandler(this.SyntaxCheckerToolStripMenuItem_Click);
             // 
             // RemoveCommentsToolStripMenuItem
             // 
@@ -504,24 +538,24 @@
             resources.ApplyResources(this.RemoveCommentsToolStripMenuItem, "RemoveCommentsToolStripMenuItem");
             this.RemoveCommentsToolStripMenuItem.Click += new System.EventHandler(this.RemoveCommentsToolStripMenuItem_Click);
             // 
-            // PadFileToolStripMenuItem
+            // FillFileToolStripMenuItem
             // 
-            this.PadFileToolStripMenuItem.Name = "PadFileToolStripMenuItem";
-            resources.ApplyResources(this.PadFileToolStripMenuItem, "PadFileToolStripMenuItem");
-            this.PadFileToolStripMenuItem.Click += new System.EventHandler(this.PadFileToolStripMenuItem_Click);
+            this.FillFileToolStripMenuItem.Name = "FillFileToolStripMenuItem";
+            resources.ApplyResources(this.FillFileToolStripMenuItem, "FillFileToolStripMenuItem");
+            this.FillFileToolStripMenuItem.Click += new System.EventHandler(this.PadFileToolStripMenuItem_Click);
             // 
             // ToolStripMenuItem5
             // 
             this.ToolStripMenuItem5.Name = "ToolStripMenuItem5";
             resources.ApplyResources(this.ToolStripMenuItem5, "ToolStripMenuItem5");
             // 
-            // zlibToolStripMenuItem
+            // ZlibStripMenuItem
             // 
-            this.zlibToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ZlibStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ZlibCompressToolStripMenuItem,
             this.ZlibDecompressToolStripMenuItem});
-            resources.ApplyResources(this.zlibToolStripMenuItem, "zlibToolStripMenuItem");
-            this.zlibToolStripMenuItem.Name = "zlibToolStripMenuItem";
+            resources.ApplyResources(this.ZlibStripMenuItem, "ZlibStripMenuItem");
+            this.ZlibStripMenuItem.Name = "ZlibStripMenuItem";
             // 
             // ZlibCompressToolStripMenuItem
             // 
@@ -534,6 +568,45 @@
             this.ZlibDecompressToolStripMenuItem.Name = "ZlibDecompressToolStripMenuItem";
             resources.ApplyResources(this.ZlibDecompressToolStripMenuItem, "ZlibDecompressToolStripMenuItem");
             this.ZlibDecompressToolStripMenuItem.Click += new System.EventHandler(this.ZlibDecompressToolStripMenuItem_Click);
+            // 
+            // FastfileToolStripMenuItem
+            // 
+            this.FastfileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveExtractedZoneToolStripMenuItem,
+            this.OpenExtractedZoneToolStripMenuItem});
+            resources.ApplyResources(this.FastfileToolStripMenuItem, "FastfileToolStripMenuItem");
+            this.FastfileToolStripMenuItem.Name = "FastfileToolStripMenuItem";
+            // 
+            // SaveExtractedZoneToolStripMenuItem
+            // 
+            this.SaveExtractedZoneToolStripMenuItem.Name = "SaveExtractedZoneToolStripMenuItem";
+            resources.ApplyResources(this.SaveExtractedZoneToolStripMenuItem, "SaveExtractedZoneToolStripMenuItem");
+            this.SaveExtractedZoneToolStripMenuItem.Click += new System.EventHandler(this.SaveExtractedZoneToolStripMenuItem_Click);
+            // 
+            // OpenExtractedZoneToolStripMenuItem
+            // 
+            this.OpenExtractedZoneToolStripMenuItem.Name = "OpenExtractedZoneToolStripMenuItem";
+            resources.ApplyResources(this.OpenExtractedZoneToolStripMenuItem, "OpenExtractedZoneToolStripMenuItem");
+            this.OpenExtractedZoneToolStripMenuItem.Click += new System.EventHandler(this.OpenExtractedZoneToolStripMenuItem_Click);
+            // 
+            // CoD4ToolStripMenuItem
+            // 
+            this.CoD4ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ExtractZoneToolStripMenuItem,
+            this.SaveAsFastfileToolStripMenuItem});
+            this.CoD4ToolStripMenuItem.Name = "CoD4ToolStripMenuItem";
+            resources.ApplyResources(this.CoD4ToolStripMenuItem, "CoD4ToolStripMenuItem");
+            // 
+            // ExtractZoneToolStripMenuItem
+            // 
+            resources.ApplyResources(this.ExtractZoneToolStripMenuItem, "ExtractZoneToolStripMenuItem");
+            this.ExtractZoneToolStripMenuItem.Name = "ExtractZoneToolStripMenuItem";
+            // 
+            // SaveAsFastfileToolStripMenuItem
+            // 
+            this.SaveAsFastfileToolStripMenuItem.Name = "SaveAsFastfileToolStripMenuItem";
+            resources.ApplyResources(this.SaveAsFastfileToolStripMenuItem, "SaveAsFastfileToolStripMenuItem");
+            this.SaveAsFastfileToolStripMenuItem.Click += new System.EventHandler(this.SaveAsFastfileToolStripMenuItem_Click_1);
             // 
             // AboutToolStripMenuItem
             // 
@@ -594,6 +667,19 @@
             resources.ApplyResources(this.LogTextBox, "LogTextBox");
             this.LogTextBox.Name = "LogTextBox";
             this.LogTextBox.ReadOnly = true;
+            // 
+            // ExportZoneDialog
+            // 
+            resources.ApplyResources(this.ExportZoneDialog, "ExportZoneDialog");
+            // 
+            // SaveFastfileDialog
+            // 
+            resources.ApplyResources(this.SaveFastfileDialog, "SaveFastfileDialog");
+            // 
+            // OpenZoneDialog
+            // 
+            this.OpenZoneDialog.DefaultExt = "ff";
+            resources.ApplyResources(this.OpenZoneDialog, "OpenZoneDialog");
             // 
             // Form1
             // 
@@ -694,11 +780,11 @@
         private System.Windows.Forms.ToolStripMenuItem OptionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ToolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem SyntaxCheckerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CheckSyntaxToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem RemoveCommentsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem PadFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FillFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator ToolStripMenuItem5;
-        private System.Windows.Forms.ToolStripMenuItem zlibToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ZlibStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ZlibCompressToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ZlibDecompressToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
@@ -715,6 +801,18 @@
         private System.Windows.Forms.StatusStrip StatusStripLine;
         private System.Windows.Forms.GroupBox LogGroup;
         private System.Windows.Forms.TextBox LogTextBox;
+        private System.Windows.Forms.ToolStripMenuItem FastfileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveExtractedZoneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OpenExtractedZoneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ZoneFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.SaveFileDialog ExportZoneDialog;
+        private System.Windows.Forms.ToolStripMenuItem CoD4ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExtractZoneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveAsFastfileToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog SaveFastfileDialog;
+        private System.Windows.Forms.OpenFileDialog OpenZoneDialog;
     }
 }
 

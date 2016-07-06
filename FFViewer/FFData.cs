@@ -7,6 +7,11 @@ namespace FFViewer_cs
     {
         public FFData(string filePath)
         {
+            this.filePath = filePath;  
+        }
+
+        public void Parse()
+        {
             using (FileStream fs = new FileStream(filePath, FileMode.Open))
             {
                 originalSize = (int)fs.Length;
@@ -72,6 +77,8 @@ namespace FFViewer_cs
                 return originalSize;
             }
         }
+
+        string filePath;
 
         string name;
         byte[] header = new byte[8];

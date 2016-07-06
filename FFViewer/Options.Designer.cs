@@ -34,7 +34,7 @@
             this.MainSaveTemporary = new System.Windows.Forms.CheckBox();
             this.MainRememberLastFolder = new System.Windows.Forms.CheckBox();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.CnclButton = new System.Windows.Forms.Button();
             this.LoggerGroup = new System.Windows.Forms.GroupBox();
             this.LoggerLogDaysLimitPanel = new System.Windows.Forms.Panel();
             this.LoggerLogDaysLimitFooter = new System.Windows.Forms.Label();
@@ -81,12 +81,12 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // CancelButton
+            // CnclButton
             // 
-            resources.ApplyResources(this.CancelButton, "CancelButton");
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            resources.ApplyResources(this.CnclButton, "CnclButton");
+            this.CnclButton.Name = "CnclButton";
+            this.CnclButton.UseVisualStyleBackColor = true;
+            this.CnclButton.Click += new System.EventHandler(this.CnclButton_Click);
             // 
             // LoggerGroup
             // 
@@ -147,7 +147,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.SaveButton);
-            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.CnclButton);
             this.Controls.Add(this.LoggerGroup);
             this.Controls.Add(this.MainGroup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -176,7 +176,7 @@
         private System.Windows.Forms.CheckBox MainSaveTemporary;
         private System.Windows.Forms.CheckBox MainRememberLastFolder;
         private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button CnclButton;
         private System.Windows.Forms.GroupBox LoggerGroup;
         private System.Windows.Forms.Label LoggerLogDaysLimitLabel;
         private System.Windows.Forms.Panel LoggerLogDaysLimitPanel;

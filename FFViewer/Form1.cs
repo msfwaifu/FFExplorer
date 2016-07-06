@@ -73,6 +73,7 @@ namespace FFViewer_cs
             StatusLine_Clear();
             SaveFFToolStripMenuItem.Enabled = false;
             CloseFFToolStripMenuItem.Enabled = false;
+            ExportFileToolStripMenuItem.Enabled = false;
 
             updater = new Updater();
             updater.OnExceptionRaised += HandleException;
@@ -352,6 +353,7 @@ namespace FFViewer_cs
             OpenFFToolStripMenuItem.Enabled = false;
             SaveFFToolStripMenuItem.Enabled = true;
             CloseFFToolStripMenuItem.Enabled = true;
+            ExportFileToolStripMenuItem.Enabled = true;
             LockInterface(false);
         }
 
@@ -417,6 +419,7 @@ namespace FFViewer_cs
                     OpenFFToolStripMenuItem.Enabled = true;
                     SaveFFToolStripMenuItem.Enabled = false;
                     CloseFFToolStripMenuItem.Enabled = false;
+                    ExportFileToolStripMenuItem.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -1088,6 +1091,64 @@ namespace FFViewer_cs
         private void StatusLogLabel_Click(object sender, EventArgs e)
         {
             LogGroup.Visible = !LogGroup.Visible;
+        }
+
+        private void ExtractZoneToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void SaveAsFastfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void SaveExtractedZoneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private void OpenExtractedZoneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO
+        }
+
+        private async void ZoneFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ExportZoneDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            if (File.Exists(ExportZoneDialog.FileName))
+                File.Delete(ExportZoneDialog.FileName);
+
+            SetProgressBarPercentage(100);
+            await Task.Run(() => { File.WriteAllBytes(ExportZoneDialog.FileName, zoneInfo.DecompressedData); });
+            SetProgressBarPercentage(0);
+        }
+
+        private void SaveAsFastfileToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            if (OpenZoneDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            //TODO: move to backend. All of it
+            byte[] decompressed = File.ReadAllBytes(OpenZoneDialog.FileName);
+            byte[] compressed = Ionic.Zlib.ZlibStream.CompressBuffer(decompressed);
+            if (SaveFastfileDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            using (FileStream fs = new FileStream(SaveFastfileDialog.FileName, FileMode.Create))
+            {
+                fs.Write(Encoding.ASCII.GetBytes("IWffu100"), 0, 8);
+                //DIRTY!
+                fs.WriteByte(5);
+                fs.WriteByte(0);
+                fs.WriteByte(0);
+                fs.WriteByte(0);
+                fs.Write(compressed, 0, compressed.Length);
+            }
+
+            logger.PrintLine("Fastfile saved");
         }
     }
 }

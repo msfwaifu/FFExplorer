@@ -129,7 +129,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <metadata name="FileListRightClick.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>283, 47</value>
+    <value>283, 7</value>
   </metadata>
   <data name="ExportFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 22</value>
@@ -202,7 +202,7 @@
     <value>0</value>
   </data>
   <metadata name="CodeBoxRightClick.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>131, 24</value>
+    <value>138, 5</value>
   </metadata>
   <data name="CutToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+X</value>
@@ -1107,6 +1107,21 @@
   <data name="ToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 6</value>
   </data>
+  <data name="ZoneFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 22</value>
+  </data>
+  <data name="ZoneFileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Zone file...</value>
+  </data>
+  <data name="ExportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 22</value>
+  </data>
+  <data name="ExportToolStripMenuItem.Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 6</value>
+  </data>
   <data name="OptionsToolStripMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
     <value>Ctrl+T</value>
   </data>
@@ -1131,13 +1146,13 @@
   <data name="FileToolStripMenuItem.Text" xml:space="preserve">
     <value>File</value>
   </data>
-  <data name="SyntaxCheckerToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="CheckSyntaxToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="SyntaxCheckerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="CheckSyntaxToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
-  <data name="SyntaxCheckerToolStripMenuItem.Text" xml:space="preserve">
+  <data name="CheckSyntaxToolStripMenuItem.Text" xml:space="preserve">
     <value>Check syntax</value>
   </data>
   <data name="RemoveCommentsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
@@ -1146,10 +1161,10 @@
   <data name="RemoveCommentsToolStripMenuItem.Text" xml:space="preserve">
     <value>Remove comments</value>
   </data>
-  <data name="PadFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="FillFileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
-  <data name="PadFileToolStripMenuItem.Text" xml:space="preserve">
+  <data name="FillFileToolStripMenuItem.Text" xml:space="preserve">
     <value>Fill file</value>
   </data>
   <data name="ToolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
@@ -1167,14 +1182,56 @@
   <data name="ZlibDecompressToolStripMenuItem.Text" xml:space="preserve">
     <value>Inflate</value>
   </data>
-  <data name="zlibToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="ZlibStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="zlibToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="ZlibStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
-  <data name="zlibToolStripMenuItem.Text" xml:space="preserve">
+  <data name="ZlibStripMenuItem.Text" xml:space="preserve">
     <value>Zlib</value>
+  </data>
+  <data name="SaveExtractedZoneToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="SaveExtractedZoneToolStripMenuItem.Text" xml:space="preserve">
+    <value>Save extracted zone</value>
+  </data>
+  <data name="OpenExtractedZoneToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>182, 22</value>
+  </data>
+  <data name="OpenExtractedZoneToolStripMenuItem.Text" xml:space="preserve">
+    <value>Open extracted zone</value>
+  </data>
+  <data name="FastfileToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="FastfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="FastfileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Fastfile?!</value>
+  </data>
+  <data name="ExtractZoneToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ExtractZoneToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="ExtractZoneToolStripMenuItem.Text" xml:space="preserve">
+    <value>Extract zone...</value>
+  </data>
+  <data name="SaveAsFastfileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="SaveAsFastfileToolStripMenuItem.Text" xml:space="preserve">
+    <value>Save as Fastfile...</value>
+  </data>
+  <data name="CoD4ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 22</value>
+  </data>
+  <data name="CoD4ToolStripMenuItem.Text" xml:space="preserve">
+    <value>CoD4</value>
   </data>
   <data name="ToolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 20</value>
@@ -1237,7 +1294,7 @@
     <value>3</value>
   </data>
   <metadata name="OpenFFDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>426, 47</value>
+    <value>423, 7</value>
   </metadata>
   <data name="OpenFFDialog.Filter" xml:space="preserve">
     <value>.FF files(*.ff)|*.ff</value>
@@ -1246,7 +1303,7 @@
     <value>Open Fastfile</value>
   </data>
   <metadata name="ExtractDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>566, 47</value>
+    <value>552, 11</value>
   </metadata>
   <data name="ExtractDialog.Filter" xml:space="preserve">
     <value>All files(*.*)|*.*</value>
@@ -1255,7 +1312,7 @@
     <value>Extract file</value>
   </data>
   <metadata name="FolderBrowserDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>702, 47</value>
+    <value>146, 84</value>
   </metadata>
   <data name="FolderBrowserDialog.Description" xml:space="preserve">
     <value>Specify directory</value>
@@ -1320,11 +1377,38 @@
   <data name="&gt;&gt;LogGroup.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <metadata name="ExportZoneDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>681, 42</value>
+  </metadata>
+  <data name="ExportZoneDialog.Filter" xml:space="preserve">
+    <value>Zone file(*.zone)|*.zone</value>
+  </data>
+  <data name="ExportZoneDialog.Title" xml:space="preserve">
+    <value>Export zone</value>
+  </data>
+  <metadata name="SaveFastfileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>817, 43</value>
+  </metadata>
+  <data name="SaveFastfileDialog.Filter" xml:space="preserve">
+    <value>Fastfile(*.ff)|*.ff</value>
+  </data>
+  <data name="SaveFastfileDialog.Title" xml:space="preserve">
+    <value>Save Fastfile as...</value>
+  </data>
+  <metadata name="OpenZoneDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>685, 14</value>
+  </metadata>
+  <data name="OpenZoneDialog.Filter" xml:space="preserve">
+    <value>Zone files(*.zone)|*.zone</value>
+  </data>
+  <data name="OpenZoneDialog.Title" xml:space="preserve">
+    <value>Open Zone</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>77</value>
+    <value>148</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
@@ -3808,6 +3892,24 @@
   <data name="&gt;&gt;ToolStripMenuItem1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;ExportToolStripMenuItem.Name" xml:space="preserve">
+    <value>ExportToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;ExportToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ZoneFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>ZoneFileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;ZoneFileToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
+    <value>toolStripSeparator3</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;OptionsToolStripMenuItem.Name" xml:space="preserve">
     <value>OptionsToolStripMenuItem</value>
   </data>
@@ -3826,10 +3928,10 @@
   <data name="&gt;&gt;ToolsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;SyntaxCheckerToolStripMenuItem.Name" xml:space="preserve">
-    <value>SyntaxCheckerToolStripMenuItem</value>
+  <data name="&gt;&gt;CheckSyntaxToolStripMenuItem.Name" xml:space="preserve">
+    <value>CheckSyntaxToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;SyntaxCheckerToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;CheckSyntaxToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;RemoveCommentsToolStripMenuItem.Name" xml:space="preserve">
@@ -3838,10 +3940,10 @@
   <data name="&gt;&gt;RemoveCommentsToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PadFileToolStripMenuItem.Name" xml:space="preserve">
-    <value>PadFileToolStripMenuItem</value>
+  <data name="&gt;&gt;FillFileToolStripMenuItem.Name" xml:space="preserve">
+    <value>FillFileToolStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;PadFileToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;FillFileToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ToolStripMenuItem5.Name" xml:space="preserve">
@@ -3850,10 +3952,10 @@
   <data name="&gt;&gt;ToolStripMenuItem5.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;zlibToolStripMenuItem.Name" xml:space="preserve">
-    <value>zlibToolStripMenuItem</value>
+  <data name="&gt;&gt;ZlibStripMenuItem.Name" xml:space="preserve">
+    <value>ZlibStripMenuItem</value>
   </data>
-  <data name="&gt;&gt;zlibToolStripMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;ZlibStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ZlibCompressToolStripMenuItem.Name" xml:space="preserve">
@@ -3866,6 +3968,42 @@
     <value>ZlibDecompressToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;ZlibDecompressToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FastfileToolStripMenuItem.Name" xml:space="preserve">
+    <value>FastfileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;FastfileToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SaveExtractedZoneToolStripMenuItem.Name" xml:space="preserve">
+    <value>SaveExtractedZoneToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;SaveExtractedZoneToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OpenExtractedZoneToolStripMenuItem.Name" xml:space="preserve">
+    <value>OpenExtractedZoneToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;OpenExtractedZoneToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CoD4ToolStripMenuItem.Name" xml:space="preserve">
+    <value>CoD4ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;CoD4ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ExtractZoneToolStripMenuItem.Name" xml:space="preserve">
+    <value>ExtractZoneToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;ExtractZoneToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SaveAsFastfileToolStripMenuItem.Name" xml:space="preserve">
+    <value>SaveAsFastfileToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;SaveAsFastfileToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;AboutToolStripMenuItem.Name" xml:space="preserve">
@@ -3915,6 +4053,24 @@
   </data>
   <data name="&gt;&gt;FolderBrowserDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ExportZoneDialog.Name" xml:space="preserve">
+    <value>ExportZoneDialog</value>
+  </data>
+  <data name="&gt;&gt;ExportZoneDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SaveFastfileDialog.Name" xml:space="preserve">
+    <value>SaveFastfileDialog</value>
+  </data>
+  <data name="&gt;&gt;SaveFastfileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OpenZoneDialog.Name" xml:space="preserve">
+    <value>OpenZoneDialog</value>
+  </data>
+  <data name="&gt;&gt;OpenZoneDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Form1</value>

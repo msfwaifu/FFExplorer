@@ -29,7 +29,7 @@ namespace FFViewer_cs
             UpdateFields();            
         }
 
-        private void CancelButton_Click(object sender, EventArgs e)
+        private void CnclButton_Click(object sender, EventArgs e)
         {
             Close();
         }
