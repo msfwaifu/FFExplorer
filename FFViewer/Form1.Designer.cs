@@ -67,8 +67,20 @@
             this.SplitContainer3 = new System.Windows.Forms.SplitContainer();
             this.MiscData = new System.Windows.Forms.TreeView();
             this.Tabs = new System.Windows.Forms.TabControl();
-            this.TabPage1 = new System.Windows.Forms.TabPage();
-            this.TabPage3 = new System.Windows.Forms.TabPage();
+            this.RawfilesPage = new System.Windows.Forms.TabPage();
+            this.LocalizedStringsPage = new System.Windows.Forms.TabPage();
+            this.LocalizedStringsSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.LocalizedStringsTreeView = new System.Windows.Forms.TreeView();
+            this.LocalizedStringKeyGroup = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.LocalizedStringKeySizeLabel = new System.Windows.Forms.Label();
+            this.LocalizedStringKeyOffsetValue = new System.Windows.Forms.Label();
+            this.LocalizedStringKeySizeValue = new System.Windows.Forms.Label();
+            this.LocalizedStringKeyOffsetLabel = new System.Windows.Forms.Label();
+            this.LocalizedStringKeySizeDelimeter = new System.Windows.Forms.Label();
+            this.LocalizedStringKeySizeMaxValue = new System.Windows.Forms.Label();
+            this.LocalizedStringKeyTextBox = new System.Windows.Forms.TextBox();
+            this.OtherPage = new System.Windows.Forms.TabPage();
             this.StatusStripLine = new System.Windows.Forms.StatusStrip();
             this.StatusBarLogLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusBarLogValue = new System.Windows.Forms.ToolStripStatusLabel();
@@ -112,6 +124,16 @@
             this.ExportZoneDialog = new System.Windows.Forms.SaveFileDialog();
             this.SaveFastfileDialog = new System.Windows.Forms.SaveFileDialog();
             this.OpenZoneDialog = new System.Windows.Forms.OpenFileDialog();
+            this.LocalizedStringValueGroup = new System.Windows.Forms.GroupBox();
+            this.LocalizedStringValueTextBox = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.LocalizedStringValueOffsetVal = new System.Windows.Forms.Label();
+            this.LocalizedStringValueOffsetLabel = new System.Windows.Forms.Label();
+            this.LocalizedStringValueSizeMaxVal = new System.Windows.Forms.Label();
+            this.LocalizedStringValueSizeDelimeter = new System.Windows.Forms.Label();
+            this.LocalizedStringValueSizeVal = new System.Windows.Forms.Label();
+            this.LocalizedStringValueSizeLabel = new System.Windows.Forms.Label();
+            this.LocalizedStringsWarningLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer1)).BeginInit();
             this.SplitContainer1.Panel1.SuspendLayout();
             this.SplitContainer1.Panel2.SuspendLayout();
@@ -127,11 +149,20 @@
             this.SplitContainer3.Panel1.SuspendLayout();
             this.SplitContainer3.SuspendLayout();
             this.Tabs.SuspendLayout();
-            this.TabPage1.SuspendLayout();
-            this.TabPage3.SuspendLayout();
+            this.RawfilesPage.SuspendLayout();
+            this.LocalizedStringsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalizedStringsSplitContainer)).BeginInit();
+            this.LocalizedStringsSplitContainer.Panel1.SuspendLayout();
+            this.LocalizedStringsSplitContainer.Panel2.SuspendLayout();
+            this.LocalizedStringsSplitContainer.SuspendLayout();
+            this.LocalizedStringKeyGroup.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.OtherPage.SuspendLayout();
             this.StatusStripLine.SuspendLayout();
             this.MenuStripLine.SuspendLayout();
             this.LogGroup.SuspendLayout();
+            this.LocalizedStringValueGroup.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // SplitContainer1
@@ -381,25 +412,107 @@
             // 
             // Tabs
             // 
-            this.Tabs.Controls.Add(this.TabPage1);
-            this.Tabs.Controls.Add(this.TabPage3);
+            this.Tabs.Controls.Add(this.RawfilesPage);
+            this.Tabs.Controls.Add(this.LocalizedStringsPage);
+            this.Tabs.Controls.Add(this.OtherPage);
             resources.ApplyResources(this.Tabs, "Tabs");
             this.Tabs.Name = "Tabs";
             this.Tabs.SelectedIndex = 0;
             // 
-            // TabPage1
+            // RawfilesPage
             // 
-            this.TabPage1.Controls.Add(this.SplitContainer1);
-            resources.ApplyResources(this.TabPage1, "TabPage1");
-            this.TabPage1.Name = "TabPage1";
-            this.TabPage1.UseVisualStyleBackColor = true;
+            this.RawfilesPage.Controls.Add(this.SplitContainer1);
+            resources.ApplyResources(this.RawfilesPage, "RawfilesPage");
+            this.RawfilesPage.Name = "RawfilesPage";
+            this.RawfilesPage.UseVisualStyleBackColor = true;
             // 
-            // TabPage3
+            // LocalizedStringsPage
             // 
-            this.TabPage3.Controls.Add(this.SplitContainer3);
-            resources.ApplyResources(this.TabPage3, "TabPage3");
-            this.TabPage3.Name = "TabPage3";
-            this.TabPage3.UseVisualStyleBackColor = true;
+            this.LocalizedStringsPage.Controls.Add(this.LocalizedStringsSplitContainer);
+            resources.ApplyResources(this.LocalizedStringsPage, "LocalizedStringsPage");
+            this.LocalizedStringsPage.Name = "LocalizedStringsPage";
+            this.LocalizedStringsPage.UseVisualStyleBackColor = true;
+            // 
+            // LocalizedStringsSplitContainer
+            // 
+            resources.ApplyResources(this.LocalizedStringsSplitContainer, "LocalizedStringsSplitContainer");
+            this.LocalizedStringsSplitContainer.Name = "LocalizedStringsSplitContainer";
+            // 
+            // LocalizedStringsSplitContainer.Panel1
+            // 
+            this.LocalizedStringsSplitContainer.Panel1.Controls.Add(this.LocalizedStringsTreeView);
+            // 
+            // LocalizedStringsSplitContainer.Panel2
+            // 
+            this.LocalizedStringsSplitContainer.Panel2.Controls.Add(this.LocalizedStringsWarningLabel);
+            this.LocalizedStringsSplitContainer.Panel2.Controls.Add(this.LocalizedStringKeyGroup);
+            // 
+            // LocalizedStringsTreeView
+            // 
+            resources.ApplyResources(this.LocalizedStringsTreeView, "LocalizedStringsTreeView");
+            this.LocalizedStringsTreeView.Name = "LocalizedStringsTreeView";
+            // 
+            // LocalizedStringKeyGroup
+            // 
+            resources.ApplyResources(this.LocalizedStringKeyGroup, "LocalizedStringKeyGroup");
+            this.LocalizedStringKeyGroup.Controls.Add(this.LocalizedStringValueGroup);
+            this.LocalizedStringKeyGroup.Controls.Add(this.LocalizedStringKeyTextBox);
+            this.LocalizedStringKeyGroup.Controls.Add(this.panel1);
+            this.LocalizedStringKeyGroup.Name = "LocalizedStringKeyGroup";
+            this.LocalizedStringKeyGroup.TabStop = false;
+            // 
+            // panel1
+            // 
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.LocalizedStringKeyOffsetValue);
+            this.panel1.Controls.Add(this.LocalizedStringKeyOffsetLabel);
+            this.panel1.Controls.Add(this.LocalizedStringKeySizeMaxValue);
+            this.panel1.Controls.Add(this.LocalizedStringKeySizeDelimeter);
+            this.panel1.Controls.Add(this.LocalizedStringKeySizeValue);
+            this.panel1.Controls.Add(this.LocalizedStringKeySizeLabel);
+            this.panel1.Name = "panel1";
+            // 
+            // LocalizedStringKeySizeLabel
+            // 
+            resources.ApplyResources(this.LocalizedStringKeySizeLabel, "LocalizedStringKeySizeLabel");
+            this.LocalizedStringKeySizeLabel.Name = "LocalizedStringKeySizeLabel";
+            // 
+            // LocalizedStringKeyOffsetValue
+            // 
+            resources.ApplyResources(this.LocalizedStringKeyOffsetValue, "LocalizedStringKeyOffsetValue");
+            this.LocalizedStringKeyOffsetValue.Name = "LocalizedStringKeyOffsetValue";
+            // 
+            // LocalizedStringKeySizeValue
+            // 
+            resources.ApplyResources(this.LocalizedStringKeySizeValue, "LocalizedStringKeySizeValue");
+            this.LocalizedStringKeySizeValue.Name = "LocalizedStringKeySizeValue";
+            // 
+            // LocalizedStringKeyOffsetLabel
+            // 
+            resources.ApplyResources(this.LocalizedStringKeyOffsetLabel, "LocalizedStringKeyOffsetLabel");
+            this.LocalizedStringKeyOffsetLabel.Name = "LocalizedStringKeyOffsetLabel";
+            // 
+            // LocalizedStringKeySizeDelimeter
+            // 
+            resources.ApplyResources(this.LocalizedStringKeySizeDelimeter, "LocalizedStringKeySizeDelimeter");
+            this.LocalizedStringKeySizeDelimeter.Name = "LocalizedStringKeySizeDelimeter";
+            // 
+            // LocalizedStringKeySizeMaxValue
+            // 
+            resources.ApplyResources(this.LocalizedStringKeySizeMaxValue, "LocalizedStringKeySizeMaxValue");
+            this.LocalizedStringKeySizeMaxValue.Name = "LocalizedStringKeySizeMaxValue";
+            // 
+            // LocalizedStringKeyTextBox
+            // 
+            resources.ApplyResources(this.LocalizedStringKeyTextBox, "LocalizedStringKeyTextBox");
+            this.LocalizedStringKeyTextBox.Name = "LocalizedStringKeyTextBox";
+            // 
+            // OtherPage
+            // 
+            this.OtherPage.Controls.Add(this.SplitContainer3);
+            resources.ApplyResources(this.OtherPage, "OtherPage");
+            this.OtherPage.Name = "OtherPage";
+            this.OtherPage.UseVisualStyleBackColor = true;
             // 
             // StatusStripLine
             // 
@@ -680,6 +793,65 @@
             this.OpenZoneDialog.DefaultExt = "ff";
             resources.ApplyResources(this.OpenZoneDialog, "OpenZoneDialog");
             // 
+            // LocalizedStringValueGroup
+            // 
+            resources.ApplyResources(this.LocalizedStringValueGroup, "LocalizedStringValueGroup");
+            this.LocalizedStringValueGroup.Controls.Add(this.LocalizedStringValueTextBox);
+            this.LocalizedStringValueGroup.Controls.Add(this.panel2);
+            this.LocalizedStringValueGroup.Name = "LocalizedStringValueGroup";
+            this.LocalizedStringValueGroup.TabStop = false;
+            // 
+            // LocalizedStringValueTextBox
+            // 
+            resources.ApplyResources(this.LocalizedStringValueTextBox, "LocalizedStringValueTextBox");
+            this.LocalizedStringValueTextBox.Name = "LocalizedStringValueTextBox";
+            // 
+            // panel2
+            // 
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Controls.Add(this.LocalizedStringValueOffsetVal);
+            this.panel2.Controls.Add(this.LocalizedStringValueOffsetLabel);
+            this.panel2.Controls.Add(this.LocalizedStringValueSizeMaxVal);
+            this.panel2.Controls.Add(this.LocalizedStringValueSizeDelimeter);
+            this.panel2.Controls.Add(this.LocalizedStringValueSizeVal);
+            this.panel2.Controls.Add(this.LocalizedStringValueSizeLabel);
+            this.panel2.Name = "panel2";
+            // 
+            // LocalizedStringValueOffsetVal
+            // 
+            resources.ApplyResources(this.LocalizedStringValueOffsetVal, "LocalizedStringValueOffsetVal");
+            this.LocalizedStringValueOffsetVal.Name = "LocalizedStringValueOffsetVal";
+            // 
+            // LocalizedStringValueOffsetLabel
+            // 
+            resources.ApplyResources(this.LocalizedStringValueOffsetLabel, "LocalizedStringValueOffsetLabel");
+            this.LocalizedStringValueOffsetLabel.Name = "LocalizedStringValueOffsetLabel";
+            // 
+            // LocalizedStringValueSizeMaxVal
+            // 
+            resources.ApplyResources(this.LocalizedStringValueSizeMaxVal, "LocalizedStringValueSizeMaxVal");
+            this.LocalizedStringValueSizeMaxVal.Name = "LocalizedStringValueSizeMaxVal";
+            // 
+            // LocalizedStringValueSizeDelimeter
+            // 
+            resources.ApplyResources(this.LocalizedStringValueSizeDelimeter, "LocalizedStringValueSizeDelimeter");
+            this.LocalizedStringValueSizeDelimeter.Name = "LocalizedStringValueSizeDelimeter";
+            // 
+            // LocalizedStringValueSizeVal
+            // 
+            resources.ApplyResources(this.LocalizedStringValueSizeVal, "LocalizedStringValueSizeVal");
+            this.LocalizedStringValueSizeVal.Name = "LocalizedStringValueSizeVal";
+            // 
+            // LocalizedStringValueSizeLabel
+            // 
+            resources.ApplyResources(this.LocalizedStringValueSizeLabel, "LocalizedStringValueSizeLabel");
+            this.LocalizedStringValueSizeLabel.Name = "LocalizedStringValueSizeLabel";
+            // 
+            // LocalizedStringsWarningLabel
+            // 
+            resources.ApplyResources(this.LocalizedStringsWarningLabel, "LocalizedStringsWarningLabel");
+            this.LocalizedStringsWarningLabel.Name = "LocalizedStringsWarningLabel";
+            // 
             // Form1
             // 
             this.AllowDrop = true;
@@ -719,14 +891,28 @@
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer3)).EndInit();
             this.SplitContainer3.ResumeLayout(false);
             this.Tabs.ResumeLayout(false);
-            this.TabPage1.ResumeLayout(false);
-            this.TabPage3.ResumeLayout(false);
+            this.RawfilesPage.ResumeLayout(false);
+            this.LocalizedStringsPage.ResumeLayout(false);
+            this.LocalizedStringsSplitContainer.Panel1.ResumeLayout(false);
+            this.LocalizedStringsSplitContainer.Panel2.ResumeLayout(false);
+            this.LocalizedStringsSplitContainer.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LocalizedStringsSplitContainer)).EndInit();
+            this.LocalizedStringsSplitContainer.ResumeLayout(false);
+            this.LocalizedStringKeyGroup.ResumeLayout(false);
+            this.LocalizedStringKeyGroup.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.OtherPage.ResumeLayout(false);
             this.StatusStripLine.ResumeLayout(false);
             this.StatusStripLine.PerformLayout();
             this.MenuStripLine.ResumeLayout(false);
             this.MenuStripLine.PerformLayout();
             this.LogGroup.ResumeLayout(false);
             this.LogGroup.PerformLayout();
+            this.LocalizedStringValueGroup.ResumeLayout(false);
+            this.LocalizedStringValueGroup.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -734,11 +920,11 @@
 
         #endregion
         private System.Windows.Forms.TabControl Tabs;
-        private System.Windows.Forms.TabPage TabPage1;
+        private System.Windows.Forms.TabPage RawfilesPage;
         private System.Windows.Forms.SplitContainer SplitContainer1;
         private System.Windows.Forms.TreeView RawFiles;
         private System.Windows.Forms.TextBox CodeBox;
-        private System.Windows.Forms.TabPage TabPage3;
+        private System.Windows.Forms.TabPage OtherPage;
         private System.Windows.Forms.SplitContainer SplitContainer3;
         private System.Windows.Forms.TreeView MiscData;
         private System.Windows.Forms.ToolStripStatusLabel ToolStripStatusLabel5;
@@ -812,6 +998,28 @@
         private System.Windows.Forms.ToolStripMenuItem SaveAsFastfileToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog SaveFastfileDialog;
         private System.Windows.Forms.OpenFileDialog OpenZoneDialog;
+        private System.Windows.Forms.TabPage LocalizedStringsPage;
+        private System.Windows.Forms.SplitContainer LocalizedStringsSplitContainer;
+        private System.Windows.Forms.TreeView LocalizedStringsTreeView;
+        private System.Windows.Forms.GroupBox LocalizedStringKeyGroup;
+        private System.Windows.Forms.Label LocalizedStringKeyOffsetValue;
+        private System.Windows.Forms.Label LocalizedStringKeyOffsetLabel;
+        private System.Windows.Forms.Label LocalizedStringKeySizeMaxValue;
+        private System.Windows.Forms.Label LocalizedStringKeySizeDelimeter;
+        private System.Windows.Forms.Label LocalizedStringKeySizeValue;
+        private System.Windows.Forms.Label LocalizedStringKeySizeLabel;
+        private System.Windows.Forms.TextBox LocalizedStringKeyTextBox;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.GroupBox LocalizedStringValueGroup;
+        private System.Windows.Forms.TextBox LocalizedStringValueTextBox;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label LocalizedStringValueOffsetVal;
+        private System.Windows.Forms.Label LocalizedStringValueOffsetLabel;
+        private System.Windows.Forms.Label LocalizedStringValueSizeMaxVal;
+        private System.Windows.Forms.Label LocalizedStringValueSizeDelimeter;
+        private System.Windows.Forms.Label LocalizedStringValueSizeVal;
+        private System.Windows.Forms.Label LocalizedStringValueSizeLabel;
+        private System.Windows.Forms.Label LocalizedStringsWarningLabel;
     }
 }
 

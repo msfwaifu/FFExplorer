@@ -62,6 +62,8 @@ namespace FFViewer_cs
             ffBackend = new FFBackend();
             ffBackend.OnProgressChanged += SetProgressBarPercentage;
             ffBackend.OnRawfileDiscovered += FFBackend_OnRawfileDiscovered;
+            ffBackend.OnLocalizedStringPrefixRequest += FFBackend_OnLocalizedStringPrefixRequest;
+            ffBackend.OnLocalizedStringPrefixesUpdated += FFBackend_OnLocalizedStringPrefixesUpdated;
 
             dlgAbout = new About();
             dlgAbout.Owner = this;
@@ -85,6 +87,16 @@ namespace FFViewer_cs
             ShowSearchPanel(SearchBoxShowMode.HIDE);
             SetWindowFileName("");
             LogGroup.Visible = options.ShowLog;
+        }
+
+        private void FFBackend_OnLocalizedStringPrefixesUpdated(string[] prefixes)
+        {
+            options.LocalizedStringPrefixes = prefixes;
+        }
+
+        private string[] FFBackend_OnLocalizedStringPrefixRequest()
+        {
+            return options.LocalizedStringPrefixes;
         }
 
         private void FFBackend_OnRawfileDiscovered(int index, string name, string originalName, int originalSize)
@@ -409,18 +421,12 @@ namespace FFViewer_cs
 
         private void UpdateSnippetsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            DirectoryInfo allFiles = new DirectoryInfo(currentAppDirectory + "\\snippets");
+            foreach (FileInfo gsc in allFiles.GetFiles("*.gsc"))
             {
-                DirectoryInfo allFiles = new DirectoryInfo(currentAppDirectory + "\\snippets");
-                foreach (FileInfo gsc in allFiles.GetFiles("*.gsc"))
-                {
-                    Snippets.DropDownItems.Add(gsc.Name, null, new EventHandler(onClickCustomSnippets));
-                }
+                Snippets.DropDownItems.Add(gsc.Name, null, new EventHandler(onClickCustomSnippets));
             }
-            catch (Exception ex)
-            {
-                HandleException(ex);
-            }
+
         }
 
         private void CutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -678,7 +684,6 @@ namespace FFViewer_cs
         {
             MessageBox.Show(ex.ToString(), "Exception caught", MessageBoxButtons.OK);
             Application.Exit();
-            //TODO: handle error and apply finally blocks to it instead of exiting.
         }
 
         /// <summary>

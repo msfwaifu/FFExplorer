@@ -16,24 +16,20 @@ using Ionic.Zlib;
 using System;
 using System.Text;
 using System.IO;
-using System.Threading.Tasks;
 
 namespace FFViewer_cs
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="index"></param>
-    /// <param name="name"></param>
-    /// <param name="originalName"></param>
-    /// <param name="originalSize"></param>
-    public delegate void RawFileDiscovered_d(int index, string name, string originalName, int originalSize);
 
+    delegate void RawFileDiscovered_d(int index, string name, string originalName, int originalSize);
+    delegate string[] OnLocalizedStringPrefixesRequest_d();
+    delegate void OnLocalizedStringPrefixesUpdated_d(string[] prefixes);
 
     class FFBackend
     {
         public event SetProgressBarPercentage_d OnProgressChanged;
         public event RawFileDiscovered_d OnRawfileDiscovered;
+        public event OnLocalizedStringPrefixesRequest_d OnLocalizedStringPrefixRequest;
+        public event OnLocalizedStringPrefixesUpdated_d OnLocalizedStringPrefixesUpdated;
 
         FFData ffData;
         ZoneData zoneData;
@@ -66,9 +62,10 @@ namespace FFViewer_cs
 
             OnProgressChanged?.Invoke(100);
             WriteFastFile();
+
+            OnProgressChanged?.Invoke(0);
         }
 
-        //TODO: I dont like its 'new' - cleanup + parse again each time instead of 'new'
         private FFData GetFFData(string filePath)
         {
             FFData result = new FFData(filePath);
@@ -76,7 +73,6 @@ namespace FFViewer_cs
             return result;
         }
 
-        //TODO: I dont like its 'new' - cleanup + parse again each time instead of 'new'
         private ZoneData GetZoneData()
         {
             ZoneData result = new ZoneData(ffData.CompressedZone);
@@ -85,11 +81,13 @@ namespace FFViewer_cs
             return result;
         }
 
-        //TODO: I dont like its 'new' - cleanup + parse again each time instead of 'new'
         private AssetData GetAssetData()
         {
             AssetData result = new AssetData(zoneData);
+            //TODO: check?!
+            result.LocalizedStringPrefixes = OnLocalizedStringPrefixRequest?.Invoke();
             result.AddKnownAssets();
+            OnLocalizedStringPrefixesUpdated?.Invoke(result.LocalizedStringPrefixes);
             return result;
         }
 

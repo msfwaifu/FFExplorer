@@ -1,35 +1,40 @@
 ﻿namespace FFViewer_cs
 {
     /// <summary>
-    /// Not in use since almost impossible to find correct offset.
+    /// Not in use.
     /// </summary>
     class LocalizedStringData
     {
-        public LocalizedStringData(string key, string value, int offset)
+        public LocalizedStringData(int index, string prefix, string key, string value, int startOfKey, int startOfValue)
         {
-            stringKey = key;
-            stringKeyOriginal = key;
-            stringValue = value;
-            stringOffset = offset;
+            this.index = index;
+            this.prefix = prefix;
+            this.key = key;
+            this.value = value;
+            this.keyOffset = startOfKey;
+            this.valueOffset = startOfValue;
+
+            keyOriginal = key;
+            valueOriginal = value;
+            keyMaxLength = key.Length;
+            valueMaxLength = value.Length;
+            
+            //TODO: check of key\value length may be any
         }
 
-        public int Offset
+        public string Prefix
         {
             get
             {
-                return stringOffset;
+                return prefix;
             }
         }
 
-        public string Value
+        public int Index
         {
             get
             {
-                return stringValue;
-            }
-            set
-            {
-                stringValue = value;
+                return index;
             }
         }
 
@@ -37,25 +42,84 @@
         {
             get
             {
-                return stringKey;
+                return key;
             }
             set
             {
-                stringKey = value;
+                key = value;
+                prefix = key.Substring(0, key.IndexOf('_'));
             }
         }
-        
+
         public string KeyOriginal
         {
             get
             {
-                return stringKeyOriginal;
+                return keyOriginal;
             }
         }
 
-        string stringKey;
-        string stringKeyOriginal;
-        string stringValue;
-        int stringOffset;
+        public string Value
+        {
+            get
+            {
+                return value;
+            }
+            set
+            {
+                this.value = value;
+            }
+        }
+
+        public string ValueOriginal
+        {
+            get
+            {
+                return valueOriginal;
+            }
+        }
+
+        public int KeyOffset
+        {
+            get
+            {
+                return keyOffset;
+            }
+        }
+
+        public int ValueOffset
+        {
+            get
+            {
+                return valueOffset;
+            }
+        }
+
+        public int ValueMaxLength
+        {
+            get
+            {
+                return valueMaxLength;
+            }
+        }
+
+        public int KeyMaxLength
+        {
+            get
+            {
+                return keyMaxLength;
+            }
+        }
+
+        int index;
+        string prefix;
+        string key;
+        string keyOriginal;
+        string value;
+        string valueOriginal;
+        int keyOffset;
+        int valueOffset;
+        int keyMaxLength;
+        int valueMaxLength;
     }
 }

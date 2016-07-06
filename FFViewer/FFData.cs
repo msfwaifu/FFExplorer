@@ -18,7 +18,7 @@ namespace FFViewer_cs
 
         public FFData(string filePath)
         {
-            this.filePath = filePath;  
+            this.filePath = filePath;
         }
 
         // Detects fastfile type and calls appropriate header parser.
