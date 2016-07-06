@@ -42,7 +42,6 @@ namespace FFViewer_cs
         Logger logger;
  
         About dlgAbout;
-        //Options dlgOptions;
 
         RawFileData currentRawFile;
 
