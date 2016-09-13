@@ -41,10 +41,13 @@
             this.LoggerLogDaysLimitValue = new System.Windows.Forms.NumericUpDown();
             this.LoggerLogDaysLimitLabel = new System.Windows.Forms.Label();
             this.ResetButton = new System.Windows.Forms.Button();
+            this.LocalizedStringPrefixesGroup = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.MainGroup.SuspendLayout();
             this.LoggerGroup.SuspendLayout();
             this.LoggerLogDaysLimitPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoggerLogDaysLimitValue)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // MainGroup
@@ -140,6 +143,20 @@
             this.ResetButton.UseVisualStyleBackColor = true;
             this.ResetButton.Click += new System.EventHandler(this.ResetButton_Click);
             // 
+            // LocalizedStringPrefixesGroup
+            // 
+            resources.ApplyResources(this.LocalizedStringPrefixesGroup, "LocalizedStringPrefixesGroup");
+            this.LocalizedStringPrefixesGroup.Name = "LocalizedStringPrefixesGroup";
+            this.LocalizedStringPrefixesGroup.TabStop = false;
+            // 
+            // panel1
+            // 
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.LoggerGroup);
+            this.panel1.Controls.Add(this.MainGroup);
+            this.panel1.Controls.Add(this.LocalizedStringPrefixesGroup);
+            this.panel1.Name = "panel1";
+            // 
             // Options
             // 
             resources.ApplyResources(this, "$this");
@@ -148,8 +165,7 @@
             this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.CnclButton);
-            this.Controls.Add(this.LoggerGroup);
-            this.Controls.Add(this.MainGroup);
+            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -165,6 +181,8 @@
             this.LoggerLogDaysLimitPanel.ResumeLayout(false);
             this.LoggerLogDaysLimitPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LoggerLogDaysLimitValue)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,5 +202,7 @@
         private System.Windows.Forms.NumericUpDown LoggerLogDaysLimitValue;
         private System.Windows.Forms.CheckBox MainShowLog;
         private System.Windows.Forms.Button ResetButton;
+        private System.Windows.Forms.GroupBox LocalizedStringPrefixesGroup;
+        private System.Windows.Forms.Panel panel1;
     }
 }

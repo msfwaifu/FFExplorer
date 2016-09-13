@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 
-//TODO: localized assets find
-//TODO: localized assets prefix table
+//TODO: localized strings export:
+//      CSV
+//      .str
 //TODO: sound seek and extract
 
 namespace FFViewer_cs

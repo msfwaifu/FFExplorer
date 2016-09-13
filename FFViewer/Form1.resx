@@ -117,15 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SplitContainer1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="SplitContainer1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
+  <data name="RawfilesWindow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 26</value>
   </data>
-  <data name="SplitContainer1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="RawfilesWindow.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <metadata name="FileListRightClick.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -171,7 +168,7 @@
     <value>0, 0, 0, 0</value>
   </data>
   <data name="RawFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>195, 159</value>
+    <value>120, 307</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="RawFiles.TabIndex" type="System.Int32, mscorlib">
@@ -184,21 +181,21 @@
     <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;RawFiles.Parent" xml:space="preserve">
-    <value>SplitContainer1.Panel1</value>
+    <value>RawfilesWindow.Panel1</value>
   </data>
   <data name="&gt;&gt;RawFiles.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;SplitContainer1.Panel1.Name" xml:space="preserve">
-    <value>SplitContainer1.Panel1</value>
+  <data name="&gt;&gt;RawfilesWindow.Panel1.Name" xml:space="preserve">
+    <value>RawfilesWindow.Panel1</value>
   </data>
-  <data name="&gt;&gt;SplitContainer1.Panel1.Type" xml:space="preserve">
+  <data name="&gt;&gt;RawfilesWindow.Panel1.Type" xml:space="preserve">
     <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;SplitContainer1.Panel1.Parent" xml:space="preserve">
-    <value>SplitContainer1</value>
+  <data name="&gt;&gt;RawfilesWindow.Panel1.Parent" xml:space="preserve">
+    <value>RawfilesWindow</value>
   </data>
-  <data name="&gt;&gt;SplitContainer1.Panel1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;RawfilesWindow.Panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="CodeBoxRightClick.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -298,7 +295,7 @@
     <value>Both</value>
   </data>
   <data name="CodeBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 109</value>
+    <value>199, 257</value>
   </data>
   <data name="CodeBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -313,7 +310,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;CodeBox.Parent" xml:space="preserve">
-    <value>SplitContainer1.Panel2</value>
+    <value>RawfilesWindow.Panel2</value>
   </data>
   <data name="&gt;&gt;CodeBox.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -580,10 +577,13 @@
     <value>0, 25</value>
   </data>
   <data name="RawfileInfoPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 25</value>
+    <value>199, 25</value>
   </data>
   <data name="RawfileInfoPanel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
+  </data>
+  <data name="RawfileInfoPanel.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;RawfileInfoPanel.Name" xml:space="preserve">
     <value>RawfileInfoPanel</value>
@@ -592,7 +592,7 @@
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;RawfileInfoPanel.Parent" xml:space="preserve">
-    <value>SplitContainer1.Panel2</value>
+    <value>RawfilesWindow.Panel2</value>
   </data>
   <data name="&gt;&gt;RawfileInfoPanel.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -607,7 +607,7 @@
     <value>30, 0</value>
   </data>
   <data name="FindTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>185, 25</value>
+    <value>64, 25</value>
   </data>
   <data name="FindTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -679,7 +679,7 @@
     <value>0, 25</value>
   </data>
   <data name="FindTextPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 25</value>
+    <value>94, 25</value>
   </data>
   <data name="FindTextPanel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -778,7 +778,7 @@
     <value>Right</value>
   </data>
   <data name="GoToLinePanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>215, 0</value>
+    <value>94, 0</value>
   </data>
   <data name="GoToLinePanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 25</value>
@@ -802,7 +802,7 @@
     <value>Bottom</value>
   </data>
   <data name="SearchBoxAndGoToPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 134</value>
+    <value>0, 282</value>
   </data>
   <data name="SearchBoxAndGoToPanel.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 25</value>
@@ -811,7 +811,7 @@
     <value>0, 25</value>
   </data>
   <data name="SearchBoxAndGoToPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 25</value>
+    <value>199, 25</value>
   </data>
   <data name="SearchBoxAndGoToPanel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -823,201 +823,90 @@
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;SearchBoxAndGoToPanel.Parent" xml:space="preserve">
-    <value>SplitContainer1.Panel2</value>
+    <value>RawfilesWindow.Panel2</value>
   </data>
   <data name="&gt;&gt;SearchBoxAndGoToPanel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;SplitContainer1.Panel2.Name" xml:space="preserve">
-    <value>SplitContainer1.Panel2</value>
+  <data name="&gt;&gt;RawfilesWindow.Panel2.Name" xml:space="preserve">
+    <value>RawfilesWindow.Panel2</value>
   </data>
-  <data name="&gt;&gt;SplitContainer1.Panel2.Type" xml:space="preserve">
+  <data name="&gt;&gt;RawfilesWindow.Panel2.Type" xml:space="preserve">
     <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;SplitContainer1.Panel2.Parent" xml:space="preserve">
-    <value>SplitContainer1</value>
+  <data name="&gt;&gt;RawfilesWindow.Panel2.Parent" xml:space="preserve">
+    <value>RawfilesWindow</value>
   </data>
-  <data name="&gt;&gt;SplitContainer1.Panel2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;RawfilesWindow.Panel2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="SplitContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>516, 159</value>
+  <data name="RawfilesWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>320, 307</value>
   </data>
-  <data name="SplitContainer1.SplitterDistance" type="System.Int32, mscorlib">
-    <value>195</value>
+  <data name="RawfilesWindow.SplitterDistance" type="System.Int32, mscorlib">
+    <value>120</value>
   </data>
-  <data name="SplitContainer1.SplitterWidth" type="System.Int32, mscorlib">
+  <data name="RawfilesWindow.SplitterWidth" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="SplitContainer1.TabIndex" type="System.Int32, mscorlib">
+  <data name="RawfilesWindow.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;SplitContainer1.Name" xml:space="preserve">
-    <value>SplitContainer1</value>
+  <data name="&gt;&gt;RawfilesWindow.Name" xml:space="preserve">
+    <value>RawfilesWindow</value>
   </data>
-  <data name="&gt;&gt;SplitContainer1.Type" xml:space="preserve">
+  <data name="&gt;&gt;RawfilesWindow.Type" xml:space="preserve">
     <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;SplitContainer1.Parent" xml:space="preserve">
-    <value>RawfilesPage</value>
+  <data name="&gt;&gt;RawfilesWindow.Parent" xml:space="preserve">
+    <value>InterfaceBody</value>
   </data>
-  <data name="&gt;&gt;SplitContainer1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;RawfilesWindow.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="SplitContainer3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
+  <data name="LocalizedStringsWindow.Location" type="System.Drawing.Point, System.Drawing">
+    <value>354, 26</value>
   </data>
-  <data name="SplitContainer3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="SplitContainer3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="LocalizedStringsWindow.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
-  <data name="MiscData.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="Localizedstrings.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="MiscData.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="Localizedstrings.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="MiscData.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="Localizedstrings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
-  <data name="MiscData.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 159</value>
+  <data name="Localizedstrings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 299</value>
   </data>
-  <data name="MiscData.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="Localizedstrings.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;MiscData.Name" xml:space="preserve">
-    <value>MiscData</value>
+  <data name="&gt;&gt;Localizedstrings.Name" xml:space="preserve">
+    <value>Localizedstrings</value>
   </data>
-  <data name="&gt;&gt;MiscData.Type" xml:space="preserve">
+  <data name="&gt;&gt;Localizedstrings.Type" xml:space="preserve">
     <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;MiscData.Parent" xml:space="preserve">
-    <value>SplitContainer3.Panel1</value>
+  <data name="&gt;&gt;Localizedstrings.Parent" xml:space="preserve">
+    <value>LocalizedStringsWindow.Panel1</value>
   </data>
-  <data name="&gt;&gt;MiscData.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;Localizedstrings.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;SplitContainer3.Panel1.Name" xml:space="preserve">
-    <value>SplitContainer3.Panel1</value>
+  <data name="&gt;&gt;LocalizedStringsWindow.Panel1.Name" xml:space="preserve">
+    <value>LocalizedStringsWindow.Panel1</value>
   </data>
-  <data name="&gt;&gt;SplitContainer3.Panel1.Type" xml:space="preserve">
+  <data name="&gt;&gt;LocalizedStringsWindow.Panel1.Type" xml:space="preserve">
     <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;SplitContainer3.Panel1.Parent" xml:space="preserve">
-    <value>SplitContainer3</value>
+  <data name="&gt;&gt;LocalizedStringsWindow.Panel1.Parent" xml:space="preserve">
+    <value>LocalizedStringsWindow</value>
   </data>
-  <data name="&gt;&gt;SplitContainer3.Panel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer3.Panel2.Name" xml:space="preserve">
-    <value>SplitContainer3.Panel2</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer3.Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer3.Panel2.Parent" xml:space="preserve">
-    <value>SplitContainer3</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer3.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="SplitContainer3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>516, 159</value>
-  </data>
-  <data name="SplitContainer3.SplitterDistance" type="System.Int32, mscorlib">
-    <value>123</value>
-  </data>
-  <data name="SplitContainer3.SplitterWidth" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="SplitContainer3.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer3.Name" xml:space="preserve">
-    <value>SplitContainer3</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer3.Parent" xml:space="preserve">
-    <value>OtherPage</value>
-  </data>
-  <data name="&gt;&gt;SplitContainer3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="RawfilesPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="RawfilesPage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="RawfilesPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>516, 159</value>
-  </data>
-  <data name="RawfilesPage.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="RawfilesPage.Text" xml:space="preserve">
-    <value>Rawfiles</value>
-  </data>
-  <data name="&gt;&gt;RawfilesPage.Name" xml:space="preserve">
-    <value>RawfilesPage</value>
-  </data>
-  <data name="&gt;&gt;RawfilesPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;RawfilesPage.Parent" xml:space="preserve">
-    <value>Tabs</value>
-  </data>
-  <data name="&gt;&gt;RawfilesPage.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="LocalizedStringsSplitContainer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="LocalizedStringsSplitContainer.IsSplitterFixed" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="LocalizedStringsSplitContainer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="LocalizedStringsTreeView.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="LocalizedStringsTreeView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="LocalizedStringsTreeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>170, 153</value>
-  </data>
-  <data name="LocalizedStringsTreeView.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;LocalizedStringsTreeView.Name" xml:space="preserve">
-    <value>LocalizedStringsTreeView</value>
-  </data>
-  <data name="&gt;&gt;LocalizedStringsTreeView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LocalizedStringsTreeView.Parent" xml:space="preserve">
-    <value>LocalizedStringsSplitContainer.Panel1</value>
-  </data>
-  <data name="&gt;&gt;LocalizedStringsTreeView.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;LocalizedStringsSplitContainer.Panel1.Name" xml:space="preserve">
-    <value>LocalizedStringsSplitContainer.Panel1</value>
-  </data>
-  <data name="&gt;&gt;LocalizedStringsSplitContainer.Panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LocalizedStringsSplitContainer.Panel1.Parent" xml:space="preserve">
-    <value>LocalizedStringsSplitContainer</value>
-  </data>
-  <data name="&gt;&gt;LocalizedStringsSplitContainer.Panel1.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;LocalizedStringsWindow.Panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="LocalizedStringsWarningLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -1030,13 +919,13 @@
     <value>0, 104</value>
   </data>
   <data name="LocalizedStringsWarningLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 49</value>
+    <value>180, 55</value>
   </data>
   <data name="LocalizedStringsWarningLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
   <data name="LocalizedStringsWarningLabel.Text" xml:space="preserve">
-    <value>Attention! The list may be empty or incomplete since only rawfiles was scanned. If there is no localizedstring usage in any rawfiles then list will be empty.
+    <value>Attention! The list may be empty, incomplete or incorrect since only rawfiles was scanned. If there is no localizedstring usage in any rawfiles then list will be empty.
 </value>
   </data>
   <data name="&gt;&gt;LocalizedStringsWarningLabel.Name" xml:space="preserve">
@@ -1046,13 +935,10 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;LocalizedStringsWarningLabel.Parent" xml:space="preserve">
-    <value>LocalizedStringsSplitContainer.Panel2</value>
+    <value>LocalizedStringsWindow.Panel2</value>
   </data>
   <data name="&gt;&gt;LocalizedStringsWarningLabel.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="LocalizedStringKeyGroup.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
   <data name="LocalizedStringValueGroup.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1064,7 +950,7 @@
     <value>3, 29</value>
   </data>
   <data name="LocalizedStringValueTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>324, 20</value>
+    <value>174, 20</value>
   </data>
   <data name="LocalizedStringValueTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1313,7 +1199,7 @@
     <value>0, 13</value>
   </data>
   <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>324, 13</value>
+    <value>174, 13</value>
   </data>
   <data name="panel2.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -1334,16 +1220,19 @@
     <value>Top</value>
   </data>
   <data name="LocalizedStringValueGroup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 49</value>
+    <value>0, 52</value>
   </data>
   <data name="LocalizedStringValueGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 52</value>
+    <value>180, 52</value>
   </data>
   <data name="LocalizedStringValueGroup.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
   <data name="LocalizedStringValueGroup.Text" xml:space="preserve">
     <value>Value</value>
+  </data>
+  <data name="LocalizedStringValueGroup.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;LocalizedStringValueGroup.Name" xml:space="preserve">
     <value>LocalizedStringValueGroup</value>
@@ -1352,10 +1241,13 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;LocalizedStringValueGroup.Parent" xml:space="preserve">
-    <value>LocalizedStringKeyGroup</value>
+    <value>LocalizedStringsWindow.Panel2</value>
   </data>
   <data name="&gt;&gt;LocalizedStringValueGroup.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
+  </data>
+  <data name="LocalizedStringKeyGroup.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="LocalizedStringKeyTextBox.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -1364,7 +1256,7 @@
     <value>3, 29</value>
   </data>
   <data name="LocalizedStringKeyTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 20</value>
+    <value>174, 20</value>
   </data>
   <data name="LocalizedStringKeyTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1379,7 +1271,7 @@
     <value>LocalizedStringKeyGroup</value>
   </data>
   <data name="&gt;&gt;LocalizedStringKeyTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="panel1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1610,7 +1502,7 @@
     <value>0, 13</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>330, 13</value>
+    <value>174, 13</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -1625,7 +1517,7 @@
     <value>LocalizedStringKeyGroup</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="LocalizedStringKeyGroup.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -1634,13 +1526,16 @@
     <value>0, 0</value>
   </data>
   <data name="LocalizedStringKeyGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 104</value>
+    <value>180, 52</value>
   </data>
   <data name="LocalizedStringKeyGroup.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="LocalizedStringKeyGroup.Text" xml:space="preserve">
     <value>Key</value>
+  </data>
+  <data name="LocalizedStringKeyGroup.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;LocalizedStringKeyGroup.Name" xml:space="preserve">
     <value>LocalizedStringKeyGroup</value>
@@ -1649,124 +1544,43 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;LocalizedStringKeyGroup.Parent" xml:space="preserve">
-    <value>LocalizedStringsSplitContainer.Panel2</value>
+    <value>LocalizedStringsWindow.Panel2</value>
   </data>
   <data name="&gt;&gt;LocalizedStringKeyGroup.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
-  <data name="&gt;&gt;LocalizedStringsSplitContainer.Panel2.Name" xml:space="preserve">
-    <value>LocalizedStringsSplitContainer.Panel2</value>
+  <data name="&gt;&gt;LocalizedStringsWindow.Panel2.Name" xml:space="preserve">
+    <value>LocalizedStringsWindow.Panel2</value>
   </data>
-  <data name="&gt;&gt;LocalizedStringsSplitContainer.Panel2.Type" xml:space="preserve">
+  <data name="&gt;&gt;LocalizedStringsWindow.Panel2.Type" xml:space="preserve">
     <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;LocalizedStringsSplitContainer.Panel2.Parent" xml:space="preserve">
-    <value>LocalizedStringsSplitContainer</value>
+  <data name="&gt;&gt;LocalizedStringsWindow.Panel2.Parent" xml:space="preserve">
+    <value>LocalizedStringsWindow</value>
   </data>
-  <data name="&gt;&gt;LocalizedStringsSplitContainer.Panel2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;LocalizedStringsWindow.Panel2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="LocalizedStringsSplitContainer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>510, 153</value>
+  <data name="LocalizedStringsWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>275, 299</value>
   </data>
-  <data name="LocalizedStringsSplitContainer.SplitterDistance" type="System.Int32, mscorlib">
-    <value>170</value>
+  <data name="LocalizedStringsWindow.SplitterDistance" type="System.Int32, mscorlib">
+    <value>91</value>
   </data>
-  <data name="LocalizedStringsSplitContainer.TabIndex" type="System.Int32, mscorlib">
+  <data name="LocalizedStringsWindow.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;LocalizedStringsSplitContainer.Name" xml:space="preserve">
-    <value>LocalizedStringsSplitContainer</value>
+  <data name="&gt;&gt;LocalizedStringsWindow.Name" xml:space="preserve">
+    <value>LocalizedStringsWindow</value>
   </data>
-  <data name="&gt;&gt;LocalizedStringsSplitContainer.Type" xml:space="preserve">
+  <data name="&gt;&gt;LocalizedStringsWindow.Type" xml:space="preserve">
     <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;LocalizedStringsSplitContainer.Parent" xml:space="preserve">
-    <value>LocalizedStringsPage</value>
+  <data name="&gt;&gt;LocalizedStringsWindow.Parent" xml:space="preserve">
+    <value>InterfaceBody</value>
   </data>
-  <data name="&gt;&gt;LocalizedStringsSplitContainer.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="LocalizedStringsPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="LocalizedStringsPage.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="LocalizedStringsPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>516, 159</value>
-  </data>
-  <data name="LocalizedStringsPage.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="LocalizedStringsPage.Text" xml:space="preserve">
-    <value>Localized strings</value>
-  </data>
-  <data name="&gt;&gt;LocalizedStringsPage.Name" xml:space="preserve">
-    <value>LocalizedStringsPage</value>
-  </data>
-  <data name="&gt;&gt;LocalizedStringsPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LocalizedStringsPage.Parent" xml:space="preserve">
-    <value>Tabs</value>
-  </data>
-  <data name="&gt;&gt;LocalizedStringsPage.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;LocalizedStringsWindow.ZOrder" xml:space="preserve">
     <value>1</value>
-  </data>
-  <data name="OtherPage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
-  </data>
-  <data name="OtherPage.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="OtherPage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>516, 159</value>
-  </data>
-  <data name="OtherPage.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="OtherPage.Text" xml:space="preserve">
-    <value>Other</value>
-  </data>
-  <data name="&gt;&gt;OtherPage.Name" xml:space="preserve">
-    <value>OtherPage</value>
-  </data>
-  <data name="&gt;&gt;OtherPage.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;OtherPage.Parent" xml:space="preserve">
-    <value>Tabs</value>
-  </data>
-  <data name="&gt;&gt;OtherPage.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="Tabs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="Tabs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 24</value>
-  </data>
-  <data name="Tabs.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="Tabs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>524, 185</value>
-  </data>
-  <data name="Tabs.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;Tabs.Name" xml:space="preserve">
-    <value>Tabs</value>
-  </data>
-  <data name="&gt;&gt;Tabs.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Tabs.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;Tabs.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <metadata name="StatusStripLine.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 48</value>
@@ -1781,7 +1595,7 @@
     <value>0, 17</value>
   </data>
   <data name="ToolStripStatusLabel5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>479, 17</value>
+    <value>617, 17</value>
   </data>
   <data name="Wait.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 16</value>
@@ -1790,10 +1604,10 @@
     <value>False</value>
   </data>
   <data name="StatusStripLine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 309</value>
+    <value>0, 510</value>
   </data>
   <data name="StatusStripLine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>524, 22</value>
+    <value>662, 22</value>
   </data>
   <data name="StatusStripLine.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1921,9 +1735,6 @@
   <data name="ZlibDecompressToolStripMenuItem.Text" xml:space="preserve">
     <value>Inflate</value>
   </data>
-  <data name="ZlibStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="ZlibStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
@@ -2015,7 +1826,7 @@
     <value>374, 24</value>
   </data>
   <data name="MenuStripLine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>524, 24</value>
+    <value>662, 24</value>
   </data>
   <data name="MenuStripLine.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -2066,10 +1877,10 @@
     <value>True</value>
   </data>
   <data name="LogTextBox.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
-    <value>Horizontal</value>
+    <value>Vertical</value>
   </data>
   <data name="LogTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>518, 81</value>
+    <value>656, 81</value>
   </data>
   <data name="LogTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -2090,13 +1901,13 @@
     <value>Bottom</value>
   </data>
   <data name="LogGroup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 209</value>
+    <value>0, 410</value>
   </data>
   <data name="LogGroup.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>0, 100</value>
   </data>
   <data name="LogGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>524, 100</value>
+    <value>662, 100</value>
   </data>
   <data name="LogGroup.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -2143,17 +1954,221 @@
   <data name="OpenZoneDialog.Title" xml:space="preserve">
     <value>Open Zone</value>
   </data>
+  <metadata name="SaveDecompressedZlibFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>970, 45</value>
+  </metadata>
+  <data name="SaveDecompressedZlibFileDialog.Filter" xml:space="preserve">
+    <value>Any file(*.*)|*.*</value>
+  </data>
+  <data name="SaveDecompressedZlibFileDialog.Title" xml:space="preserve">
+    <value>Save as ZLib archive</value>
+  </data>
+  <metadata name="OpenCompressedZlibFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>965, 12</value>
+  </metadata>
+  <data name="OpenCompressedZlibFileDialog.Filter" xml:space="preserve">
+    <value>Any file(*.*)|*.*</value>
+  </data>
+  <data name="OpenCompressedZlibFileDialog.Title" xml:space="preserve">
+    <value>Select ZLib archive</value>
+  </data>
+  <metadata name="OpenDecompressedZlibFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>970, 84</value>
+  </metadata>
+  <data name="OpenDecompressedZlibFileDialog.Filter" xml:space="preserve">
+    <value>Any file(*.*)|*.*</value>
+  </data>
+  <data name="OpenDecompressedZlibFileDialog.Title" xml:space="preserve">
+    <value>Select file</value>
+  </data>
+  <metadata name="SaveCompressedZlibFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>969, 110</value>
+  </metadata>
+  <data name="SaveCompressedZlibFileDialog.Filter" xml:space="preserve">
+    <value>Any file(*.*)|*.*</value>
+  </data>
+  <data name="SaveCompressedZlibFileDialog.Title" xml:space="preserve">
+    <value>Save as ZLib archive</value>
+  </data>
+  <data name="OtherControlButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="OtherControlButton.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="OtherControlButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="OtherControlButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="OtherControlButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="OtherControlButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>152, 0</value>
+  </data>
+  <data name="OtherControlButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>43, 22</value>
+  </data>
+  <data name="OtherControlButton.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="OtherControlButton.Text" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="&gt;&gt;OtherControlButton.Name" xml:space="preserve">
+    <value>OtherControlButton</value>
+  </data>
+  <data name="&gt;&gt;OtherControlButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OtherControlButton.Parent" xml:space="preserve">
+    <value>ControlButtonsPanel</value>
+  </data>
+  <data name="&gt;&gt;OtherControlButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="LocalizedStringControlButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LocalizedStringControlButton.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="LocalizedStringControlButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="LocalizedStringControlButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="LocalizedStringControlButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LocalizedStringControlButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>57, 0</value>
+  </data>
+  <data name="LocalizedStringControlButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 22</value>
+  </data>
+  <data name="LocalizedStringControlButton.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="LocalizedStringControlButton.Text" xml:space="preserve">
+    <value>Localized strings</value>
+  </data>
+  <data name="&gt;&gt;LocalizedStringControlButton.Name" xml:space="preserve">
+    <value>LocalizedStringControlButton</value>
+  </data>
+  <data name="&gt;&gt;LocalizedStringControlButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LocalizedStringControlButton.Parent" xml:space="preserve">
+    <value>ControlButtonsPanel</value>
+  </data>
+  <data name="&gt;&gt;LocalizedStringControlButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="RawfilesControlButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RawfilesControlButton.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="RawfilesControlButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="RawfilesControlButton.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="RawfilesControlButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="RawfilesControlButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 22</value>
+  </data>
+  <data name="RawfilesControlButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="RawfilesControlButton.Text" xml:space="preserve">
+    <value>Rawfiles</value>
+  </data>
+  <data name="&gt;&gt;RawfilesControlButton.Name" xml:space="preserve">
+    <value>RawfilesControlButton</value>
+  </data>
+  <data name="&gt;&gt;RawfilesControlButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RawfilesControlButton.Parent" xml:space="preserve">
+    <value>ControlButtonsPanel</value>
+  </data>
+  <data name="&gt;&gt;RawfilesControlButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="ControlButtonsPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="ControlButtonsPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="ControlButtonsPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="ControlButtonsPanel.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>0, 20</value>
+  </data>
+  <data name="ControlButtonsPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>662, 22</value>
+  </data>
+  <data name="ControlButtonsPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;ControlButtonsPanel.Name" xml:space="preserve">
+    <value>ControlButtonsPanel</value>
+  </data>
+  <data name="&gt;&gt;ControlButtonsPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ControlButtonsPanel.Parent" xml:space="preserve">
+    <value>InterfaceBody</value>
+  </data>
+  <data name="&gt;&gt;ControlButtonsPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="InterfaceBody.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="InterfaceBody.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 24</value>
+  </data>
+  <data name="InterfaceBody.Size" type="System.Drawing.Size, System.Drawing">
+    <value>662, 386</value>
+  </data>
+  <data name="InterfaceBody.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;InterfaceBody.Name" xml:space="preserve">
+    <value>InterfaceBody</value>
+  </data>
+  <data name="&gt;&gt;InterfaceBody.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;InterfaceBody.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;InterfaceBody.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>148</value>
+    <value>121</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 13</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>524, 331</value>
+    <value>662, 532</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4810,6 +4825,30 @@
   </data>
   <data name="&gt;&gt;OpenZoneDialog.Type" xml:space="preserve">
     <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SaveDecompressedZlibFileDialog.Name" xml:space="preserve">
+    <value>SaveDecompressedZlibFileDialog</value>
+  </data>
+  <data name="&gt;&gt;SaveDecompressedZlibFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OpenCompressedZlibFileDialog.Name" xml:space="preserve">
+    <value>OpenCompressedZlibFileDialog</value>
+  </data>
+  <data name="&gt;&gt;OpenCompressedZlibFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;OpenDecompressedZlibFileDialog.Name" xml:space="preserve">
+    <value>OpenDecompressedZlibFileDialog</value>
+  </data>
+  <data name="&gt;&gt;OpenDecompressedZlibFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.OpenFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SaveCompressedZlibFileDialog.Name" xml:space="preserve">
+    <value>SaveCompressedZlibFileDialog</value>
+  </data>
+  <data name="&gt;&gt;SaveCompressedZlibFileDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Form1</value>

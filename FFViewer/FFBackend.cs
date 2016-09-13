@@ -21,15 +21,17 @@ namespace FFViewer_cs
 {
 
     delegate void RawFileDiscovered_d(int index, string name, string originalName, int originalSize);
-    delegate string[] OnLocalizedStringPrefixesRequest_d();
-    delegate void OnLocalizedStringPrefixesUpdated_d(string[] prefixes);
+    delegate void LocalizedStringDiscovered_d(int index, string prefix, string key);
+    delegate string[] LocalizedStringPrefixesRequest_d();
+    delegate void LocalizedStringPrefixesUpdated_d(string[] prefixes);
 
     class FFBackend
     {
         public event SetProgressBarPercentage_d OnProgressChanged;
         public event RawFileDiscovered_d OnRawfileDiscovered;
-        public event OnLocalizedStringPrefixesRequest_d OnLocalizedStringPrefixRequest;
-        public event OnLocalizedStringPrefixesUpdated_d OnLocalizedStringPrefixesUpdated;
+        public event LocalizedStringDiscovered_d OnLocalizedStringDiscovered;
+        public event LocalizedStringPrefixesRequest_d OnLocalizedStringPrefixRequest;
+        public event LocalizedStringPrefixesUpdated_d OnLocalizedStringPrefixesUpdated;        
 
         FFData ffData;
         ZoneData zoneData;
@@ -37,17 +39,22 @@ namespace FFViewer_cs
 
         public void OpenFastfile(string path)
         {
-            OnProgressChanged?.Invoke(33);
+            OnProgressChanged?.Invoke(20);
             ffData = GetFFData(path);
 
-            OnProgressChanged?.Invoke(66);
+            OnProgressChanged?.Invoke(40);
             zoneData = GetZoneData();
 
-            OnProgressChanged?.Invoke(100);
-            assetData = GetAssetData();            
+            OnProgressChanged?.Invoke(60);
+            assetData = GetAssetData();
 
-            for (int i = 0; i < assetData.RawFiles.Count; ++i)
-                OnRawfileDiscovered?.Invoke(assetData.RawFiles[i].Index, assetData.RawFiles[i].Name, assetData.RawFiles[i].OriginalName, assetData.RawFiles[i].OriginalSize);
+            OnProgressChanged?.Invoke(80);
+            foreach (RawFileData r in assetData.RawFiles)
+                OnRawfileDiscovered?.Invoke(r.Index, r.Name, r.OriginalName, r.OriginalSize);
+
+            OnProgressChanged?.Invoke(100);
+            foreach (LocalizedStringData ls in assetData.LocalizedString)
+                OnLocalizedStringDiscovered?.Invoke(ls.Index, ls.Prefix, ls.Key);
 
             OnProgressChanged?.Invoke(0);
         }
@@ -84,8 +91,10 @@ namespace FFViewer_cs
         private AssetData GetAssetData()
         {
             AssetData result = new AssetData(zoneData);
-            //TODO: check?!
             result.LocalizedStringPrefixes = OnLocalizedStringPrefixRequest?.Invoke();
+            if (result.LocalizedStringPrefixes == null)
+                result.LocalizedStringPrefixes = new string[0];
+
             result.AddKnownAssets();
             OnLocalizedStringPrefixesUpdated?.Invoke(result.LocalizedStringPrefixes);
             return result;
@@ -101,6 +110,7 @@ namespace FFViewer_cs
             return ZlibStream.CompressBuffer(decompressedZone);
         }
 
+        //TODO: write localized strings asset
         private void WriteAssetData()
         {
             foreach (RawFileData rawFile in assetData.RawFiles)
@@ -112,7 +122,7 @@ namespace FFViewer_cs
                     throw new InternalBufferOverflowException("Attempting to overrun rawfile data: " + rawFile.Name);
 
                 zoneData.DecompressedData = ByteHandling.SetBytes(zoneData.DecompressedData, rawFile.ContentsOffset, rawFile.OriginalSize, 0x00);
-                zoneData.DecompressedData = ByteHandling.ReplaceBytes(zoneData.DecompressedData, rawFile.ContentsOffset, ASCIIEncoding.ASCII.GetBytes(rawFile.Contents));
+                zoneData.DecompressedData = ByteHandling.ReplaceBytes(zoneData.DecompressedData, rawFile.ContentsOffset, Encoding.ASCII.GetBytes(rawFile.Contents));
             }
         }
 
@@ -199,12 +209,65 @@ namespace FFViewer_cs
 
         private RawFileData FindRawfile(int index)
         {
-            foreach (RawFileData r in assetData.RawFiles)
-            {
-                if (r.Index == index)
-                    return r;
-            }
-            throw new FileNotFoundException("Rawfile with index " + index + " not found");
+            RawFileData result = assetData.RawFiles.Find(r => r.Index == index);
+            if(result == null)
+                throw new FileNotFoundException("Rawfile with index " + index + " not found");
+            return result;
+        }
+
+        private LocalizedStringData FindLocalizedString(int index)
+        {
+            LocalizedStringData result = assetData.LocalizedString.Find(r => r.Index == index);
+            if (result == null)
+                throw new FileNotFoundException("Localizedstring with index " + index + " not found");
+            return result;
+        }
+
+        public void ResetLocalizedString(int index)
+        {
+            LocalizedStringData d = FindLocalizedString(index);
+            d.Key = d.KeyOriginal;
+            d.Value = d.ValueOriginal;
+        }
+
+        public string GetLocalizedStringKey(int index)
+        {
+            return FindLocalizedString(index).Key;
+        }
+
+        public string GetLocalizedStringValue(int index)
+        {
+            return FindLocalizedString(index).Value;
+        }
+
+        public int GetLocalizedStringKeyMaxSize(int index)
+        {
+            return FindLocalizedString(index).KeyMaxLength;
+        }
+
+        public int GetLocalizedStringValueMaxSize(int index)
+        {
+            return FindLocalizedString(index).ValueMaxLength;
+        }
+
+        public int GetLocalizedStringKeyOffset(int index)
+        {
+            return FindLocalizedString(index).KeyOffset;
+        }
+
+        public int GetLocalizedStringValueOffset(int index)
+        {
+            return FindLocalizedString(index).ValueOffset;
+        }
+
+        public void SetLocalizedStringKey(int index, string key)
+        {
+            FindLocalizedString(index).Key = key;
+        }
+
+        public void SetLocalizedStringValue(int index, string value)
+        {
+            FindLocalizedString(index).Value = value;
         }
 
         public int GetRawfileSize(int index)
@@ -462,6 +525,34 @@ namespace FFViewer_cs
                 fs.Write(FFData.HeaderIW3VersionUnsigned, 0, FFData.HeaderIW3VersionUnsigned.Length);
                 fs.Write(compressed, 0, compressed.Length);
             }
+            OnProgressChanged?.Invoke(0);
+        }
+
+        public void DecompressZlibArchive(string input, string output)
+        {
+            OnProgressChanged?.Invoke(10);
+            byte[] data = File.ReadAllBytes(input);
+
+            OnProgressChanged?.Invoke(90);
+            data = ZLibDeflate(data);
+
+            OnProgressChanged?.Invoke(100);
+            File.WriteAllBytes(output, data);
+
+            OnProgressChanged?.Invoke(0);
+        }
+
+        public void CompressZlibArchive(string input, string output)
+        {
+            OnProgressChanged?.Invoke(10);
+            byte[] data = File.ReadAllBytes(input);
+
+            OnProgressChanged?.Invoke(90);
+            data = ZlibInflate(data);
+
+            OnProgressChanged?.Invoke(100);
+            File.WriteAllBytes(output, data);
+
             OnProgressChanged?.Invoke(0);
         }
     }

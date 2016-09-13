@@ -3,6 +3,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace FFViewer_cs
 {
@@ -30,18 +31,17 @@ namespace FFViewer_cs
         static string currentAppDirectory = Application.StartupPath;
         static string applicationWindowName = Application.ProductName;
 
-        bool isFastFileOpened;
-        string currentFFName;
-        int currentRawfileIndex;
+        bool isFastFileOpened = false;
+        string currentFFName = "";
+        int currentRawfileIndex = -1;
+        int currentLocalizedStringIndex = -1;
 
         FFBackend ffBackend;
         OptionsHandler options;
         Updater updater;
         Logger logger;
- 
-        About dlgAbout;
 
-        
+        About dlgAbout;
 
         /// <summary>
         /// Gets options handler to access any preferences saved by application.
@@ -54,14 +54,22 @@ namespace FFViewer_cs
         public Form1()
         {
             InitializeComponent();
-            options = new OptionsHandler();
 
-            isFastFileOpened = false;
-            currentFFName = "";
+            CustomMenuStripRenderer renderer = new CustomMenuStripRenderer();
+            MenuStripLine.Renderer = renderer;
+            CodeBoxRightClick.Renderer = renderer;
+            FileListRightClick.Renderer = renderer;
+
+            RawfilesWindow.Dock = DockStyle.Fill;
+            LocalizedStringsWindow.Dock = DockStyle.Fill;
+            RawfilesControlButton_Click(RawfilesControlButton, new EventArgs()); // There is no sender generation with PerformClick().           
+
+            options = new OptionsHandler();
 
             ffBackend = new FFBackend();
             ffBackend.OnProgressChanged += SetProgressBarPercentage;
             ffBackend.OnRawfileDiscovered += FFBackend_OnRawfileDiscovered;
+            ffBackend.OnLocalizedStringDiscovered += FFBackend_OnLocalizedStringDiscovered;
             ffBackend.OnLocalizedStringPrefixRequest += FFBackend_OnLocalizedStringPrefixRequest;
             ffBackend.OnLocalizedStringPrefixesUpdated += FFBackend_OnLocalizedStringPrefixesUpdated;
 
@@ -83,10 +91,34 @@ namespace FFViewer_cs
             logger.OnWriteLine += Logger_OnWriteLine;
             logger.OnWriteException += Logger_OnWriteException;
 
-            currentRawfileIndex = -1;
             ShowSearchPanel(SearchBoxShowMode.HIDE);
             SetWindowFileName("");
             LogGroup.Visible = options.ShowLog;
+        }
+
+        private void FFBackend_OnLocalizedStringDiscovered(int index, string prefix, string key)
+        {
+            if (InvokeRequired)
+            {
+                LocalizedStringDiscovered_d d = FFBackend_OnLocalizedStringDiscovered;
+                BeginInvoke(d, index, prefix, key);
+                return;
+            }
+
+            TreeNode n = new TreeNode(key);
+            n.Tag = index;
+
+            TreeNode[] searchResult = Localizedstrings.Nodes.Find(prefix, true);
+
+            if (searchResult.Length != 0)
+            {
+                searchResult[0].Nodes.Add(n);
+                return;
+            }
+
+            TreeNode prefixNode = Localizedstrings.Nodes.Add(prefix, prefix);
+            prefixNode.Tag = -1;
+            prefixNode.Nodes.Add(n);
         }
 
         private void FFBackend_OnLocalizedStringPrefixesUpdated(string[] prefixes)
@@ -109,7 +141,7 @@ namespace FFViewer_cs
             }
 
             TreeNode rawFileNode = new TreeNode();
-         
+
             rawFileNode.Text = name;
             rawFileNode.Nodes.Add("Index: " + index);
             rawFileNode.Nodes.Add("Name: " + name);
@@ -130,8 +162,7 @@ namespace FFViewer_cs
         private void Logger_OnWriteLine(string timestamp, string line)
         {
             StatusBarLogValue.Text = line;
-            LogTextBox.Text += timestamp + line + "\r\n";
-            LogTextBox.ScrollToCaret();
+            LogTextBox.AppendText(timestamp + line + "\r\n");
         }
 
         private void Updater_OnUpdateDone()
@@ -151,7 +182,7 @@ namespace FFViewer_cs
 
         private void SetWindowFileName(string filePath)
         {
-            if(filePath == "")
+            if (filePath == "")
                 Text = applicationWindowName;
             else
                 Text = String.Format("{0} - [ {1} ]", applicationWindowName, filePath);
@@ -159,7 +190,7 @@ namespace FFViewer_cs
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
+
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -188,7 +219,7 @@ namespace FFViewer_cs
             if (CodeBox.Focused)
             {
                 if (e.Control)
-                {                        
+                {
                     if (e.KeyCode == Keys.A)
                     {
                         CodeBox.SelectAll();
@@ -328,6 +359,8 @@ namespace FFViewer_cs
             SetWindowFileName(ffBackend.FFPath);
 
             RawFiles.Sort();
+            Localizedstrings.Sort();
+
             isFastFileOpened = true;
             OpenFFToolStripMenuItem.Enabled = false;
             SaveFFToolStripMenuItem.Enabled = true;
@@ -362,18 +395,41 @@ namespace FFViewer_cs
 
             isFastFileOpened = false;
             currentFFName = "";
-            StatusLine_Clear();
-            RawFiles.Nodes.Clear();
-
-            ffBackend.Cleanup();
-
-            CodeBox.Text = "";
-            SetWindowFileName("");
+            RawfilesTabCleanup();
+            LocalizedStringTabCleanup();
             
+            ffBackend.Cleanup();
+            SetWindowFileName("");
+
             OpenFFToolStripMenuItem.Enabled = true;
             SaveFFToolStripMenuItem.Enabled = false;
             CloseFFToolStripMenuItem.Enabled = false;
             ExportFileToolStripMenuItem.Enabled = false;
+        }
+
+        private void LocalizedStringTabCleanup()
+        {
+            Localizedstrings.Nodes.Clear();
+            LocalizedStringsFieldsCleanup();
+        }
+
+        private void LocalizedStringsFieldsCleanup()
+        {
+            LocalizedStringKeyTextBox.Text = "";
+            LocalizedStringValueTextBox.Text = "";
+            LocalizedStringKeySizeValue.Text = "0";
+            LocalizedStringKeySizeMaxValue.Text = "0";
+            LocalizedStringKeyOffsetValue.Text = "0";
+            LocalizedStringValueSizeVal.Text = "0";
+            LocalizedStringValueSizeMaxVal.Text = "0";
+            LocalizedStringValueOffsetVal.Text = "0";
+        }
+
+        private void RawfilesTabCleanup()
+        {
+            RawFiles.Nodes.Clear();
+            StatusLine_Clear();            
+            CodeBox.Text = "";
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -399,14 +455,40 @@ namespace FFViewer_cs
             RawfileInfo_Update();
         }
 
-        private void ZlibCompressToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void ZlibCompressToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO
+            logger.PrintLine("Zlib compression: waiting for input file");
+            if (OpenDecompressedZlibFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                SaveCompressedZlibFileDialog.FileName = OpenDecompressedZlibFileDialog.FileName;
+                logger.PrintLine("Zlib compression: waiting for output file");
+                if (SaveCompressedZlibFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    logger.PrintLine("Zlib compression: working...");
+                    await Task.Run(() => { ffBackend.CompressZlibArchive(OpenDecompressedZlibFileDialog.FileName, SaveCompressedZlibFileDialog.FileName); });
+                    logger.PrintLine("Zlib compression: done!");
+                    return;
+                }
+            }
+            logger.PrintLine("Zlib compression: cancelled");
         }
 
-        private void ZlibDecompressToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void ZlibDecompressToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO
+            logger.PrintLine("Zlib decompression: waiting for input file");
+            if (OpenCompressedZlibFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                SaveDecompressedZlibFileDialog.FileName = OpenCompressedZlibFileDialog.FileName;
+                logger.PrintLine("Zlib decompression: waiting for output file");
+                if (SaveDecompressedZlibFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    logger.PrintLine("Zlib decompression: working...");
+                    await Task.Run(() => { ffBackend.DecompressZlibArchive(OpenCompressedZlibFileDialog.FileName, SaveDecompressedZlibFileDialog.FileName);});
+                    logger.PrintLine("Zlib decompression: done!");
+                    return;
+                }
+            }
+            logger.PrintLine("Zlib decompression: cancelled");
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -617,10 +699,17 @@ namespace FFViewer_cs
 
         private void RawfileInfo_Update()
         {
+            if (currentRawfileIndex == -1)
+            {
+                RawfileInfoPanel.Visible = false;
+                return;
+            }
+            
             RawfileInfo_UpdateCurrentLine();
             RawfileInfo_UpdateFileName();
             RawfileInfo_UpdateSize();
             RawfileInfo_UpdateOriginalSize();
+            RawfileInfoPanel.Visible = true;
         }
 
         private void StatusLine_Clear()
@@ -631,9 +720,9 @@ namespace FFViewer_cs
 
         private void RawFiles_AfterSelect(object sender, TreeViewEventArgs e)
         {
-           currentRawfileIndex = (int)(RawFiles.SelectedNode.Nodes.Count == 0 ? RawFiles.SelectedNode.Parent.Tag : RawFiles.SelectedNode.Tag);
-           CodeBox.Text = ffBackend.GetRawfileContents(currentRawfileIndex);
-           RawfileInfo_Update();
+            currentRawfileIndex = (int)(RawFiles.SelectedNode.Nodes.Count == 0 ? RawFiles.SelectedNode.Parent.Tag : RawFiles.SelectedNode.Tag);
+            CodeBox.Text = ffBackend.GetRawfileContents(currentRawfileIndex);
+            RawfileInfo_Update();
         }
 
         private void RawFiles_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -693,7 +782,8 @@ namespace FFViewer_cs
         protected void LockInterface(bool state)
         {
             MenuStripLine.Enabled = !state;
-            Tabs.Enabled = !state;
+            //ControlButtonsPanel.Enabled = !state;
+            InterfaceBody.Enabled = !state; 
             Wait.Visible = state;
         }
 
@@ -786,5 +876,160 @@ namespace FFViewer_cs
             await Task.Run(() => { ffBackend.ExportZone(ExportZoneDialog.FileName); });
             logger.PrintLine("Export done.");
         }
+
+        private void Localizedstrings_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            currentLocalizedStringIndex = (int) e.Node.Tag;
+            if (currentLocalizedStringIndex == -1)
+            {
+                LocalizedStringKeyGroup.Visible = false;
+                LocalizedStringValueGroup.Visible = false;
+                return;
+            }
+            LocalizedStringKeySizeMaxValue.Text = ffBackend.GetLocalizedStringKeyMaxSize(currentLocalizedStringIndex).ToString();
+            LocalizedStringKeyOffsetValue.Text = ffBackend.GetLocalizedStringKeyOffset(currentLocalizedStringIndex).ToString();
+            LocalizedStringKeyTextBox.Text = ffBackend.GetLocalizedStringKey(currentLocalizedStringIndex);
+            LocalizedStringValueSizeMaxVal.Text = ffBackend.GetLocalizedStringValueMaxSize(currentLocalizedStringIndex).ToString();
+            LocalizedStringValueOffsetVal.Text = ffBackend.GetLocalizedStringValueOffset(currentLocalizedStringIndex).ToString();
+            LocalizedStringValueTextBox.Text = ffBackend.GetLocalizedStringValue(currentLocalizedStringIndex);
+            LocalizedStringKeyGroup.Visible = true;
+            LocalizedStringValueGroup.Visible = true;
+        }
+
+        private void LocalizedStringKeyTextBox_TextChanged(object sender, EventArgs e)
+        {
+            LocalizedStringKeySizeValue.Text = LocalizedStringKeyTextBox.Text.Length.ToString();
+            //TODO: check if size cannot be larger than original
+            if(currentLocalizedStringIndex != -1)
+                ffBackend.SetLocalizedStringKey(currentLocalizedStringIndex, LocalizedStringKeyTextBox.Text);
+        }
+
+        private void LocalizedStringValueTextBox_TextChanged(object sender, EventArgs e)
+        {
+            LocalizedStringValueSizeVal.Text = LocalizedStringValueTextBox.Text.Length.ToString();
+            //TODO: check if size cannot be larger than original
+            if(currentLocalizedStringIndex != -1)
+                ffBackend.SetLocalizedStringValue(currentLocalizedStringIndex, LocalizedStringValueTextBox.Text);
+        }
+
+        private void OnControlButtonClicked(object sender, EventArgs e)
+        { 
+            Panel controlPanel = ((Button)sender).Parent as Panel;
+            foreach (Button btn in controlPanel.Controls)
+            {
+                if (btn == sender)
+                    btn.BackColor = SystemColors.ControlDarkDark;
+                else
+                    btn.BackColor = SystemColors.AppWorkspace;
+            }
+        }
+
+        private void OnGroupBoxPaint(object sender, PaintEventArgs e) // Something weird with redrawing border when resizing whole form.
+        {
+            const int headerTextOffset = 15;
+            GroupBox b = sender as GroupBox;
+            e.Graphics.Clear(SystemColors.AppWorkspace);
+            using (SolidBrush br = new SolidBrush(b.ForeColor))
+                e.Graphics.DrawString(b.Text, b.Font, br, headerTextOffset, 0);
+            using (Pen p = new Pen(SystemColors.ControlDarkDark))
+            {
+                Point lu = new Point(0, 7);
+                Point lu1 = new Point(headerTextOffset, 7);
+                Point lu2 = new Point(headerTextOffset + (int)(e.Graphics.MeasureString(b.Text, b.Font).Width), 7);
+                Point ru = new Point(e.ClipRectangle.Width - 1, 7);
+                Point rl = new Point(e.ClipRectangle.Width - 1, e.ClipRectangle.Height - 1);
+                Point ll = new Point(0, e.ClipRectangle.Height - 1);
+                e.Graphics.DrawLine(p, lu, lu1);
+                e.Graphics.DrawLine(p, lu2, ru);
+                e.Graphics.DrawLine(p, ru, rl);
+                e.Graphics.DrawLine(p, ll, rl);
+                e.Graphics.DrawLine(p, lu, ll);
+            }
+        }
+
+        private void RawfilesControlButton_Click(object sender, EventArgs e)
+        {
+            OnControlButtonClicked(sender, e);
+            RawfilesWindow.Visible = true;
+            LocalizedStringsWindow.Visible = false;
+        }
+
+        private void LocalizedStringControlButton_Click(object sender, EventArgs e)
+        {
+            OnControlButtonClicked(sender, e);
+            RawfilesWindow.Visible = false;
+            LocalizedStringsWindow.Visible = true;
+        }
+
+        private void OtherControlButton_Click(object sender, EventArgs e)
+        {
+            OnControlButtonClicked(sender, e);
+            RawfilesWindow.Visible = false;
+            LocalizedStringsWindow.Visible = false;
+        }
     }
+
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+    public class CustomMenuStripRenderer : ToolStripProfessionalRenderer
+    {
+        // Toolstrip connected area background: 2 rectangles
+        protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e)
+        {
+            if (e.AffectedBounds == e.ToolStrip.Bounds)
+                base.OnRenderToolStripBorder(e);
+            else
+            {
+                using (Pen p = new Pen(SystemColors.ControlDarkDark))
+                {
+                    e.Graphics.DrawRectangle(p, e.AffectedBounds.X, e.AffectedBounds.Y, e.AffectedBounds.Width - 1, e.AffectedBounds.Height - 1);
+                    p.Color = SystemColors.AppWorkspace;
+                    e.Graphics.DrawRectangle(p, e.AffectedBounds.X + 1, e.AffectedBounds.Y + 1, e.AffectedBounds.Width - 3, e.AffectedBounds.Height - 3);
+                }
+            }
+        }
+
+        protected override void OnRenderSeparator(ToolStripSeparatorRenderEventArgs e)
+        {
+            Rectangle bg = new Rectangle(Point.Empty, e.Item.Size);
+            using (SolidBrush b = new SolidBrush(SystemColors.AppWorkspace))
+            {
+                e.Graphics.FillRectangle(b, bg);
+            }
+            using (Pen p = new Pen(SystemColors.ControlDarkDark))
+            {
+                Point left = new Point(bg.X, bg.Y + bg.Height / 2);
+                Point right = new Point(bg.X + bg.Width, bg.Y + bg.Height / 2);
+                e.Graphics.DrawLine(p, left, right);
+            }
+        }
+
+        protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
+        {
+            using (SolidBrush s = new SolidBrush(SystemColors.ControlDarkDark))
+            {
+                Rectangle r = new Rectangle(Point.Empty, e.Item.Size);
+                if (e.Item.Selected)
+                {
+                    if (e.Item.Enabled)
+                    {
+                        s.Color = SystemColors.ControlDarkDark;
+                        e.Graphics.FillRectangle(s, r);
+                    }
+                    else
+                    {
+                        s.Color = SystemColors.ButtonShadow;
+                        e.Graphics.FillRectangle(s, r);
+                    }
+                }
+                else if (e.Item.Pressed) // Button on top of dropdown list
+                {
+                    s.Color = SystemColors.ControlDarkDark;
+                    e.Graphics.FillRectangle(s, r);
+                }
+                else
+                    base.OnRenderMenuItemBackground(e);
+            }
+        }
+    };
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

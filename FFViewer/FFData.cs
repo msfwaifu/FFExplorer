@@ -108,6 +108,8 @@ namespace FFViewer_cs
 
             if (!version.SequenceEqual(HeaderIW3VersionUnsigned))
                 throw new Exception("Warning: fastfile version differs from default for this fastfile type."); //TODO: change exception type and message
+
+            ver = FastFileType.IW3_UNSIGNED;
         }
 
         string filePath;
