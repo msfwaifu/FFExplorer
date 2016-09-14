@@ -5,7 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     /// <summary>
     /// Delegate used to handle all thrown exception.
@@ -808,7 +808,7 @@ namespace FFViewer_cs
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            logger.PrintLine("FFViewer started!");
+            logger.PrintLine("FFExplorer started!");
             logger.PrintLine("Getting update information.");
             updater.GetUpdateInfo();
         }

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 //      .str
 //TODO: sound seek and extract
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     static class Program
     {

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Ionic.Zlib;
+using System;
 using System.IO;
-using Ionic.Zlib;
 
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     class ZoneData
     {

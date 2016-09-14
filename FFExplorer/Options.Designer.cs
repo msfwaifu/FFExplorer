@@ -1,4 +1,4 @@
-﻿namespace FFViewer_cs
+﻿namespace FFExplorer
 {
     partial class Options
     {

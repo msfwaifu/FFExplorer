@@ -3,7 +3,7 @@ using System.Text;
 using System.IO;
 using System.Linq; //SequenceEqual
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     enum FastFileType
     {

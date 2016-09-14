@@ -2,7 +2,7 @@
 using System.Text;
 using System.Linq;
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     class AssetData
     {

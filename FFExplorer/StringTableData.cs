@@ -1,4 +1,4 @@
-﻿namespace FFViewer_cs
+﻿namespace FFExplorer
 {
     /// <summary>
     /// Currently not implemented because stringtables are different in original and custom fastfiles.

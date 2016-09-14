@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     /// <summary>
     /// A delegate used to apply some logic after changing options through dialog.

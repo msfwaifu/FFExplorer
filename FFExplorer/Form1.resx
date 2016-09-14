@@ -4518,7 +4518,7 @@
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>FFViewer</value>
+    <value>FFExplorer</value>
   </data>
   <data name="&gt;&gt;ExportFileToolStripMenuItem.Name" xml:space="preserve">
     <value>ExportFileToolStripMenuItem</value>

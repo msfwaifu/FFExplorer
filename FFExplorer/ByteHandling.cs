@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     /// <summary>
     /// A helper class contains various methods to work with bytes.

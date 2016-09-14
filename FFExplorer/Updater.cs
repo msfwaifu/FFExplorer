@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Net;
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     /// <summary>
     /// A delegate used when updating process is done.
@@ -76,7 +76,7 @@ namespace FFViewer_cs
 
             File.Delete(updateInfoFilePath);
             string args = "";
-            string newExePath = exeDir.Replace("updates/", "/FFViewer.exe");
+            string newExePath = exeDir.Replace("updates/", "/FFExplorer.exe");
             foreach (string s in appArgs)
                 if(s != "-u" && s != "--update")
                     args += s;
@@ -188,7 +188,7 @@ namespace FFViewer_cs
 
         static UpdateInfo updInfo;
 
-        static string baseUrl = "https://github.com/T-Maxxx/FFViewer/";
+        static string baseUrl = "https://github.com/T-Maxxx/FFExplorer/";
         static string rawUrl = baseUrl + "raw/master/";
         static string releaseUrl = rawUrl + "bin/Release/";
         

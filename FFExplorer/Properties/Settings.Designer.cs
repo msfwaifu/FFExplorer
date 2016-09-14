@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FFViewer_cs.Properties
+namespace FFExplorer.Properties
 {
 
 

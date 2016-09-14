@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     /// <summary>
     /// Form contains information about authors, licensing etc.

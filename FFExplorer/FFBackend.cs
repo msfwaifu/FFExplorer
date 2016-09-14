@@ -17,7 +17,7 @@ using System;
 using System.Text;
 using System.IO;
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
 
     delegate void RawFileDiscovered_d(int index, string name, string originalName, int originalSize);
