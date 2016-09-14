@@ -40,6 +40,8 @@
     <Reference Include="Ionic.Zlib">
       <HintPath>.\Ionic.Zlib.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -52,6 +54,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.cs">
@@ -60,7 +63,6 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Localization.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="OptionsHandler.cs" />
     <Compile Include="AssetData.cs" />
@@ -75,7 +77,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocalizedStringsData.cs" />
+    <Compile Include="LocalizedStringData.cs" />
     <Compile Include="Options.cs">
       <SubType>Form</SubType>
     </Compile>

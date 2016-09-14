@@ -136,7 +136,7 @@
     <value>3, 50</value>
   </data>
   <data name="MainShowLog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 17</value>
+    <value>218, 17</value>
   </data>
   <data name="MainShowLog.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -166,7 +166,7 @@
     <value>3, 33</value>
   </data>
   <data name="MainSaveTemporary.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 17</value>
+    <value>218, 17</value>
   </data>
   <data name="MainSaveTemporary.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -196,7 +196,7 @@
     <value>3, 16</value>
   </data>
   <data name="MainRememberLastFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 17</value>
+    <value>218, 17</value>
   </data>
   <data name="MainRememberLastFolder.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -223,7 +223,7 @@
     <value>0, 0</value>
   </data>
   <data name="MainGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>392, 70</value>
+    <value>224, 70</value>
   </data>
   <data name="MainGroup.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -238,16 +238,16 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;MainGroup.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>panel1</value>
   </data>
   <data name="&gt;&gt;MainGroup.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>1</value>
   </data>
   <data name="SaveButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
   </data>
   <data name="SaveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>232, 109</value>
+    <value>253, 109</value>
   </data>
   <data name="SaveButton.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>80, 0</value>
@@ -256,7 +256,7 @@
     <value>80, 0</value>
   </data>
   <data name="SaveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 37</value>
+    <value>80, 38</value>
   </data>
   <data name="SaveButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -276,37 +276,40 @@
   <data name="&gt;&gt;SaveButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="CancelButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="CnclButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="CancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 109</value>
+  <data name="CnclButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="CancelButton.MaximumSize" type="System.Drawing.Size, System.Drawing">
+  <data name="CnclButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>333, 109</value>
+  </data>
+  <data name="CnclButton.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>80, 0</value>
   </data>
-  <data name="CancelButton.MinimumSize" type="System.Drawing.Size, System.Drawing">
+  <data name="CnclButton.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>80, 0</value>
   </data>
-  <data name="CancelButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 37</value>
+  <data name="CnclButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 38</value>
   </data>
-  <data name="CancelButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="CnclButton.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="CancelButton.Text" xml:space="preserve">
+  <data name="CnclButton.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="&gt;&gt;CancelButton.Name" xml:space="preserve">
-    <value>CancelButton</value>
+  <data name="&gt;&gt;CnclButton.Name" xml:space="preserve">
+    <value>CnclButton</value>
   </data>
-  <data name="&gt;&gt;CancelButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;CnclButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;CancelButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;CnclButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;CancelButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;CnclButton.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
   <data name="LoggerGroup.AutoSize" type="System.Boolean, mscorlib">
@@ -433,7 +436,7 @@
     <value>0, 20</value>
   </data>
   <data name="LoggerLogDaysLimitPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 20</value>
+    <value>218, 20</value>
   </data>
   <data name="LoggerLogDaysLimitPanel.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -457,7 +460,7 @@
     <value>0, 70</value>
   </data>
   <data name="LoggerGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>392, 39</value>
+    <value>224, 39</value>
   </data>
   <data name="LoggerGroup.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -472,10 +475,10 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;LoggerGroup.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>panel1</value>
   </data>
   <data name="&gt;&gt;LoggerGroup.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>0</value>
   </data>
   <data name="ResetButton.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
@@ -493,7 +496,7 @@
     <value>80, 0</value>
   </data>
   <data name="ResetButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 37</value>
+    <value>80, 38</value>
   </data>
   <data name="ResetButton.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -513,6 +516,60 @@
   <data name="&gt;&gt;ResetButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="LocalizedStringPrefixesGroup.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="LocalizedStringPrefixesGroup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>224, 0</value>
+  </data>
+  <data name="LocalizedStringPrefixesGroup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 109</value>
+  </data>
+  <data name="LocalizedStringPrefixesGroup.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="LocalizedStringPrefixesGroup.Text" xml:space="preserve">
+    <value>Localized string prefixes</value>
+  </data>
+  <data name="&gt;&gt;LocalizedStringPrefixesGroup.Name" xml:space="preserve">
+    <value>LocalizedStringPrefixesGroup</value>
+  </data>
+  <data name="&gt;&gt;LocalizedStringPrefixesGroup.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LocalizedStringPrefixesGroup.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;LocalizedStringPrefixesGroup.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="panel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="panel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>413, 109</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -523,7 +580,7 @@
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>392, 146</value>
+    <value>413, 147</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

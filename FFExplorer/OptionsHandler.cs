@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Windows.Forms;
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     [DataContract]
     class AppOptions
@@ -22,6 +22,8 @@ namespace FFViewer_cs
         public bool showLog;
         [DataMember]
         public int logFilesDaysLimit;
+        [DataMember]
+        public string[] locStringsPrefixes;
 
         public AppOptions()
         {
@@ -37,6 +39,7 @@ namespace FFViewer_cs
             saveTemporary = false;
             showLog = true;
             logFilesDaysLimit = 7;
+            locStringsPrefixes = new string[0];
         }
     }
 
@@ -45,7 +48,6 @@ namespace FFViewer_cs
     /// </summary>
     public class OptionsHandler
     {
-
         static string PreferencesDirName = "prefs";
         static string PreferencesDir = Application.StartupPath + "\\" + PreferencesDirName;
         static string ConfigFileName = "config.json";
@@ -179,6 +181,21 @@ namespace FFViewer_cs
             set
             {
                 opt.logFilesDaysLimit = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets array of localizedstring prefixes to search inside fastfiles.
+        /// </summary>
+        public string[] LocalizedStringPrefixes
+        {
+            get
+            {
+                return opt.locStringsPrefixes;
+            }
+            set
+            {
+                opt.locStringsPrefixes = value;
             }
         }
 

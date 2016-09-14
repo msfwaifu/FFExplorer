@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     /// <summary>
     /// A delegate used to apply some logic when logger prints line.

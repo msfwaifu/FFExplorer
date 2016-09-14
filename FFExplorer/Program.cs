@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 
-//TODO: remove try-catch blocks inside form. Whole app now catches any exception thrown.
-//TODO: localized assets find
-//TODO: localized assets prefix table
+//TODO: localized strings export:
+//      CSV
+//      .str
 //TODO: sound seek and extract
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     static class Program
     {

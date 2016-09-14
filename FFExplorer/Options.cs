@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace FFViewer_cs
+namespace FFExplorer
 {
     /// <summary>
     /// A delegate used to apply some logic after changing options through dialog.
@@ -29,7 +29,7 @@ namespace FFViewer_cs
             UpdateFields();            
         }
 
-        private void CancelButton_Click(object sender, EventArgs e)
+        private void CnclButton_Click(object sender, EventArgs e)
         {
             Close();
         }
