@@ -36,7 +36,7 @@ namespace FFExplorer
             int listStringStrStartOffset = listStringOffset;
             int listStringStrEndOffset = listStringOffset;
             for (int i = 0; i < listStringCount; ++i)
-                if ((UInt32)ByteHandling.GetDword(decompressedData, 0x3C + 4 * i) == 0xFFFFFFFF)
+                if ((uint)ByteHandling.GetDword(decompressedData, 0x3C + 4 * i) == 0xFFFFFFFF)
                 {
                     listStringStrEndOffset = ByteHandling.FindByte(decompressedData, 0x00, listStringStrStartOffset);
                     listStrings[i] = ByteHandling.GetString(decompressedData, listStringStrStartOffset, listStringStrEndOffset);

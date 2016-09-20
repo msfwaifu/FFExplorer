@@ -170,7 +170,7 @@ namespace FFExplorer
         }
 
         /// <summary>
-        /// Download update information from github.
+        /// Download update information from GitHub repository.
         /// </summary>
         public void GetUpdateInfo()
         {

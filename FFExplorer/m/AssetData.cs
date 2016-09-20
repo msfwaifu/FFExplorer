@@ -13,11 +13,11 @@ namespace FFExplorer
 
         public void AddKnownAssets()
         {
-            byte[] gscFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'g', 's', 'c', '\0' });
-            byte[] gsxFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'g', 's', 'x', '\0' });
-            byte[] rmbFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'r', 'm', 'b', '\0' });
-            byte[] cfgFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'c', 'f', 'g', '\0' });
-            byte[] defFormat = ASCIIEncoding.ASCII.GetBytes(new char[] { '.', 'd', 'e', 'f', '\0' });
+            byte[] gscFormat = Encoding.ASCII.GetBytes(new char[] { '.', 'g', 's', 'c', '\0' });
+            byte[] gsxFormat = Encoding.ASCII.GetBytes(new char[] { '.', 'g', 's', 'x', '\0' });
+            byte[] rmbFormat = Encoding.ASCII.GetBytes(new char[] { '.', 'r', 'm', 'b', '\0' });
+            byte[] cfgFormat = Encoding.ASCII.GetBytes(new char[] { '.', 'c', 'f', 'g', '\0' });
+            byte[] defFormat = Encoding.ASCII.GetBytes(new char[] { '.', 'd', 'e', 'f', '\0' });
 
             rawfileIndex = 0;
             AddRawFiles(gsxFormat);

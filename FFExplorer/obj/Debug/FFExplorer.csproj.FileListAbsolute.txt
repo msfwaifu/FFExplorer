@@ -1,0 +1,15 @@
+D:\Projects\C#\FFExplorer\bin\Debug\FFExplorer.exe.config
+D:\Projects\C#\FFExplorer\bin\Debug\FFExplorer.xml
+D:\Projects\C#\FFExplorer\bin\Debug\FFExplorer.exe
+D:\Projects\C#\FFExplorer\bin\Debug\FFExplorer.pdb
+D:\Projects\C#\FFExplorer\bin\Debug\ru\FFExplorer.resources.dll
+D:\Projects\C#\FFExplorer\FFExplorer\obj\Debug\FFExplorer.About.resources
+D:\Projects\C#\FFExplorer\FFExplorer\obj\Debug\FFExplorer.Form1.resources
+D:\Projects\C#\FFExplorer\FFExplorer\obj\Debug\FFExplorer.Options.resources
+D:\Projects\C#\FFExplorer\FFExplorer\obj\Debug\FFExplorer.Properties.Resources.resources
+D:\Projects\C#\FFExplorer\FFExplorer\obj\Debug\FFExplorer.Form1.ru.resources
+D:\Projects\C#\FFExplorer\FFExplorer\obj\Debug\FFExplorer.csproj.GenerateResource.Cache
+D:\Projects\C#\FFExplorer\FFExplorer\obj\Debug\ru\FFExplorer.resources.dll
+D:\Projects\C#\FFExplorer\FFExplorer\obj\Debug\FFExplorer.exe
+D:\Projects\C#\FFExplorer\FFExplorer\obj\Debug\FFExplorer.pdb
+D:\Projects\C#\FFExplorer\FFExplorer\obj\Debug\FFExplorer.csprojResolveAssemblyReference.cache

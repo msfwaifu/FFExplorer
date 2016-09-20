@@ -34,7 +34,7 @@ namespace FFExplorer
         bool isFastFileOpened = false;
         string currentFFName = "";
         int currentRawfileIndex = -1;
-        int currentLocalizedStringIndex = -1;
+        //int currentLocalizedStringIndex = -1;
 
         FFBackend ffBackend;
         OptionsHandler options;
@@ -55,14 +55,14 @@ namespace FFExplorer
         {
             InitializeComponent();
 
-            CustomMenuStripRenderer renderer = new CustomMenuStripRenderer();
-            MenuStripLine.Renderer = renderer;
-            CodeBoxRightClick.Renderer = renderer;
-            FileListRightClick.Renderer = renderer;
+            //CustomMenuStripRenderer renderer = new CustomMenuStripRenderer();
+           // MenuStripLine.Renderer = renderer;
+            //CodeBoxRightClick.Renderer = renderer;
+            //FileListRightClick.Renderer = renderer;
 
-            RawfilesWindow.Dock = DockStyle.Fill;
-            LocalizedStringsWindow.Dock = DockStyle.Fill;
-            RawfilesControlButton_Click(RawfilesControlButton, new EventArgs()); // There is no sender generation with PerformClick().           
+            //RawfilesWindow.Dock = DockStyle.Fill;
+            //LocalizedStringsWindow.Dock = DockStyle.Fill;
+            //RawfilesControlButton_Click(RawfilesControlButton, new EventArgs()); // There is no sender generation with PerformClick().           
 
             options = new OptionsHandler();
 
@@ -91,14 +91,14 @@ namespace FFExplorer
             logger.OnWriteLine += Logger_OnWriteLine;
             logger.OnWriteException += Logger_OnWriteException;
 
-            ShowSearchPanel(SearchBoxShowMode.HIDE);
+            //ShowSearchPanel(SearchBoxShowMode.HIDE);
             SetWindowFileName("");
             LogGroup.Visible = options.ShowLog;
         }
 
         private void FFBackend_OnLocalizedStringDiscovered(int index, string prefix, string key)
         {
-            if (InvokeRequired)
+           /* if (InvokeRequired)
             {
                 LocalizedStringDiscovered_d d = FFBackend_OnLocalizedStringDiscovered;
                 BeginInvoke(d, index, prefix, key);
@@ -118,7 +118,7 @@ namespace FFExplorer
 
             TreeNode prefixNode = Localizedstrings.Nodes.Add(prefix, prefix);
             prefixNode.Tag = -1;
-            prefixNode.Nodes.Add(n);
+            prefixNode.Nodes.Add(n);*/
         }
 
         private void FFBackend_OnLocalizedStringPrefixesUpdated(string[] prefixes)
@@ -133,7 +133,7 @@ namespace FFExplorer
 
         private void FFBackend_OnRawfileDiscovered(int index, string name, string originalName, int originalSize)
         {
-            if (InvokeRequired)
+            /*if (InvokeRequired)
             {
                 RawFileDiscovered_d d = FFBackend_OnRawfileDiscovered;
                 BeginInvoke(d, index, name, originalName, originalSize);
@@ -149,7 +149,7 @@ namespace FFExplorer
             rawFileNode.Nodes.Add("Original size: " + originalSize.ToString());
             rawFileNode.Tag = index;
 
-            RawFiles.Nodes.Add(rawFileNode);
+            RawFiles.Nodes.Add(rawFileNode);*/
         }
 
         private void Logger_OnWriteException(string timestamp, Exception ex)
@@ -195,7 +195,7 @@ namespace FFExplorer
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            bool handled = false;
+            /*bool handled = false;
 
             if (e.KeyCode == Keys.Escape)
             {
@@ -290,7 +290,7 @@ namespace FFExplorer
                 }
             }
             e.Handled = handled;
-            e.SuppressKeyPress = handled;
+            e.SuppressKeyPress = handled;*/
         }
 
         private void OpenFFToolStripMenuItem_Click(object sender, EventArgs e)
@@ -302,7 +302,7 @@ namespace FFExplorer
         /// <para><see cref="SearchBoxShowMode.HIDE"/> when hidden.</para>
         /// <para><see cref="SearchBoxShowMode.SHOW"/> when shown.</para>
         /// </returns>
-        private SearchBoxShowMode ShowSearchPanel(SearchBoxShowMode mode)
+        /*private SearchBoxShowMode ShowSearchPanel(SearchBoxShowMode mode)
         {
             if (mode == SearchBoxShowMode.SHOW)
                 SearchBoxAndGoToPanel.Show();
@@ -326,11 +326,11 @@ namespace FFExplorer
                 }
             }
             return mode;
-        }
+        }*/
 
         private async void AnalyzeFastfile()
         {
-            if (isFastFileOpened)
+            /*if (isFastFileOpened)
                 CloseFFToolStripMenuItem.PerformClick();
 
             if (currentFFName == "")
@@ -366,7 +366,7 @@ namespace FFExplorer
             SaveFFToolStripMenuItem.Enabled = true;
             CloseFFToolStripMenuItem.Enabled = true;
             ExportFileToolStripMenuItem.Enabled = true;
-            LockInterface(false);
+            LockInterface(false);*/
         }
 
         private async void SaveFFToolStripMenuItem_Click(object sender, EventArgs e)
@@ -409,27 +409,27 @@ namespace FFExplorer
 
         private void LocalizedStringTabCleanup()
         {
-            Localizedstrings.Nodes.Clear();
-            LocalizedStringsFieldsCleanup();
+            /*Localizedstrings.Nodes.Clear();
+            LocalizedStringsFieldsCleanup();*/
         }
 
         private void LocalizedStringsFieldsCleanup()
         {
-            LocalizedStringKeyTextBox.Text = "";
+            /*LocalizedStringKeyTextBox.Text = "";
             LocalizedStringValueTextBox.Text = "";
             LocalizedStringKeySizeValue.Text = "0";
             LocalizedStringKeySizeMaxValue.Text = "0";
             LocalizedStringKeyOffsetValue.Text = "0";
             LocalizedStringValueSizeVal.Text = "0";
             LocalizedStringValueSizeMaxVal.Text = "0";
-            LocalizedStringValueOffsetVal.Text = "0";
+            LocalizedStringValueOffsetVal.Text = "0";*/
         }
 
         private void RawfilesTabCleanup()
         {
-            RawFiles.Nodes.Clear();
+            /*RawFiles.Nodes.Clear();
             StatusLine_Clear();            
-            CodeBox.Text = "";
+            CodeBox.Text = "";*/
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -447,12 +447,12 @@ namespace FFExplorer
 
         private void RemoveCommentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (currentRawfileIndex == -1)
+           /* if (currentRawfileIndex == -1)
                 return;
 
             ffBackend.RawfileRemoveComments(currentRawfileIndex);
             CodeBox.Text = ffBackend.GetRawfileContents(currentRawfileIndex);
-            RawfileInfo_Update();
+            RawfileInfo_Update();*/
         }
 
         private async void ZlibCompressToolStripMenuItem_Click(object sender, EventArgs e)
@@ -513,23 +513,23 @@ namespace FFExplorer
 
         private void CutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CodeBox.Cut();
+            //CodeBox.Cut();
         }
 
         private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (CodeBox.SelectedText.Length > 0)
-                Clipboard.SetText(CodeBox.SelectedText);
+            /*if (CodeBox.SelectedText.Length > 0)
+                Clipboard.SetText(CodeBox.SelectedText);*/
         }
 
         private void PasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CodeBox.Paste();
+            //CodeBox.Paste();
         }
 
         private void FindToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ShowSearchPanel(SearchBoxShowMode.INVERT) == SearchBoxShowMode.HIDE)
+            /*if (ShowSearchPanel(SearchBoxShowMode.INVERT) == SearchBoxShowMode.HIDE)
                 return;
             
             FindTextBox.Focus();
@@ -538,30 +538,30 @@ namespace FFExplorer
                 FindTextBox.Text = CodeBox.SelectedText;
                 FindTextBox.SelectionStart = 0;
                 FindTextBox.SelectionLength = CodeBox.SelectionLength;
-            }
+            }*/
         }
 
         private void FindNextToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int selectionStart = CodeBox.Text.IndexOf(CodeBox.SelectedText, CodeBox.SelectionStart + CodeBox.SelectionLength);
+           /* int selectionStart = CodeBox.Text.IndexOf(CodeBox.SelectedText, CodeBox.SelectionStart + CodeBox.SelectionLength);
             if (selectionStart == -1)
                 selectionStart = CodeBox.Text.IndexOf(CodeBox.SelectedText, 0);
             CodeBox.SelectionStart = selectionStart;
-            CodeBox.ScrollToCaret();
+            CodeBox.ScrollToCaret();*/
         }
 
         private void GotoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ShowSearchPanel(SearchBoxShowMode.INVERT) == SearchBoxShowMode.HIDE)
+            /*if (ShowSearchPanel(SearchBoxShowMode.INVERT) == SearchBoxShowMode.HIDE)
                 return;
 
             GoToLineBox.Focus();
-            GoToLineBox.Select(0, GoToLineBox.Value.ToString().Length);
+            GoToLineBox.Select(0, GoToLineBox.Value.ToString().Length);*/
         }
 
         private void GoToLine()
         {
-            if (GoToLineBox.Value > 0)
+            /*if (GoToLineBox.Value > 0)
             {
                 CodeBox.SelectionStart = 0;
                 for (int i = 0; i < GoToLineBox.Value - 1; ++i)
@@ -569,24 +569,24 @@ namespace FFExplorer
 
                 CodeBox.ScrollToCaret();
                 CodeBox.Focus();
-            }
+            }*/
         }
 
         private void SelectAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CodeBox.SelectAll();
+           /* CodeBox.SelectAll();*/
         }
 
         private void onClickCustomSnippets(object sender, EventArgs e)
         {
-            string filename = sender.ToString();
+            /*string filename = sender.ToString();
             if (File.Exists(currentAppDirectory + "\\snippets\\" + filename))
-                CodeBox.Paste(File.ReadAllText(currentAppDirectory + "\\snippets\\" + filename));
+                CodeBox.Paste(File.ReadAllText(currentAppDirectory + "\\snippets\\" + filename));*/
         }
 
         private void ExportFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!isFastFileOpened)
+            /*if (!isFastFileOpened)
                 return;
 
             string rn = ffBackend.GetRawfileName(RawFiles.SelectedNode.Index);
@@ -601,7 +601,7 @@ namespace FFExplorer
                 ExtractDialog.InitialDirectory = Directory.GetCurrentDirectory();
 
             if (ExtractDialog.ShowDialog() == DialogResult.OK)
-                ffBackend.ExtractRawFile(ExtractDialog.FileName, RawFiles.SelectedNode.Index);
+                ffBackend.ExtractRawFile(ExtractDialog.FileName, RawFiles.SelectedNode.Index);*/
         }
 
         private async void ExtractAllGSCsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -622,7 +622,7 @@ namespace FFExplorer
 
         private void CodeBox_TextChanged(object sender, EventArgs e)
         {
-            if (!isFastFileOpened)
+            /*if (!isFastFileOpened)
                 return;
 
             if (currentRawfileIndex == -1)
@@ -631,7 +631,7 @@ namespace FFExplorer
             GoToLineBox.Maximum = SubStrCount(CodeBox.Text, "\r\n") + 1;
 
             ffBackend.SetRawfileContents(currentRawfileIndex, CodeBox.Text);
-            RawfileInfo_UpdateSize();
+            RawfileInfo_UpdateSize();*/
         }
 
         private void CodeBox_Click(object sender, EventArgs e)
@@ -670,36 +670,36 @@ namespace FFExplorer
 
         private void RawfileInfo_UpdateOriginalSize()
         {
-            if (currentRawfileIndex == -1)
+           /* if (currentRawfileIndex == -1)
                 RawfileInfoSizeOriginal.Text = "0";
             else
-                RawfileInfoSizeOriginal.Text = ffBackend.GetRawfileOriginalSize(currentRawfileIndex).ToString();
+                RawfileInfoSizeOriginal.Text = ffBackend.GetRawfileOriginalSize(currentRawfileIndex).ToString();*/
         }
 
         private void RawfileInfo_UpdateSize()
         {
-            if (currentRawfileIndex == -1)
+           /* if (currentRawfileIndex == -1)
                 RawfileInfoSize.Text = "0";
             else
-                RawfileInfoSize.Text = ffBackend.GetRawfileSize(currentRawfileIndex).ToString();
+                RawfileInfoSize.Text = ffBackend.GetRawfileSize(currentRawfileIndex).ToString();*/
         }
 
         private void RawfileInfo_UpdateFileName()
         {
-            if (currentRawfileIndex == -1)
+           /* if (currentRawfileIndex == -1)
                 RawfileInfoFileName.Text = "unnamed";
             else
-                RawfileInfoFileName.Text = ffBackend.GetRawfileName(currentRawfileIndex);
+                RawfileInfoFileName.Text = ffBackend.GetRawfileName(currentRawfileIndex);*/
         }
 
         private void RawfileInfo_UpdateCurrentLine()
         {
-            GoToLineBox.Text = (CodeBox.GetLineFromCharIndex(CodeBox.SelectionStart) + 1).ToString();
+          /*  GoToLineBox.Text = (CodeBox.GetLineFromCharIndex(CodeBox.SelectionStart) + 1).ToString();*/
         }
 
         private void RawfileInfo_Update()
         {
-            if (currentRawfileIndex == -1)
+          /*  if (currentRawfileIndex == -1)
             {
                 RawfileInfoPanel.Visible = false;
                 return;
@@ -709,7 +709,7 @@ namespace FFExplorer
             RawfileInfo_UpdateFileName();
             RawfileInfo_UpdateSize();
             RawfileInfo_UpdateOriginalSize();
-            RawfileInfoPanel.Visible = true;
+            RawfileInfoPanel.Visible = true;*/
         }
 
         private void StatusLine_Clear()
@@ -720,15 +720,15 @@ namespace FFExplorer
 
         private void RawFiles_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            currentRawfileIndex = (int)(RawFiles.SelectedNode.Nodes.Count == 0 ? RawFiles.SelectedNode.Parent.Tag : RawFiles.SelectedNode.Tag);
+           /* currentRawfileIndex = (int)(RawFiles.SelectedNode.Nodes.Count == 0 ? RawFiles.SelectedNode.Parent.Tag : RawFiles.SelectedNode.Tag);
             CodeBox.Text = ffBackend.GetRawfileContents(currentRawfileIndex);
-            RawfileInfo_Update();
+            RawfileInfo_Update();*/
         }
 
         private void RawFiles_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-                RawFiles.SelectedNode = e.Node;
+           /* if (e.Button == MouseButtons.Right)
+                RawFiles.SelectedNode = e.Node;*/
         }
 
         //TODO: dirty
@@ -781,10 +781,10 @@ namespace FFExplorer
         /// <param name="state">True for lock, false for unlock.</param>
         protected void LockInterface(bool state)
         {
-            MenuStripLine.Enabled = !state;
+          /*  MenuStripLine.Enabled = !state;
             //ControlButtonsPanel.Enabled = !state;
             InterfaceBody.Enabled = !state; 
-            Wait.Visible = state;
+            Wait.Visible = state;*/
         }
 
         /// <summary>
@@ -879,7 +879,7 @@ namespace FFExplorer
 
         private void Localizedstrings_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            currentLocalizedStringIndex = (int) e.Node.Tag;
+           /* currentLocalizedStringIndex = (int) e.Node.Tag;
             if (currentLocalizedStringIndex == -1)
             {
                 LocalizedStringKeyGroup.Visible = false;
@@ -893,23 +893,23 @@ namespace FFExplorer
             LocalizedStringValueOffsetVal.Text = ffBackend.GetLocalizedStringValueOffset(currentLocalizedStringIndex).ToString();
             LocalizedStringValueTextBox.Text = ffBackend.GetLocalizedStringValue(currentLocalizedStringIndex);
             LocalizedStringKeyGroup.Visible = true;
-            LocalizedStringValueGroup.Visible = true;
+            LocalizedStringValueGroup.Visible = true;*/
         }
 
         private void LocalizedStringKeyTextBox_TextChanged(object sender, EventArgs e)
         {
-            LocalizedStringKeySizeValue.Text = LocalizedStringKeyTextBox.Text.Length.ToString();
+           /* LocalizedStringKeySizeValue.Text = LocalizedStringKeyTextBox.Text.Length.ToString();
             //TODO: check if size cannot be larger than original
             if(currentLocalizedStringIndex != -1)
-                ffBackend.SetLocalizedStringKey(currentLocalizedStringIndex, LocalizedStringKeyTextBox.Text);
+                ffBackend.SetLocalizedStringKey(currentLocalizedStringIndex, LocalizedStringKeyTextBox.Text);*/
         }
 
         private void LocalizedStringValueTextBox_TextChanged(object sender, EventArgs e)
         {
-            LocalizedStringValueSizeVal.Text = LocalizedStringValueTextBox.Text.Length.ToString();
+           /* LocalizedStringValueSizeVal.Text = LocalizedStringValueTextBox.Text.Length.ToString();
             //TODO: check if size cannot be larger than original
             if(currentLocalizedStringIndex != -1)
-                ffBackend.SetLocalizedStringValue(currentLocalizedStringIndex, LocalizedStringValueTextBox.Text);
+                ffBackend.SetLocalizedStringValue(currentLocalizedStringIndex, LocalizedStringValueTextBox.Text);*/
         }
 
         private void OnControlButtonClicked(object sender, EventArgs e)
@@ -924,7 +924,7 @@ namespace FFExplorer
             }
         }
 
-        private void OnGroupBoxPaint(object sender, PaintEventArgs e) // Something weird with redrawing border when resizing whole form.
+        /*private void OnGroupBoxPaint(object sender, PaintEventArgs e) // Something weird with redrawing border when resizing whole form.
         {
             const int headerTextOffset = 15;
             GroupBox b = sender as GroupBox;
@@ -945,32 +945,37 @@ namespace FFExplorer
                 e.Graphics.DrawLine(p, ll, rl);
                 e.Graphics.DrawLine(p, lu, ll);
             }
-        }
+        }*/
 
         private void RawfilesControlButton_Click(object sender, EventArgs e)
         {
-            OnControlButtonClicked(sender, e);
+           /* OnControlButtonClicked(sender, e);
             RawfilesWindow.Visible = true;
-            LocalizedStringsWindow.Visible = false;
+            LocalizedStringsWindow.Visible = false;*/
         }
 
         private void LocalizedStringControlButton_Click(object sender, EventArgs e)
         {
-            OnControlButtonClicked(sender, e);
+          /*  OnControlButtonClicked(sender, e);
             RawfilesWindow.Visible = false;
-            LocalizedStringsWindow.Visible = true;
+            LocalizedStringsWindow.Visible = true;*/
         }
 
         private void OtherControlButton_Click(object sender, EventArgs e)
         {
-            OnControlButtonClicked(sender, e);
+           /* OnControlButtonClicked(sender, e);
             RawfilesWindow.Visible = false;
-            LocalizedStringsWindow.Visible = false;
+            LocalizedStringsWindow.Visible = false;*/
+        }
+
+        private void LogGroup_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-    public class CustomMenuStripRenderer : ToolStripProfessionalRenderer
+    /*public class CustomMenuStripRenderer : ToolStripProfessionalRenderer
     {
         // Toolstrip connected area background: 2 rectangles
         protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e)
@@ -1030,6 +1035,6 @@ namespace FFExplorer
                     base.OnRenderMenuItemBackground(e);
             }
         }
-    };
+    };*/
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }

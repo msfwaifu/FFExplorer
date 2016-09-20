@@ -30,5 +30,11 @@ namespace FFExplorer
         {
             AppNameVer.Text = String.Format("{0} v{1}", Application.ProductName, Application.ProductVersion);
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/T-Maxxx/FFExplorer");
+            Hide();
+        }
     }
 }

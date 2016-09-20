@@ -136,7 +136,7 @@
     <value>3, 50</value>
   </data>
   <data name="MainShowLog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 17</value>
+    <value>234, 17</value>
   </data>
   <data name="MainShowLog.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -166,7 +166,7 @@
     <value>3, 33</value>
   </data>
   <data name="MainSaveTemporary.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 17</value>
+    <value>234, 17</value>
   </data>
   <data name="MainSaveTemporary.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -196,7 +196,7 @@
     <value>3, 16</value>
   </data>
   <data name="MainRememberLastFolder.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 17</value>
+    <value>234, 17</value>
   </data>
   <data name="MainRememberLastFolder.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -223,7 +223,7 @@
     <value>0, 0</value>
   </data>
   <data name="MainGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 70</value>
+    <value>240, 70</value>
   </data>
   <data name="MainGroup.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -247,7 +247,7 @@
     <value>Right</value>
   </data>
   <data name="SaveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 109</value>
+    <value>285, 109</value>
   </data>
   <data name="SaveButton.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>80, 0</value>
@@ -256,7 +256,7 @@
     <value>80, 0</value>
   </data>
   <data name="SaveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 38</value>
+    <value>80, 30</value>
   </data>
   <data name="SaveButton.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -283,7 +283,7 @@
     <value>NoControl</value>
   </data>
   <data name="CnclButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, 109</value>
+    <value>365, 109</value>
   </data>
   <data name="CnclButton.MaximumSize" type="System.Drawing.Size, System.Drawing">
     <value>80, 0</value>
@@ -292,7 +292,7 @@
     <value>80, 0</value>
   </data>
   <data name="CnclButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 38</value>
+    <value>80, 30</value>
   </data>
   <data name="CnclButton.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -436,7 +436,7 @@
     <value>0, 20</value>
   </data>
   <data name="LoggerLogDaysLimitPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 20</value>
+    <value>234, 20</value>
   </data>
   <data name="LoggerLogDaysLimitPanel.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -460,7 +460,7 @@
     <value>0, 70</value>
   </data>
   <data name="LoggerGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 39</value>
+    <value>240, 39</value>
   </data>
   <data name="LoggerGroup.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -496,7 +496,7 @@
     <value>80, 0</value>
   </data>
   <data name="ResetButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 38</value>
+    <value>80, 30</value>
   </data>
   <data name="ResetButton.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -520,10 +520,10 @@
     <value>Right</value>
   </data>
   <data name="LocalizedStringPrefixesGroup.Location" type="System.Drawing.Point, System.Drawing">
-    <value>224, 0</value>
+    <value>240, 0</value>
   </data>
   <data name="LocalizedStringPrefixesGroup.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 109</value>
+    <value>205, 109</value>
   </data>
   <data name="LocalizedStringPrefixesGroup.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -553,7 +553,7 @@
     <value>0, 0</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>413, 109</value>
+    <value>445, 109</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -580,7 +580,7 @@
     <value>True</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>413, 147</value>
+    <value>445, 139</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>

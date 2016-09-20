@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FF Viewer")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("FF Explorer")]
+[assembly: AssemblyDescription("Tool to explore CoD4 fastfiles")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("FF Viewer")]
+[assembly: AssemblyProduct("FF Explorer")]
 [assembly: AssemblyCopyright("Copyright T-Max© 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
